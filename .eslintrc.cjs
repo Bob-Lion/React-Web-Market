@@ -62,5 +62,6 @@ module.exports = {
         multiline: "last",
       },
     ],
+    "no-unused-vars":"warn"
   },
 }
