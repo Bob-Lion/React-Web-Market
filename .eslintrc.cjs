@@ -62,5 +62,7 @@ module.exports = {
         multiline: "last",
       },
     ],
+    "no-unused-vars":"warn",
+    "import/no-unresolved": "off",
   },
 }
