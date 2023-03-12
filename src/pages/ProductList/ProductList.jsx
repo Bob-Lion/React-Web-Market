@@ -1,11 +1,11 @@
 // product-list 페이지
 
-import { ProductList_Nav } from '../../components/ProductList_Nav/ProductList_Nav';
+import { ProductListNav } from '@/components/ProductListNav/ProductListNav';
 
 export function ProductList({ product }) {
   return (
     <>
-      <ProductList_Nav product={product} />
+      <ProductListNav product={product} />
     </>
   );
 }

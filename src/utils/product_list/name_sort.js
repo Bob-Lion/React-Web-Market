@@ -3,7 +3,7 @@
 // 중복값들을 제거하고 중복개수를 포함하고 있는 객체로 정렬
 // 그 후 객체를 한글이 영어보다 먼저오도록 해주는 korean_pre_sort 함수를 이용해서 정렬하고 배열에 넣어줌
 
-import { many_product_sort, koream_pre_sort } from '../../utils';
+import { many_product_sort, koream_pre_sort } from '@/utils';
 
 export function name_sort(product, sort_kind, accordion_head) {
   if (sort_kind === 'many_product_sort') {
