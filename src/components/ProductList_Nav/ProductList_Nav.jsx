@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from 'react';
 import { many_product_sort, name_sort } from '../../utils';
-import styled from './ProductList_Nav.module.scss';
+import styles from './ProductList_Nav.module.scss';
 
 export function ProductList_Nav({ product }) {
   const category_sort_data = many_product_sort(product, 'category');
