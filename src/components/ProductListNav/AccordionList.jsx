@@ -1,6 +1,7 @@
-import click_check_on from '@/assets/ProductListImage/Check_on.svg';
-import click_check_off from '@/assets/ProductListImage/Check_off.svg';
+import click_check_on from '@/../public/ProductListImage/Check_on.svg';
+import click_check_off from '@/../public/ProductListImage/Check_off.svg';
 
+//아코디언 목록의 리스트
 export function AccordionList({ name, count }) {
   return (
     <li>
