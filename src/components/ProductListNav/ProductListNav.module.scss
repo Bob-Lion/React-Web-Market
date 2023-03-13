@@ -1,1 +1,13 @@
+// 아코디언 전체 스타일
 
+.accordion {
+  position: sticky;
+  width: 220px;
+  // flex-shrink: 0;
+  height: 100%;
+  max-height: calc(100vh - 120px);
+  top: 80px;
+  margin-right: 47px;
+  border-bottom: 1px solid rgb(238, 238, 238);
+  overflow: hidden scroll;
+}

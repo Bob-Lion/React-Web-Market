@@ -1,7 +1,6 @@
 import { useEffect, useMemo } from 'react';
 import { many_product_sort, name_sort } from '@/utils';
 import { Accordion } from './Accordion';
-import styles from './ProductListNav.module.scss';
 
 export function ProductListNav({ product }) {
   const category_sort_data = many_product_sort(product, 'category');
@@ -11,12 +10,12 @@ export function ProductListNav({ product }) {
   console.log(brand_sort_data);
 
   return (
-    <div>
+    <>
       <Accordion
         category_data={category_sort_data}
         brand_data={brand_sort_data}
       />
-    </div>
+    </>
   );
 }
 
