@@ -1,6 +1,7 @@
 // 아코디언 전체 스타일
 
 $TextColor: rgb(51, 51, 51);
+$PrimaryColor: rgb(209, 122, 1);
 
 .accordion {
   position: sticky;
@@ -67,6 +68,36 @@ $TextColor: rgb(51, 51, 51);
 
     &Body::first-line {
       margin-top: 8px;
+    }
+
+    &Body {
+      &Sort {
+        display: flex;
+        gap: 12px;
+        list-style-type: none;
+        margin-bottom: 25px;
+        &Name {
+          font-size: 14px;
+          color: $PrimaryColor;
+          font-weight: 500;
+        }
+        &Name::after {
+          content: '';
+          display: inline-block;
+          width: 1px;
+          height: 12px;
+          margin-left: 12px;
+          background-color: rgb(238, 238, 238);
+          font-size: 10px;
+          vertical-align: -2px;
+        }
+
+        &Product {
+          font-size: 14px;
+          color: $TextColor;
+          font-weight: 400;
+        }
+      }
     }
 
     &More {

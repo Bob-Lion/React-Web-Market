@@ -5,23 +5,18 @@
 
 import { many_product_sort, koream_pre_sort } from '@/utils';
 
-export function name_sort(product, sort_kind, accordion_head) {
-  if (sort_kind === 'many_product_sort') {
-    return many_product_sort(product, accordion_head);
-  }
-  if (sort_kind === 'name_sort') {
-    const sort_data = product.map((product) => product[accordion_head]);
-    const sort_data_fillter = {};
-    sort_data.forEach((x) => {
-      sort_data_fillter[x] = (sort_data_fillter[x] || 0) + 1;
-    });
+export function name_sort(product, accordion_head) {
+  const sort_data = product.map((product) => product[accordion_head]);
+  const sort_data_fillter = {};
+  sort_data.forEach((x) => {
+    sort_data_fillter[x] = (sort_data_fillter[x] || 0) + 1;
+  });
 
-    let sortable_data = [];
-    const sortable_data_object = koream_pre_sort(sort_data_fillter);
-    for (let name in sortable_data_object) {
-      sortable_data.push([name, sortable_data_object[name]]);
-    }
-    // console.log(sortable_data);
-    return sortable_data;
+  let sortable_data = [];
+  const sortable_data_object = koream_pre_sort(sort_data_fillter);
+  for (let name in sortable_data_object) {
+    sortable_data.push([name, sortable_data_object[name]]);
   }
+  // console.log(sortable_data);
+  return sortable_data;
 }
