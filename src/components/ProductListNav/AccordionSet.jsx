@@ -1,6 +1,7 @@
 import arrow from '@/assets/ProductListImage/Arrow.svg';
 import { AccordionList } from './AccordionList';
 import leftarrow from '@/assets/ProductListImage/Arrow.svg';
+import styles from './ProductListNav.module.scss';
 // 아코디언 목록 한 세트
 export function AccordionSet({ data, listName }) {
   return (

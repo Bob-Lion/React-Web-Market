@@ -1,4 +1,5 @@
 import { ProductList } from '../pages/ProductList/ProductList';
+import '@/app/App.module.scss';
 
 const product = [
   {
