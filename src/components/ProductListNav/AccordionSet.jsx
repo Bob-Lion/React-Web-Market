@@ -3,7 +3,7 @@ import { AccordionList } from './AccordionList';
 import leftarrow from '@/../public/ProductListImage/Arrow.svg';
 import styles from './ProductListNav.module.scss';
 // 아코디언 목록 한 세트
-export function AccordionSet({ data, listName }) {
+export function AccordionSet({ data, listName, more }) {
   return (
     <div className={styles.accordionSet}>
       <button className={styles.accordionSetButton}>
@@ -17,10 +17,17 @@ export function AccordionSet({ data, listName }) {
           return <AccordionList key={item[0]} name={item[0]} count={item[1]} />;
         })}
       </ul>
-      <button>
-        <span>{listName} 더보기</span>
-        <img src={leftarrow} alt="해당 리스트 더보기 화살표 버튼" />
-      </button>
+      {/* 리스트 아이템의 수가 10개 이상일때 more 값이 true 로 받아질때만 생성 */}
+      {more ? (
+        <button className={styles.accordionSetMore}>
+          <span>{listName} 더보기</span>
+          <img
+            className={styles.accordionSetMoreImg}
+            src={leftarrow}
+            alt="해당 리스트 더보기 화살표 버튼"
+          />
+        </button>
+      ) : null}
     </div>
   );
 }
