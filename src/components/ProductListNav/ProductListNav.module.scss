@@ -1,5 +1,7 @@
 // 아코디언 전체 스타일
 
+$TextColor: rgb(51, 51, 51);
+
 .accordion {
   position: sticky;
   width: 220px;
@@ -28,7 +30,7 @@
     &Name {
       font-weight: 500;
       font-size: 15px;
-      color: rgb(51, 51, 51);
+      color: $TextColor;
     }
 
     &Button {
@@ -36,6 +38,40 @@
       -webkit-box-align: center;
       align-items: center;
       pointer-events: none;
+      justify-content: center;
+      text-align: center;
+
+      &Text {
+        margin-left: 5px;
+        font-weight: 500;
+        color: rgb(221, 221, 221);
+      }
+    }
+  }
+  &Set {
+    border-bottom: 1px solid rgb(238, 238, 238);
+
+    &Button {
+      display: flex;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+      -webkit-box-align: center;
+      align-items: center;
+      width: 100%;
+      height: 52px;
+      // overflow: hidden;
+      &Text {
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        font-weight: 500;
+        font-size: 15px;
+        line-height: 20px;
+        color: $TextColor;
+      }
+    }
+
+    &Body {
     }
   }
 }
