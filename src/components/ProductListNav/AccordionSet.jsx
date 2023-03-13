@@ -17,7 +17,7 @@ export function AccordionSet({ data, listName }) {
         })}
       </ul>
       <button>
-        <span>카테고리 더보기</span>
+        <span>{listName} 더보기</span>
         <img src={leftarrow} alt="해당 리스트 더보기 화살표 버튼" />
       </button>
     </div>
