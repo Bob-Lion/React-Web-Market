@@ -13,10 +13,13 @@ export function AccordionSet({ data, listName, more }) {
     // sort === 'name' ? setSortData(data[0]) : setSortData(data[1]);
     if (sort === 'name') {
       setSortData(data[0]);
-      // nameSortBtn.current.
+      nameSortBtn.current.style.color = 'rgb(209, 122, 1)';
+      productSortBtn.current.style.color = 'rgb(51, 51, 51)';
     }
     if (sort === 'product') {
       setSortData(data[1]);
+      nameSortBtn.current.style.color = 'rgb(51, 51, 51)';
+      productSortBtn.current.style.color = 'rgb(209, 122, 1)';
     }
   };
 
