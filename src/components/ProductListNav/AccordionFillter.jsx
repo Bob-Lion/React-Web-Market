@@ -1,5 +1,6 @@
 import resetButton from '@/assets/ProductListImage/resetButton.svg';
 
+// 아코디언 필터 & 리셋 버튼
 export function AccordionFillter() {
   return (
     <div>

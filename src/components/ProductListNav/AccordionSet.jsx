@@ -1,7 +1,7 @@
 import arrow from '@/assets/ProductListImage/Arrow.svg';
 import { AccordionList } from './AccordionList';
 import leftarrow from '@/assets/ProductListImage/Arrow.svg';
-
+// 아코디언 목록 한 세트
 export function AccordionSet({ data, listName }) {
   return (
     <div>
@@ -12,8 +12,8 @@ export function AccordionSet({ data, listName }) {
         </span>
       </button>
       <ul>
-        {data.map((list, index) => {
-          return <AccordionList key={index} name={list[0]} count={list[1]} />;
+        {data.map((list) => {
+          return <AccordionList key={list[0]} name={list[0]} count={list[1]} />;
         })}
       </ul>
       <button>
