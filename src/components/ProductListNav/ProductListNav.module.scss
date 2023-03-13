@@ -71,6 +71,11 @@ $PrimaryColor: rgb(209, 122, 1);
     }
 
     &Body {
+      transition: all 250ms cubic-bezier(0.83, 0, 0.17, 1) 0s;
+      height: auto;
+      opacity: 1;
+      overflow: hidden;
+
       &Sort {
         display: flex;
         gap: 12px;
