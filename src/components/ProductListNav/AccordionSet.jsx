@@ -1,5 +1,6 @@
 import arrow from '@/../public/ProductListImage/Arrow.svg';
 import { AccordionList } from './AccordionList';
+// import { BrandNameSort } from './BrandNameSort';
 import styles from './ProductListNav.module.scss';
 import { useEffect, useRef, useState } from 'react';
 // 아코디언 목록 한 세트
@@ -28,14 +29,14 @@ export function AccordionSet({ data, listName, more }) {
         'all 250ms cubic-bezier(0.83, 0, 0.17, 1) 0s';
     }
   });
-  const handleChangeData = (sort) => {
+  const handleChangeData = (sortName) => {
     // sort === 'name' ? setSortData(data[0]) : setSortData(data[1]);
-    if (sort === 'name') {
+    if (sortName === 'name') {
       setSortData(data[0]);
       nameSortBtn.current.style.color = 'rgb(209, 122, 1)';
       productSortBtn.current.style.color = 'rgb(51, 51, 51)';
     }
-    if (sort === 'product') {
+    if (sortName === 'product') {
       setSortData(data[1]);
       nameSortBtn.current.style.color = 'rgb(51, 51, 51)';
       productSortBtn.current.style.color = 'rgb(209, 122, 1)';
@@ -75,6 +76,7 @@ export function AccordionSet({ data, listName, more }) {
       <ul className={styles.accordionSetBody} ref={accordionList}>
         {listName === '브랜드' ? (
           <div className={styles.accordionSetBodySort}>
+            {/* <BrandNameSort className={styles.accordionSetBodySortName}  ref={nameSortBtn} onClick={handleChangeData('name')}>가나다순</BrandNameSort> */}
             <button
               className={styles.accordionSetBodySortName}
               ref={nameSortBtn}
