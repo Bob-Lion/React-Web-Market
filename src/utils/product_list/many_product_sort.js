@@ -8,7 +8,6 @@ export function many_product_sort(product, accordion_head) {
   sort_data.forEach((x) => {
     sort_data_fillter[x] = (sort_data_fillter[x] || 0) + 1;
   });
-  // console.log(category_fillter);
 
   let sortable_data = [];
   for (let name in sort_data_fillter) {
