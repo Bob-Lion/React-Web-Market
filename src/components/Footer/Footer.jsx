@@ -1,7 +1,7 @@
-import '../../styles/global.scss';
-import '../../styles/reset.scss';
-import '../../styles/normalize.scss';
-import classes from './footer.module.scss';
+import '@styles/global.scss';
+import '@styles/reset.scss';
+import '@styles/normalize.scss';
+import classes from '@components/Footer/Footer.module.scss';
 
 const Footer = () => {
   return (
@@ -49,19 +49,19 @@ const Footer = () => {
                 </div>
               </li>
               <li className={classes.nonMember}>
-                <p>비회원 문의 : <a href="mailto:help@karlycorp.com">help@karlycorp.com</a></p>
-                <p>비회원 대량주문 문의 : <a href="mailto:karlygift@karlycorp.com">help@karlycorp.com</a></p>
+                <p>비회원 문의 : <a href="mailto:help@boblion.com">help@boblion.com</a></p>
+                <p>비회원 대량주문 문의 : <a href="mailto:bobgift@boblion.com">help@boblion.com</a></p>
               </li>
             </ul>
           </section>
           <section className={classes.aboutKarly}>
-            <h3 className={classes.a11yHidden}>마켓칼리 관련 정보</h3>
+            <h3 className={classes.a11yHidden}>밥을사자 관련 정보</h3>
             <ul className={classes.link}>
               <li>
-                <a href="https://www.kurly.com/introduce">칼리소개</a>
+                <a href="https://www.kurly.com/introduce">밥사소개</a>
               </li>
               <li>
-                <a href="https://www.youtube.com/embed/WEep7BcboMQ?rel=0&showinfo=0&wmode=opaque&enablejsapi=1">칼리소개영상</a>
+                <a href="https://www.youtube.com/embed/WEep7BcboMQ?rel=0&showinfo=0&wmode=opaque&enablejsapi=1">밥사소개영상</a>
               </li>
               <li>
                 <a href="https://kurly.career.greetinghr.com/" rel="noreferrer" target="_blank">인재채용</a>
@@ -78,7 +78,7 @@ const Footer = () => {
             </ul>
             <ul className={classes.info}>
               <li>
-                <span>법인명 (상호) : 주식회사 칼리</span>
+                <span>법인명 (상호) : 주식회사 밥사</span>
                 <span>사업자등록번호 : 261-81-23567 <a href="/" target="_blank">사업자정보 확인</a></span>
               </li>
               <li>
@@ -91,37 +91,37 @@ const Footer = () => {
               </li>
               <li>
                 <span>입점문의 : <a href="https://docs.google.com/forms/d/e/1FAIpQLScLB7YkGJwNRzpGpp0gbR1i4C1_uvTEFj43SFfJ_XEadTn3gQ/viewform" rel="noreferrer" target="_blank">입점문의하기</a></span>
-                <span>제휴문의 : <a href="mailto:business@karlycorp.com">business@karlycorp.com</a></span>
+                <span>제휴문의 : <a href="mailto:business@boblion.com">business@boblion.com</a></span>
               </li>
               <li>
-                채용문의 : <a href="mailto:recruit@karlycorp.com">recruit@karlycorp.com</a>
+                채용문의 : <a href="mailto:recruit@karlycorp.com">recruit@boblion.com</a>
               </li>
               <li>팩스 : 070 - 7500 - 6098</li>
             </ul>
             <ul className={classes.socialMedia}>
               <li>
                 <a href="https://www.instagram.com/marketkurly/" rel="noreferrer" target="_blank">
-                  <img alt="마켓칼리 인스타그램 바로가기" className="instagramLogo" src="img/Footer/instagram.svg" />
+                  <img alt="밥을사자 인스타그램 바로가기" className="instagramLogo" src="img/Footer/instagram.svg" />
                 </a>
               </li>
               <li>
                 <a href="https://www.facebook.com/Marketkurly/" rel="noreferrer" target="_blank">
-                <img alt="마켓칼리 페이스북 바로가기" className="facebookLogo" src="img/Footer/facebook.svg" />
+                <img alt="밥을사자 페이스북 바로가기" className="facebookLogo" src="img/Footer/facebook.svg" />
                 </a>
               </li>
               <li>
                 <a href="https://blog.naver.com/marketkurly" rel="noreferrer" target="_blank">
-                  <img alt="마켓칼리 네이버 블로그 바로가기" className="blogLogo" src="img/Footer/blog.svg" />
+                  <img alt="밥을사자 네이버 블로그 바로가기" className="blogLogo" src="img/Footer/blog.svg" />
                 </a>
               </li>
               <li>
                 <a href="https://m.post.naver.com/marketkurly" rel="noreferrer" target="_blank">
-                  <img alt="마켓칼리 네이버 포스트 바로가기" className="postLogo" src="img/Footer/naverpost.svg" />
+                  <img alt="밥을사자 네이버 포스트 바로가기" className="postLogo" src="img/Footer/naverpost.svg" />
                 </a>
               </li>
               <li>
                 <a href="https://www.youtube.com/channel/UCfpdjL5pl-1qKT7Xp4UQzQg" rel="noreferrer" target="_blank">
-                  <img alt="마켓칼리 유튜브 바로가기" className="youtubeLogo" src="img/Footer/youtube.svg" />
+                  <img alt="밥을사자 유튜브 바로가기" className="youtubeLogo" src="img/Footer/youtube.svg" />
                 </a>
               </li>
             </ul>
@@ -131,7 +131,7 @@ const Footer = () => {
           <button type="button">
             <img alt="정보보호 관리체계 인증서 보기" className="ismsLogo" src="img/Footer/logo_isms.svg" />
             <p>
-              [인증범위] 컬리 쇼핑몰 서비스 개발·운영
+              [인증범위] 밥사 쇼핑몰 서비스 개발·운영
               <br/>(심사받지 않은 물리적 인프라 제외)
               <br/>[유효기간]2022.01.19~2025.01.18
             </p>
@@ -163,10 +163,10 @@ const Footer = () => {
       <div className={classes.footerBottom}>
         <h3 className={classes.a11yHidden}>서비스 및 사업 인증서</h3>
         <p>
-          칼리에서 판매되는 상품 중에는 칼리에 입점한 개별 판매자가 판매하는 마켓플레이스(오픈마켓) 상품이 포함되어 있습니다.
-          <br/>마켓플레이스(오픈마켓) 상품의 경우 칼리는 통신판매중개자로서 통신판매의 당사자가 아닙니다. 칼리는 해당 상품의 주문, 품질, 교환/환불 등 의무와 책임을 부담하지 않습니다.
+          밥사에서 판매되는 상품 중에는 밥사에 입점한 개별 판매자가 판매하는 마켓플레이스(오픈마켓) 상품이 포함되어 있습니다.
+          <br/>마켓플레이스(오픈마켓) 상품의 경우 밥사는 통신판매중개자로서 통신판매의 당사자가 아닙니다. 밥사는 해당 상품의 주문, 품질, 교환/환불 등 의무와 책임을 부담하지 않습니다.
         </p>
-        <span>© KARLY CORP. ALL RIGHTS RESERVED</span>
+        <span>© BOB-LION. ALL RIGHTS RESERVED</span>
       </div>
     </footer>
   )
