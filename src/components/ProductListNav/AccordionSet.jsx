@@ -5,6 +5,9 @@ import { useEffect, useRef, useState } from 'react';
 // 아코디언 목록 한 세트
 export function AccordionSet({ data, listName, more }) {
   // listName === '가격' ? console.log(data) : console.log('');
+  // console.log(data[0].slice(0, 10));
+  // const sliceData = data.slice(0, 10);
+  // console.log(sliceData);
   const [sortData, setSortData] = useState(data[0]);
   const [opacityToggle, setOpacityToggle] = useState(false);
   const nameSortBtn = useRef();
@@ -53,6 +56,7 @@ export function AccordionSet({ data, listName, more }) {
     }
     setOpacityToggle(!opacityToggle);
   };
+
   return (
     <div className={styles.accordionSet}>
       <button
@@ -91,7 +95,7 @@ export function AccordionSet({ data, listName, more }) {
             </button>
           </div>
         ) : null}
-        {sortData.map((item) => {
+        {sortData.slice(0, 10).map((item) => {
           return <AccordionList key={item[0]} name={item[0]} count={item[1]} />;
         })}
         {/* 리스트 아이템의 수가 10개 이상일때 more 값이 true 로 받아질때만 생성 */}
