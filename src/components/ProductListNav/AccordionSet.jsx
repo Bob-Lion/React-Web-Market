@@ -1,23 +1,28 @@
 import arrow from '@/../public/ProductListImage/Arrow.svg';
 import { AccordionList } from './AccordionList';
-import leftarrow from '@/../public/ProductListImage/Arrow.svg';
 import styles from './ProductListNav.module.scss';
 import { useEffect, useRef, useState } from 'react';
 // 아코디언 목록 한 세트
 export function AccordionSet({ data, listName, more }) {
-  // console.log(data.length);
+  // listName === '가격' ? console.log(data) : console.log('');
   const [sortData, setSortData] = useState(data[0]);
   const [opacityToggle, setOpacityToggle] = useState(false);
   const nameSortBtn = useRef();
   const productSortBtn = useRef();
   const accordionList = useRef();
+  const arrowReverse = useRef();
+
   useEffect(() => {
     if (opacityToggle) {
       accordionList.current.style.opacity = '0';
       accordionList.current.style.maxHeight = '0px';
+      arrowReverse.current.style.transform = 'rotate(0deg)';
     } else {
       accordionList.current.style.opacity = '1';
       accordionList.current.style.maxHeight = '100vh';
+      arrowReverse.current.style.transform = 'rotate(-180deg)';
+      arrowReverse.current.style.transition =
+        'all 250ms cubic-bezier(0.83, 0, 0.17, 1) 0s';
     }
   });
   const handleChangeData = (sort) => {
@@ -38,9 +43,13 @@ export function AccordionSet({ data, listName, more }) {
     if (opacityToggle) {
       accordionList.current.style.opacity = '0';
       accordionList.current.style.maxHeight = '0px';
+      arrowReverse.current.style.transform = 'rotate(0deg)';
     } else {
       accordionList.current.style.opacity = '1';
       accordionList.current.style.maxHeight = '100vh';
+      arrowReverse.current.style.transform = 'rotate(-180deg)';
+      arrowReverse.current.style.transition =
+        'all 250ms cubic-bezier(0.83, 0, 0.17, 1) 0s';
     }
     setOpacityToggle(!opacityToggle);
   };
@@ -52,7 +61,11 @@ export function AccordionSet({ data, listName, more }) {
       >
         <span className={styles.accordionSetButtonText}>{listName}</span>
         <span>
-          <img src={arrow} alt="해당 아코디언 목록 펼치고 닫는 화살표" />
+          <img
+            src={arrow}
+            alt="해당 아코디언 목록 펼치고 닫는 화살표"
+            ref={arrowReverse}
+          />
         </span>
       </button>
       <ul className={styles.accordionSetBody} ref={accordionList}>
@@ -87,7 +100,7 @@ export function AccordionSet({ data, listName, more }) {
             <span>{listName} 더보기</span>
             <img
               className={styles.accordionSetMoreImg}
-              src={leftarrow}
+              src={arrow}
               alt="해당 리스트 더보기 화살표 버튼"
             />
           </button>
