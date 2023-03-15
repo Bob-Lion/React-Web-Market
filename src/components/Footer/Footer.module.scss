@@ -1,0 +1,213 @@
+.a11yHidden {
+  display: inline-block;
+  overflow: hidden;
+  position: absolute !important;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+}
+
+.footer {
+  margin: 0 auto;
+  border-top: 1px solid #e1e1e1;
+  color: #333333;
+
+  /* ----- .footerInner ----- */
+  &Inner {
+    width: 1050px;
+    margin: 32px auto;
+
+    /* --- .footerInnerTop --- */
+    &Top {
+      padding-bottom: 32px;
+      display: flex;
+      justify-content: space-between;
+
+      /* .customerCenter */
+      .customerCenter {
+        .title {
+          font-size: 20px;
+          font-weight: 600;
+          line-height: 140%;
+        }
+
+        .contact {
+          display: flex;
+          align-items: center;
+        }
+
+        .tel {
+          margin: 20px 0;
+          font-size: 30px;
+          font-weight: bold;
+          line-height: 140%;
+        }
+
+        .info {
+          margin-left: 8px;
+          line-height: 150%;
+        }
+
+        .item {
+          width: 477px;
+          margin-bottom: 16px;
+          display: flex;
+          align-items: center;
+
+          &Title {
+            width: 140px;
+            height: 40px;
+            border: 1px solid #e1e1e1;
+            border-radius: 3px;
+            font-size: 14px;
+            text-align: center;
+            line-height: 40px;
+          }
+
+          &Info {
+            width: 440px;
+            margin-left: 8px;
+            color: #6b6b6b;
+            font-size: 14px;
+            line-height: 150%;
+
+            p {
+              span {
+                &:nth-child(1)::after {
+                  display: inline-block;
+                  content: "";
+                  background-color: #a6a6a6;
+                  width: 1px;
+                  height: 10px;
+                  margin: 0 5px;
+                }
+              }
+            }
+          }
+        }
+
+        .nonMember {
+          color: #6b6b6b;
+          font-size: 12px;
+
+          p {
+            &:nth-child(1) {
+              margin-bottom: 5px;
+            }
+          }
+
+          a {
+            color: #5f0080;
+          }
+        }
+      }
+
+      /* .aboutKarly */
+      .aboutKarly {
+        .link {
+          width: 500px;
+          margin-bottom: 32px;
+          display: flex;
+          justify-content: space-between;
+
+          li {
+            margin-right: 16px;
+
+            &:nth-child(5) {
+              font-weight: 500;
+            }
+
+            &:last-child {
+              margin-right: 0;
+            }
+          }
+        }
+
+        .info {
+          margin-bottom: 32px;
+          color: #6b6b6b;
+          font-size: 12px;
+          line-height: 140%;
+
+          li {
+            span {
+              &:nth-child(1)::after {
+                display: inline-block;
+                content: "";
+                background-color: #a6a6a6;
+                width: 1px;
+                height: 10px;
+                margin: 0px 5px;
+              }
+            }
+          }
+
+          a {
+            color: #5f0080;
+          }
+        }
+
+        .socialMedia {
+          display: flex;
+
+          li {
+            margin-right: 10px;
+
+            a {
+              img {
+                width: 32px;
+                height: 32px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    /* --- .footerInnerBottom --- */
+    &Bottom {
+      width: 100%;
+      padding: 32px 0 0;
+      border-top: 1px solid #e1e1e1;
+      display: flex;
+      justify-content: space-between;
+
+      button {
+        display: flex;
+        align-items: center;
+        background-color: transparent;
+        border: none;
+        color: #6b6b6b;
+        font-size: 10px;
+        line-height: 140%;
+        text-align: left;
+      }
+
+      img {
+        margin-right: 12px;
+      }
+
+      &:nth-child(1) {
+        img {
+          width: 100px;
+        }
+      }
+    }
+  }
+  
+  /* ----- .footerBottom ----- */
+  &Bottom {
+    padding: 24px;
+    background-color: #f9f9f9;
+    color: #6b6b6b;
+    font-size: 10px;
+    line-height: 140%;
+    text-align: center;
+
+    p {
+      margin-bottom: 8px;
+    }
+  }
+}
