@@ -360,6 +360,7 @@ const brand_product_sort_data = many_product_sort(product, 'brand');
 
 const brand_sort_data = [brand_name_sort_data, brand_product_sort_data];
 
+const price_sort_data = [priceSort(product)];
 /* const category_sort_data = useMemo(
   () => many_product_sort(product, 'category'),
   [product]
@@ -385,4 +386,8 @@ export const brandProductSortData = atom({
 export const brandSortData = atom({
   key: 'brandSortData',
   default: brand_sort_data,
+});
+export const priceSortData = atom({
+  key: 'priceSortData',
+  default: price_sort_data,
 });

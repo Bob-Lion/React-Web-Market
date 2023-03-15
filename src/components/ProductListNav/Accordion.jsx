@@ -4,10 +4,11 @@ import styles from './ProductListNav.module.scss';
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import {
-  brandNameSortData,
+  // brandNameSortData,
   categorySortData,
-  brandProductSortData,
+  // brandProductSortData,
   brandSortData,
+  priceSortData,
 } from '../../@atom/productData';
 export function Accordion() {
   // console.log(category_data);
@@ -24,15 +25,19 @@ export function Accordion() {
   // const brandProductData = useRecoilValue(brandProductSortData);
   // 브랜드 정렬 데이터 불러오기
   const brandData = useRecoilValue(brandSortData);
+  const priceData = useRecoilValue(priceSortData);
+
+  console.log(categoryData);
+  console.log(priceData);
 
   return (
     <div>
       <div className={styles.accordion}>
         <AccordionFillter reset={reset} setReset={setReset} />
         {/* 리스트 아이템의 수가 10개 이상일때 more 값을 true 로 전달 아니면 false */}
-        <AccordionSet listName="카테고리" data={categoryData} />
-        <AccordionSet listName="브랜드" data={brandData} />
-        {/* <AccordionSet listName="가격" data={price_data[0].map((a) => [a])} /> */}
+        <AccordionSet data={categoryData} listName="카테고리" />
+        <AccordionSet data={brandData} listName="브랜드" />
+        <AccordionSet data={priceData} listName="가격" />
       </div>
     </div>
   );

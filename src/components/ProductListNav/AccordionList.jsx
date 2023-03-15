@@ -39,10 +39,10 @@ export function AccordionList({ name, count }) {
         href="#"
         onClick={handleClickCheck}
       >
-        <button className={styles.accordionListItemcheckButton}>
+        <button className={styles.accordionListItemcheckButton} type="button">
           <img
-            src={btnToggle ? click_check_off : click_check_on}
             alt="해당 리스트 체크하는 버튼"
+            src={btnToggle ? click_check_off : click_check_on}
           ></img>
         </button>
         <span

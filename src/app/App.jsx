@@ -1,4 +1,4 @@
-import { ProductList } from '../pages/ProductList/ProductList';
+import { ProductList } from '@/pages/ProductList/ProductList';
 import '@/app/App.module.scss';
 
 function App() {
