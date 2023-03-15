@@ -4,31 +4,27 @@ import styles from './ProductListNav.module.scss';
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import {
-  // brandNameSortData,
   categorySortData,
-  // brandProductSortData,
   brandSortData,
   priceSortData,
+  benefiSortData,
+  typeSortData,
 } from '../../@atom/productData';
 export function Accordion() {
-  // console.log(category_data);
-  // console.log(price_data[0].map((a) => [a]));
-
   // 초기화 상태 관리를 위해 reset State 생성
   const [reset, setReset] = useState(false);
 
   // 카테고리 데이터 불러오기
   const categoryData = useRecoilValue(categorySortData);
-  // // 브랜드 이름순 정렬 데이터 불러오기
-  // const brandNameData = useRecoilValue(brandNameSortData);
-  // // 브랜드 상품 많은순 정렬 데이터 불러오기
-  // const brandProductData = useRecoilValue(brandProductSortData);
-  // 브랜드 정렬 데이터 불러오기
+  // 브랜드 데이터 불러오기
   const brandData = useRecoilValue(brandSortData);
+  // 가격 데이터 불러오기
   const priceData = useRecoilValue(priceSortData);
+  // 혜택 데이터 불러오기
+  const benefitData = useRecoilValue(benefiSortData);
 
-  console.log(categoryData);
-  console.log(priceData);
+  // 유형 데이터 불러오기
+  const typeData = useRecoilValue(typeSortData);
 
   return (
     <div>
@@ -38,6 +34,8 @@ export function Accordion() {
         <AccordionSet data={categoryData} listName="카테고리" />
         <AccordionSet data={brandData} listName="브랜드" />
         <AccordionSet data={priceData} listName="가격" />
+        <AccordionSet data={[benefitData]} listName="혜택" />
+        <AccordionSet data={[typeData]} listName="유형" />
       </div>
     </div>
   );

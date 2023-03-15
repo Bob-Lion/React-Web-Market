@@ -1,5 +1,6 @@
 import { atom } from 'recoil';
 import { many_product_sort, name_sort, priceSort } from '@/utils';
+import { includeSort } from '../utils/product_list/includeSort';
 
 const product = [
   {
@@ -19,7 +20,7 @@ const product = [
     stock: 6,
     limited: true,
     category: '샐러드·간편식',
-    kalryOnly: 'false',
+    bobLionOnly: 'false',
     brand: '풀무원',
     qnas: [],
   },
@@ -37,7 +38,7 @@ const product = [
     stock: 13,
     limited: true,
     category: '면·양념·오일',
-    kalryOnly: 'true',
+    bobLionOnly: 'true',
     brand: '이연복의 목란',
     qnas: [
       {
@@ -96,7 +97,7 @@ const product = [
     stock: 3,
     limited: false,
     category: '정육·계란',
-    kalryOnly: 'false',
+    bobLionOnly: 'false',
     brand: '브룩클린688',
     qnas: [
       {
@@ -155,7 +156,7 @@ const product = [
     stock: 12,
     limited: true,
     category: '과일·견과·쌀',
-    kalryOnly: 'false',
+    bobLionOnly: 'false',
     brand: '유명산지',
   },
   {
@@ -172,7 +173,7 @@ const product = [
     stock: 12,
     limited: true,
     category: '정육·계란',
-    kalryOnly: 'true',
+    bobLionOnly: 'true',
     brand: '고기반찬',
   },
   {
@@ -189,7 +190,7 @@ const product = [
     stock: 7,
     limited: false,
     category: '정육·계란',
-    kalryOnly: 'true',
+    bobLionOnly: 'true',
     brand: 'KF365',
   },
   {
@@ -206,7 +207,7 @@ const product = [
     stock: 10,
     limited: true,
     category: '정육·계란',
-    kalryOnly: 'true',
+    bobLionOnly: 'true',
     brand: "Kalty's",
   },
   {
@@ -223,7 +224,7 @@ const product = [
     stock: 8,
     limited: false,
     category: '국·반찬·메인요리',
-    kalryOnly: 'true',
+    bobLionOnly: 'true',
     brand: '강남면옥',
   },
   {
@@ -240,7 +241,7 @@ const product = [
     stock: 12,
     limited: false,
     category: '정육·계란',
-    kalryOnly: 'true',
+    bobLionOnly: 'true',
     brand: "Kalty's",
   },
   {
@@ -257,7 +258,7 @@ const product = [
     stock: 4,
     limited: true,
     category: '베이커리·치즈·델리',
-    kalryOnly: 'false',
+    bobLionOnly: 'false',
     brand: '포비베이글',
   },
   {
@@ -274,7 +275,7 @@ const product = [
     stock: 3,
     limited: true,
     category: '샐러드·간편식',
-    kalryOnly: 'true',
+    bobLionOnly: 'true',
     brand: '스윗밸런스',
   },
   {
@@ -291,7 +292,7 @@ const product = [
     stock: 4,
     limited: false,
     category: '간식·과자·떡',
-    kalryOnly: 'true',
+    bobLionOnly: 'true',
     brand: '그래놀라 하우스',
   },
   {
@@ -311,7 +312,7 @@ const product = [
     stock: 5,
     limited: false,
     category: '수산·해산·건어물',
-    kalryOnly: 'true',
+    bobLionOnly: 'true',
     brand: '홍대쭈꾸미',
   },
   {
@@ -331,7 +332,7 @@ const product = [
     stock: 8,
     limited: false,
     category: '샐러드·간편식',
-    kalryOnly: 'false',
+    bobLionOnly: 'false',
     brand: '대구 반할만떡',
   },
   {
@@ -348,23 +349,40 @@ const product = [
     stock: 6,
     limited: false,
     category: '국·반찬·메인요리',
-    kalryOnly: 'false',
+    bobLionOnly: 'false',
     brand: '사미헌',
   },
 ];
+
+// 카테고리 데이터
 const category_sort_data = [many_product_sort(product, 'category')];
 
+// 브랜드 - 가나다순 정렬 데이터
 const brand_name_sort_data = name_sort(product, 'brand');
 
+// 브랜드 - 상품 많은순 데이터
 const brand_product_sort_data = many_product_sort(product, 'brand');
 
+// 브랜드 데이터
 const brand_sort_data = [brand_name_sort_data, brand_product_sort_data];
 
+// 가격 데이터
 const price_sort_data = [priceSort(product)];
-/* const category_sort_data = useMemo(
-  () => many_product_sort(product, 'category'),
-  [product]
-); */
+
+// 혜택 - 할인상품 데이터
+const saleProduct_data = includeSort(product, 'saleProduct');
+
+// 혜택 - 한정수량 데이터
+const limitstock_data = includeSort(product, 'stock');
+
+// 혜택 데이터
+const benefit_data = [saleProduct_data, limitstock_data];
+
+// 유형 - bob-lion Only 데이터
+const bobLionOnly_data = includeSort(product, 'bobLionOnly');
+
+// 유형 데이터
+const type_data = [bobLionOnly_data];
 
 export const productData = atom({
   key: 'productData',
@@ -390,4 +408,14 @@ export const brandSortData = atom({
 export const priceSortData = atom({
   key: 'priceSortData',
   default: price_sort_data,
+});
+
+export const benefiSortData = atom({
+  key: 'benefiSortData',
+  default: benefit_data,
+});
+
+export const typeSortData = atom({
+  key: 'typeSortData',
+  default: type_data,
 });
