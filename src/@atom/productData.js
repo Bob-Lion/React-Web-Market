@@ -352,11 +352,13 @@ const product = [
     brand: '사미헌',
   },
 ];
-const category_sort_data = many_product_sort(product, 'category');
+const category_sort_data = [many_product_sort(product, 'category')];
 
 const brand_name_sort_data = name_sort(product, 'brand');
 
 const brand_product_sort_data = many_product_sort(product, 'brand');
+
+const brand_sort_data = [brand_name_sort_data, brand_product_sort_data];
 
 /* const category_sort_data = useMemo(
   () => many_product_sort(product, 'category'),
@@ -373,10 +375,14 @@ export const categorySortData = atom({
   default: category_sort_data,
 });
 export const brandNameSortData = atom({
-  key: 'categorySortData',
+  key: 'brandNameSortData',
   default: brand_name_sort_data,
 });
 export const brandProductSortData = atom({
-  key: 'categorySortData',
+  key: 'brandProductSortData',
   default: brand_product_sort_data,
+});
+export const brandSortData = atom({
+  key: 'brandSortData',
+  default: brand_sort_data,
 });

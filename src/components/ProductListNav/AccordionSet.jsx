@@ -4,17 +4,20 @@ import { AccordionList } from './AccordionList';
 import styles from './ProductListNav.module.scss';
 import { useEffect, useRef, useState } from 'react';
 // 아코디언 목록 한 세트
-export function AccordionSet({ data, listName, more }) {
+export function AccordionSet({ data, listName }) {
   // listName === '가격' ? console.log(data) : console.log('');
   // console.log(data[0].slice(0, 10));
   // const sliceData = data.slice(0, 10);
   // console.log(sliceData);
+
   const [sortData, setSortData] = useState(data[0]);
   const [opacityToggle, setOpacityToggle] = useState(false);
   const nameSortBtn = useRef();
   const productSortBtn = useRef();
   const accordionList = useRef();
   const arrowReverse = useRef();
+  // 상품 갯수가 n개 이상이면 더보기 버튼 생성
+  const more = sortData.length >= 8;
 
   useEffect(() => {
     if (opacityToggle) {
