@@ -1,7 +1,7 @@
-import '@styles/global.scss';
-import '@styles/reset.scss';
-import '@styles/normalize.scss';
-import classes from '@components/Footer/Footer.module.scss';
+import '@/styles/global.scss';
+import '@/styles/reset.scss';
+import '@/styles/normalize.scss';
+import classes from '@/components/Footer/Footer.module.scss';
 
 const Footer = () => {
   return (
