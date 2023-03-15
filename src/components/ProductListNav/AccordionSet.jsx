@@ -4,18 +4,14 @@ import { AccordionList } from './AccordionList';
 import styles from './ProductListNav.module.scss';
 import { useEffect, useMemo, useRef, useState } from 'react';
 // 아코디언 목록 한 세트
-export function AccordionSet({ data, listName }) {
-  // listName === '가격' ? console.log(data) : console.log('');
-  // console.log(data[0].slice(0, 10));
-  // const sliceData = data.slice(0, 10);
-  // console.log(sliceData);
-
+export function AccordionSet({ data, listName, selectData }) {
   const [sortData, setSortData] = useState(data[0]);
   const [opacityToggle, setOpacityToggle] = useState(false);
   const nameSortBtn = useRef();
   const productSortBtn = useRef();
   const accordionList = useRef();
   const arrowReverse = useRef();
+
   // 상품 갯수가 n개 이상이면 더보기 버튼 생성
   const more = sortData.length >= 8;
 
@@ -65,7 +61,12 @@ export function AccordionSet({ data, listName }) {
     const renderAllData = [];
     sortData.map((item) => {
       renderAllData.push(
-        <AccordionList key={item[0]} name={item[0]} count={item[1]} />
+        <AccordionList
+          key={item[0]}
+          name={item[0]}
+          count={item[1]}
+          selectData={selectData}
+        />
       );
     });
     return renderAllData;
@@ -113,6 +114,7 @@ export function AccordionSet({ data, listName }) {
             </button>
           </div>
         ) : null}
+        {/* 아코디언 리스트 동적으로 생성 */}
         {renderData.slice(0, 10)}
         {/* 리스트 아이템의 수가 10개 이상일때 more 값이 true 로 받아질때만 생성 */}
         {more ? (
