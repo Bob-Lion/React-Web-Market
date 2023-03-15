@@ -1,0 +1,31 @@
+.ProductCarousel{
+  
+
+  &Title{
+    text-align: center;
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: -0.26px;
+    line-height: 32.2px;
+    height: 48px;
+  }
+}
+
+
+.horizontalSwiperNavigation{
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+
+  &Prev{
+    background-color: brown;
+    left: calc(50% - 555px);
+  }
+  &Next{
+    background-color: aquamarine;
+    
+    right:calc(50% - 555px);
+  }
+}
