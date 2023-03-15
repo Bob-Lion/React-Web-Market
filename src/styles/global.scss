@@ -1,23 +1,26 @@
+
+
 body {
   margin: 0;
-  font: 1rem/1.5 "Pretendard", sans-serif;
-  background: #fff;
+  font: inherit;
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+    "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR",
+    "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    sans-serif;
+  background-color: #fff;
   color: #000;
 
   box-sizing: border-box;
 
   &::before,
-  &::after {
-    box-sizing: inherit;
+  &::after,
+  & *,
+  & *::before,
+  & *::after {
+    box-sizing: border-box;
   }
 
-  * {
-    box-sizing: inherit;
-    &::before,
-    &::after {
-      box-sizing: inherit;
-    }
-  }
+
 }
 
 button {
