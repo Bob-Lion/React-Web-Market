@@ -2,6 +2,8 @@ import click_check_on from '@/../public/ProductListImage/Check_on.svg';
 import click_check_off from '@/../public/ProductListImage/Check_off.svg';
 import styles from './ProductListNav.module.scss';
 import { useState, useRef } from 'react';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { selectList } from '../../@atom/accordion/selectList';
 
 //아코디언 목록의 리스트
 export function AccordionList({ name, count, selectData }) {
@@ -14,7 +16,8 @@ export function AccordionList({ name, count, selectData }) {
     hoverSpan.current.style.color = 'rgb(51, 51, 51)';
   };
 
-  const clickProduct = [];
+  const setSelectListData = useSetRecoilState(selectList);
+  const selectListData = useRecoilValue(selectList);
 
   const handleClickCheck = () => {
     // 체크 버튼이 활성화 될때 값이 배열에 없으면 추가하고 체크버튼이 비활성화 될때 해당 값을 삭제해 준다.
@@ -26,23 +29,9 @@ export function AccordionList({ name, count, selectData }) {
     }
 
     console.log(selectData.current);
-    // console.log(name);
 
     setBtnToggle(!btnToggle);
   };
-  // 체크버튼 클릭시, 브랜드 정렬방법 선택시 데이터 관리하는거 상태관리 다시 해야댐
-  /* const btnToggleMemo = useMemo(() => {
-    return btnToggle ? click_check_off : click_check_on;
-  }, [btnToggle]);
-
-  const handleClickCheck = () => {
-    // console.log(name);
-    setBtnToggle(!btnToggle);
-  };
-
-  useEffect(() => {
-    // return setBtnToggle(!btnToggle);
-  }, [btnToggleMemo]); */
 
   return (
     <li className={styles.accordionList}>
@@ -54,12 +43,16 @@ export function AccordionList({ name, count, selectData }) {
         <button className={styles.accordionListItemcheckButton} type="button">
           <img
             alt="해당 리스트 체크하는 버튼"
-            src={btnToggle ? click_check_on : click_check_off}
+            src={
+              selectData.current.includes(name)
+                ? click_check_on
+                : click_check_off
+            }
           ></img>
         </button>
         <span
-          className={styles.accordionListItemName}
           ref={hoverSpan}
+          className={styles.accordionListItemName}
           onMouseEnter={handleEnter}
           onMouseLeave={handleLeave}
         >

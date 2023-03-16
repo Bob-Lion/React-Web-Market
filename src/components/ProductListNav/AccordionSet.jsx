@@ -65,12 +65,13 @@ export function AccordionSet({ data, listName, selectData }) {
           key={item[0]}
           name={item[0]}
           count={item[1]}
+          listName={listName}
           selectData={selectData}
         />
       );
     });
     return renderAllData;
-  }, [sortData]);
+  }, [selectData, sortData]);
 
   return (
     <div className={styles.accordionSet}>
