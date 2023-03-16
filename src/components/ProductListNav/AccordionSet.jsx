@@ -63,9 +63,9 @@ export function AccordionSet({ data, listName, selectData, setSelectData }) {
       renderAllData.push(
         <AccordionList
           key={item[0]}
-          name={item[0]}
           count={item[1]}
           listName={listName}
+          name={item[0]}
           selectData={selectData}
           setSelectData={setSelectData}
         />
@@ -90,7 +90,7 @@ export function AccordionSet({ data, listName, selectData, setSelectData }) {
           />
         </span>
       </button>
-      <ul className={styles.accordionSetBody} ref={accordionList}>
+      <ul ref={accordionList} className={styles.accordionSetBody}>
         {listName === '브랜드' ? (
           <div className={styles.accordionSetBodySort}>
             {/* <BrandNameSort className={styles.accordionSetBodySortName}  ref={nameSortBtn} onClick={handleChangeData('name')}>가나다순</BrandNameSort> */}

@@ -1,8 +1,10 @@
 import { AccordionSet } from './AccordionSet';
 import { AccordionFillter } from './AccordionFillter';
 import styles from './ProductListNav.module.scss';
+
 import { useRef, useState } from 'react';
 import { useRecoilValue } from 'recoil';
+
 import {
   categorySortData,
   brandSortData,
@@ -10,6 +12,10 @@ import {
   benefiSortData,
   typeSortData,
 } from '@/@atom/productData';
+import { selectList } from '@/@atom/accordion/selectList';
+import { categorySelect } from '@/@atom/accordion/categorySelect';
+import { productListCheckReset } from '../../@atom/accordion/productListCheckReset';
+
 // import { accordionCategory } from '@/@atom/accordion/accordionCategory.js';
 export function Accordion() {
   // 카테고리 데이터 불러오기
@@ -23,12 +29,14 @@ export function Accordion() {
   // 유형 데이터 불러오기
   const typeData = useRecoilValue(typeSortData);
 
+
   // const [categorySelectData, setCategorySelectData] = useRecoilState();
   const [categorySelectData, setCategorySelectData] = useState([]);
   const [brandSelectData, setBrandSelectData] = useState([]);
   const [priceSelectData, setPriceSelectData] = useState([]);
   const [benefitSelectData, setBenefitSelectData] = useState([]);
   const [typeSelectData, setTypeSelectData] = useState([]);
+
 
   return (
     <div>
