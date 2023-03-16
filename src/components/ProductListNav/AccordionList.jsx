@@ -1,14 +1,18 @@
 import click_check_on from '@/../public/ProductListImage/Check_on.svg';
 import click_check_off from '@/../public/ProductListImage/Check_off.svg';
 import styles from './ProductListNav.module.scss';
-import { useState, useRef } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useState, useRef, useEffect } from 'react';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { selectList } from '../../@atom/accordion/selectList';
+import { productListCheckReset } from '../../@atom/accordion/productListCheckReset';
+import { productListResetBtn } from '../../@atom/accordion/productListResetBtn';
 
 //아코디언 목록의 리스트
-export function AccordionList({ name, count, selectData }) {
+export function AccordionList({ name, count, selectData, listName }) {
+  let listData = [];
   const [btnToggle, setBtnToggle] = useState(false);
   const hoverSpan = useRef();
+  const [resetBtnData, setResetBtnData] = useRecoilState(productListResetBtn);
   const handleEnter = () => {
     hoverSpan.current.style.color = 'rgb(209, 122, 1)';
   };
@@ -16,6 +20,7 @@ export function AccordionList({ name, count, selectData }) {
     hoverSpan.current.style.color = 'rgb(51, 51, 51)';
   };
 
+  const listCheckReset = useSetRecoilState(productListCheckReset);
   const setSelectListData = useSetRecoilState(selectList);
   const selectListData = useRecoilValue(selectList);
 
@@ -28,7 +33,16 @@ export function AccordionList({ name, count, selectData }) {
       selectData.current.splice(index, 1);
     }
 
-    console.log(selectData.current);
+    listData = [listName, selectData.current];
+
+    console.log(listData);
+
+    // 리셋 버튼 활성화 상태 설정
+    if (selectData.current.length > 0) {
+      listCheckReset(true);
+    } else {
+      listCheckReset(false);
+    }
 
     setBtnToggle(!btnToggle);
   };
