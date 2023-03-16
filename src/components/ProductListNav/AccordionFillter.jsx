@@ -6,7 +6,12 @@ import { productListResetBtn } from '@/@atom/accordion/productListResetBtn';
 import styles from './ProductListNav.module.scss';
 
 // 아코디언 필터 & 리셋 버튼
-export function AccordionFillter() {
+
+export function AccordionFillter({
+  categorySelectData,
+  setCategorySelectData,
+}) {
+
   const checkReset = useRecoilValue(productListCheckReset);
   const resetBtn = useRef();
   const [resetBtnData, setResetBtnData] = useRecoilState(productListResetBtn);
@@ -20,12 +25,10 @@ export function AccordionFillter() {
   }, [checkReset]);
 
   const handleResetBtn = () => {
-    if (checkReset) {
-      setResetBtnData(true);
-    }
-    return resetBtnData;
+    setCategorySelectData(categorySelectData.splice(0));
+    console.log(categorySelectData);
   };
-  console.log(resetBtnData);
+
   return (
     <div className={styles.accordionFillter}>
       <span className={styles.accordionFillterName}>필터</span>
