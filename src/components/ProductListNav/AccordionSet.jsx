@@ -4,7 +4,7 @@ import { AccordionList } from './AccordionList';
 import styles from './ProductListNav.module.scss';
 import { useEffect, useMemo, useRef, useState } from 'react';
 // 아코디언 목록 한 세트
-export function AccordionSet({ data, listName, selectData }) {
+export function AccordionSet({ data, listName, selectData, setSelectData }) {
   const [sortData, setSortData] = useState(data[0]);
   const [opacityToggle, setOpacityToggle] = useState(false);
   const nameSortBtn = useRef();
@@ -67,6 +67,7 @@ export function AccordionSet({ data, listName, selectData }) {
           count={item[1]}
           listName={listName}
           selectData={selectData}
+          setSelectData={setSelectData}
         />
       );
     });

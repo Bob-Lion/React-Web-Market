@@ -1,7 +1,7 @@
 import { AccordionSet } from './AccordionSet';
 import { AccordionFillter } from './AccordionFillter';
 import styles from './ProductListNav.module.scss';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import {
   categorySortData,
@@ -24,11 +24,11 @@ export function Accordion() {
   const typeData = useRecoilValue(typeSortData);
 
   // const [categorySelectData, setCategorySelectData] = useRecoilState();
-  const categorySelectData = useRef([]);
-  const brandSelectData = useRef([]);
-  const priceSelectData = useRef([]);
-  const benefitSelectData = useRef([]);
-  const typeSelectData = useRef([]);
+  const [categorySelectData, setCategorySelectData] = useState([]);
+  const [brandSelectData, setBrandSelectData] = useState([]);
+  const [priceSelectData, setPriceSelectData] = useState([]);
+  const [benefitSelectData, setBenefitSelectData] = useState([]);
+  const [typeSelectData, setTypeSelectData] = useState([]);
 
   return (
     <div>
@@ -39,26 +39,31 @@ export function Accordion() {
           data={categoryData}
           listName="카테고리"
           selectData={categorySelectData}
+          setSelectData={setCategorySelectData}
         />
         <AccordionSet
           data={brandData}
           listName="브랜드"
           selectData={brandSelectData}
+          setSelectData={setBrandSelectData}
         />
         <AccordionSet
           data={priceData}
           listName="가격"
           selectData={priceSelectData}
+          setSelectData={setPriceSelectData}
         />
         <AccordionSet
           data={[benefitData]}
           listName="혜택"
           selectData={benefitSelectData}
+          setSelectData={setBenefitSelectData}
         />
         <AccordionSet
           data={[typeData]}
           listName="유형"
           selectData={typeSelectData}
+          setSelectData={setTypeSelectData}
         />
       </div>
     </div>
