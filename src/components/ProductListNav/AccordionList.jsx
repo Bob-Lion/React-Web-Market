@@ -1,13 +1,15 @@
 import click_check_on from '@/../public/ProductListImage/Check_on.svg';
 import click_check_off from '@/../public/ProductListImage/Check_off.svg';
 import styles from './ProductListNav.module.scss';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { productListCheckReset } from '../../@atom/accordion/productListCheckReset';
 
 //아코디언 목록의 리스트
 export function AccordionList({ name, count, selectData, setSelectData }) {
   const [btnToggle, setBtnToggle] = useState(false);
   const hoverSpan = useRef();
+  const listCheckReset = useSetRecoilState(productListCheckReset);
   const handleEnter = () => {
     hoverSpan.current.style.color = 'rgb(209, 122, 1)';
   };
@@ -26,8 +28,18 @@ export function AccordionList({ name, count, selectData, setSelectData }) {
 
     console.log(selectData);
 
+    // 리셋 버튼 활성화 상태 설정
+    if (selectData.length > 0) {
+      listCheckReset(true);
+    } else {
+      listCheckReset(false);
+    }
+
     setBtnToggle(!btnToggle);
   };
+  // useEffect(() => {
+  //   return selectData.includes(name) ? click_check_on : click_check_off;
+  // }, [name, selectData]);
 
   return (
     <li className={styles.accordionList}>
@@ -40,6 +52,7 @@ export function AccordionList({ name, count, selectData, setSelectData }) {
           <img
             alt="해당 리스트 체크하는 버튼"
             src={selectData.includes(name) ? click_check_on : click_check_off}
+            // src={check}
           ></img>
         </button>
         <span

@@ -33,7 +33,10 @@ export function Accordion() {
   return (
     <div>
       <div className={styles.accordion}>
-        <AccordionFillter />
+        <AccordionFillter
+          categorySelectData={categorySelectData}
+          setCategorySelectData={setCategorySelectData}
+        />
         {/* 리스트 아이템의 수가 10개 이상일때 more 값을 true 로 전달 아니면 false */}
         <AccordionSet
           data={categoryData}
