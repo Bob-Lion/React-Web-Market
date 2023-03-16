@@ -15,7 +15,12 @@ export function priceSort(product) {
       fourthPrice.push(item);
     }
   });
-  const priceSortData = [firstPrice, secondPrice, thirdPrice, fourthPrice];
+  const first = ['7500원 미만', firstPrice.length];
+  const second = ['7,500원 ~ 10,980원', secondPrice.length];
+  const third = ['10,980 ~ 16,200원', thirdPrice.length];
+  const fourth = ['16,200원 이상', fourthPrice.length];
+
+  const priceSortData = [first, second, third, fourth];
 
   return priceSortData;
 }
