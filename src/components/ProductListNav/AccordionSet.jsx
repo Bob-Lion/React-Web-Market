@@ -4,6 +4,7 @@ import { AccordionList } from './AccordionList';
 import styles from './ProductListNav.module.scss';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { BrandSortBtn } from './BrandSortBtn';
+import { NavDetailModal } from './NavDetailModal';
 // 아코디언 목록 한 세트
 export function AccordionSet({ data, listName, selectData, setSelectData }) {
   const [sortData, setSortData] = useState(data[0]);
@@ -11,6 +12,7 @@ export function AccordionSet({ data, listName, selectData, setSelectData }) {
 
   const accordionList = useRef();
   const arrowReverse = useRef();
+  const [modalVisible, setModalVisible] = useState(false);
 
   // 상품 갯수가 n개 이상이면 더보기 버튼 생성
   const more = sortData.length >= 8;
@@ -74,6 +76,10 @@ export function AccordionSet({ data, listName, selectData, setSelectData }) {
     return renderAllData;
   }, [selectData, sortData]);
 
+  const handleModalVisible = () => {
+    setModalVisible(true);
+  };
+
   return (
     <div className={styles.accordionSet}>
       <button
@@ -101,14 +107,29 @@ export function AccordionSet({ data, listName, selectData, setSelectData }) {
         {renderData.slice(0, 10)}
         {/* 리스트 아이템의 수가 10개 이상일때 more 값이 true 로 받아질때만 생성 */}
         {more ? (
-          <button className={styles.accordionSetMore} type="button">
-            <span>{listName} 더보기</span>
-            <img
-              alt="해당 리스트 더보기 화살표 버튼"
-              className={styles.accordionSetMoreImg}
-              src={arrow}
-            />
-          </button>
+          <>
+            <button
+              className={styles.accordionSetMore}
+              type="button"
+              onClick={handleModalVisible}
+            >
+              <span>{listName} 더보기</span>
+              <img
+                alt="해당 리스트 더보기 화살표 버튼"
+                className={styles.accordionSetMoreImg}
+                src={arrow}
+              />
+            </button>
+            {modalVisible ? (
+              <NavDetailModal
+                data={data}
+                listName={listName}
+                renderData={renderData}
+                setModalVisible={setModalVisible}
+                setSortData={setSortData}
+              />
+            ) : null}
+          </>
         ) : null}
       </ul>
     </div>
