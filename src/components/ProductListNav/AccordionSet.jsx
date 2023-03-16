@@ -3,12 +3,12 @@ import { AccordionList } from './AccordionList';
 // import { BrandNameSort } from './BrandNameSort';
 import styles from './ProductListNav.module.scss';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { BrandSortBtn } from './BrandSortBtn';
 // 아코디언 목록 한 세트
 export function AccordionSet({ data, listName, selectData, setSelectData }) {
   const [sortData, setSortData] = useState(data[0]);
   const [opacityToggle, setOpacityToggle] = useState(false);
-  const nameSortBtn = useRef();
-  const productSortBtn = useRef();
+
   const accordionList = useRef();
   const arrowReverse = useRef();
 
@@ -28,7 +28,7 @@ export function AccordionSet({ data, listName, selectData, setSelectData }) {
         'all 250ms cubic-bezier(0.83, 0, 0.17, 1) 0s';
     }
   });
-  const handleChangeData = (sortName) => {
+  /* const handleChangeData = (sortName) => {
     // sort === 'name' ? setSortData(data[0]) : setSortData(data[1]);
     if (sortName === 'name') {
       setSortData(data[0]);
@@ -40,7 +40,7 @@ export function AccordionSet({ data, listName, selectData, setSelectData }) {
       nameSortBtn.current.style.color = 'rgb(51, 51, 51)';
       productSortBtn.current.style.color = 'rgb(209, 122, 1)';
     }
-  };
+  }; */
 
   const handleAccordionList = () => {
     if (opacityToggle) {
@@ -94,26 +94,7 @@ export function AccordionSet({ data, listName, selectData, setSelectData }) {
         {listName === '브랜드' ? (
           <div className={styles.accordionSetBodySort}>
             {/* <BrandNameSort className={styles.accordionSetBodySortName}  ref={nameSortBtn} onClick={handleChangeData('name')}>가나다순</BrandNameSort> */}
-            <button
-              ref={nameSortBtn}
-              className={styles.accordionSetBodySortName}
-              type="button"
-              onClick={() => {
-                handleChangeData('name');
-              }}
-            >
-              가나다순
-            </button>
-            <button
-              ref={productSortBtn}
-              className={styles.accordionSetBodySortProduct}
-              type="button"
-              onClick={() => {
-                handleChangeData('product');
-              }}
-            >
-              상품 많은순
-            </button>
+            <BrandSortBtn data={data} setSortData={setSortData} />
           </div>
         ) : null}
         {/* 아코디언 리스트 동적으로 생성 */}
