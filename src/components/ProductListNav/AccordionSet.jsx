@@ -76,6 +76,24 @@ export function AccordionSet({ data, listName, selectData, setSelectData }) {
     return renderAllData;
   }, [selectData, sortData]);
 
+  const renderModalData = useMemo(() => {
+    const renderModalAllData = [];
+    sortData.map((item) => {
+      renderModalAllData.push(
+        <AccordionList
+          key={item[0]}
+          modalStyle={styles.moreModalListItem}
+          count={item[1]}
+          listName={listName}
+          name={item[0]}
+          selectData={selectData}
+          setSelectData={setSelectData}
+        />
+      );
+    });
+    return renderModalAllData;
+  }, [selectData, sortData]);
+
   const handleModalVisible = () => {
     setModalVisible(true);
   };
@@ -124,7 +142,7 @@ export function AccordionSet({ data, listName, selectData, setSelectData }) {
               <NavDetailModal
                 data={data}
                 listName={listName}
-                renderData={renderData}
+                renderData={renderModalData}
                 setModalVisible={setModalVisible}
                 setSortData={setSortData}
               />
