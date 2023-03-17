@@ -7,7 +7,13 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { productListCheckReset } from '../../@atom/accordion/productListCheckReset';
 
 //아코디언 목록의 리스트
-export function AccordionList({ name, count, selectData, setSelectData }) {
+export function AccordionList({
+  name,
+  count,
+  selectData,
+  setSelectData,
+  modalStyle,
+}) {
   const [btnToggle, setBtnToggle] = useState(false);
   const hoverSpan = useRef();
   const listCheckReset = useSetRecoilState(productListCheckReset);
@@ -27,12 +33,10 @@ export function AccordionList({ name, count, selectData, setSelectData }) {
       selectData.splice(index, 1);
     }
 
-
     console.log(selectData);
 
     // 리셋 버튼 활성화 상태 설정
     if (selectData.length > 0) {
-
       listCheckReset(true);
     } else {
       listCheckReset(false);
@@ -45,7 +49,7 @@ export function AccordionList({ name, count, selectData, setSelectData }) {
   // }, [name, selectData]);
 
   return (
-    <li className={styles.accordionList}>
+    <li className={`${styles.accordionList} ${modalStyle}`}>
       <a
         className={`.willRouter ${styles.accordionListItem}`}
         href="#"
