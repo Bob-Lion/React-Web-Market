@@ -14,6 +14,10 @@ $PrimaryColor: rgb(209, 122, 1);
   border-bottom: 1px solid rgb(238, 238, 238);
   overflow: hidden scroll;
 
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   &Fillter {
     position: sticky;
     top: 0px;
@@ -174,6 +178,7 @@ $PrimaryColor: rgb(209, 122, 1);
     position: relative;
     width: 100%;
     height: 100%;
+    z-index: 500;
   }
 
   position: absolute;
@@ -226,6 +231,11 @@ $PrimaryColor: rgb(209, 122, 1);
     max-height: 380px;
     padding: 1px 30px 0px;
     overflow: hidden scroll;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
     &Item {
       display: flex;
       flex: 0 0 calc(33.3333%);
