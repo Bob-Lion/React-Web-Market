@@ -4,7 +4,7 @@ import { AccordionList } from './AccordionList';
 import styles from './ProductListNav.module.scss';
 import { useEffect, useMemo, useRef, useState } from 'react';
 // 아코디언 목록 한 세트
-export function AccordionSet({ data, listName, selectData }) {
+export function AccordionSet({ data, listName, selectData, setSelectData }) {
   const [sortData, setSortData] = useState(data[0]);
   const [opacityToggle, setOpacityToggle] = useState(false);
   const nameSortBtn = useRef();
@@ -63,14 +63,16 @@ export function AccordionSet({ data, listName, selectData }) {
       renderAllData.push(
         <AccordionList
           key={item[0]}
-          name={item[0]}
           count={item[1]}
+          listName={listName}
+          name={item[0]}
           selectData={selectData}
+          setSelectData={setSelectData}
         />
       );
     });
     return renderAllData;
-  }, [sortData]);
+  }, [selectData, sortData]);
 
   return (
     <div className={styles.accordionSet}>
@@ -88,7 +90,7 @@ export function AccordionSet({ data, listName, selectData }) {
           />
         </span>
       </button>
-      <ul className={styles.accordionSetBody} ref={accordionList}>
+      <ul ref={accordionList} className={styles.accordionSetBody}>
         {listName === '브랜드' ? (
           <div className={styles.accordionSetBodySort}>
             {/* <BrandNameSort className={styles.accordionSetBodySortName}  ref={nameSortBtn} onClick={handleChangeData('name')}>가나다순</BrandNameSort> */}
