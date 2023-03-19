@@ -17,15 +17,19 @@
   height: 60px;
   position: absolute;
   top: 50%;
-  z-index: 10;
+  transform: matrix(1, 0, 0, 1, 0, 0);
+  flex: none;
+  order: 4;
+  flex-grow: 0;
+  z-index: 4;
+  border-radius: 50%;
+  background: url('@/../public/icons/web-icons/Arrow-black.svg') no-repeat center;
 
   &Prev{
-    background-color: brown;
     left: calc(50% - 555px);
   }
   &Next{
-    background-color: aquamarine;
-    
     right:calc(50% - 555px);
+    transform: scaleX(-1);
   }
 }
