@@ -1,8 +1,11 @@
 import { useState } from 'react';
+import { useSetRecoilState } from 'recoil';
+import { popupVisible } from '@/@atom/addCartPopup/popupvisible';
 import styles from './AddCartPopup.module.scss';
 
 export function AddCartPopup({ data }) {
   const [productCount, setProductCount] = useState(1);
+  const setCartPopupVisible = useSetRecoilState(popupVisible);
 
   const handleDecrease = () => {
     if (productCount > 1) {
@@ -14,6 +17,10 @@ export function AddCartPopup({ data }) {
     if (productCount < data.stock) {
       setProductCount(productCount + 1);
     }
+  };
+
+  const handlePoppupVisible = () => {
+    setCartPopupVisible(false);
   };
   return (
     <div className={styles.cartPopupBackground}>
@@ -72,7 +79,11 @@ export function AddCartPopup({ data }) {
             </div>
           </div>
           <div className={styles.cartPopupCtr}>
-            <button className={styles.cartPopupCtrCancleBtn} type="button">
+            <button
+              className={styles.cartPopupCtrCancleBtn}
+              type="button"
+              onClick={handlePoppupVisible}
+            >
               <span className={styles.cartPopupCtrCancleBtnText} type="button">
                 취소
               </span>
