@@ -15,10 +15,9 @@ export function AddCartPopup({ data }) {
                 </span>
               </div>
               <div className={styles.cartPopupInfoDetailPrice}>
-                <div>
-                  <span className={styles.cartPopupInfoDetailPriceText}>
-                    {data.salePrice}
-                  </span>
+                <div className={styles.cartPopupInfoDetailPriceText}>
+                  <span>{data.salePrice}</span>
+                  <span>원</span>
                 </div>
                 <div className={styles.cartPopupInfoDetailPriceBtnBox}>
                   <button
@@ -41,24 +40,28 @@ export function AddCartPopup({ data }) {
               </div>
             </div>
           </div>
-          <div>
-            <div>
+          <div className={styles.cartPopupPrice}>
+            <div className={styles.cartPopupPriceTotal}>
+              <p className={styles.cartPopupPriceTotalText}>합계</p>
               <div>
-                <p>합계</p>
-                <div>
-                  <span>{data.salePrice * productCount}</span>
-                  <span>원</span>
-                </div>
-              </div>
-              <div>
-                <button type="button">
-                  <span>취소</span>
-                </button>
-                <button type="button">
-                  <span>장바구니 담기</span>
-                </button>
+                <span className={styles.cartPopupPriceTotalPrice}>
+                  {data.salePrice * productCount}
+                </span>
+                <span className={styles.cartPopupPriceTotalWon}>원</span>
               </div>
             </div>
+          </div>
+          <div className={styles.cartPopupCtr}>
+            <button type="button" className={styles.cartPopupCtrCancleBtn}>
+              <span type="button" className={styles.cartPopupCtrCancleBtnText}>
+                취소
+              </span>
+            </button>
+            <button type="button" className={styles.cartPopupCtrAddBtn}>
+              <span className={styles.cartPopupCtrAddBtnText}>
+                장바구니 담기
+              </span>
+            </button>
           </div>
         </div>
       </div>
