@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { popupVisible } from '@/@atom/addCartPopup/popupvisible';
 import styles from './AddCartPopup.module.scss';
+import minus from '../../../public/icons/web-icons/Minus.svg';
 
 export function AddCartPopup({ data }) {
   const [productCount, setProductCount] = useState(1);
   const setCartPopupVisible = useSetRecoilState(popupVisible);
+  const minusBtn = useRef();
+  const plusBtn = useRef();
 
   const handleDecrease = () => {
     if (productCount > 1) {
@@ -18,6 +21,21 @@ export function AddCartPopup({ data }) {
       setProductCount(productCount + 1);
     }
   };
+
+  useEffect(() => {
+    if (productCount > 1 && productCount < data.stock) {
+      minusBtn.current.style.backgroundPosition = '-8px -8px';
+      plusBtn.current.style.backgroundPosition = '-8px -8px';
+      minusBtn.current.style.cursor = 'pointer';
+      plusBtn.current.style.cursor = 'pointer';
+    } else if (productCount == 1) {
+      minusBtn.current.style.backgroundPosition = '-8px -46px';
+      minusBtn.current.style.cursor = 'default';
+    } else {
+      plusBtn.current.style.backgroundPosition = '-8px -46px';
+      plusBtn.current.style.cursor = 'default';
+    }
+  }, [productCount]);
 
   const handlePoppupVisible = () => {
     setCartPopupVisible(false);
@@ -44,6 +62,7 @@ export function AddCartPopup({ data }) {
                 </div>
                 <div className={styles.cartPopupInfoDetailPriceBtnBox}>
                   <button
+                    ref={minusBtn}
                     aria-label="수량내리기"
                     className={styles.cartPopupInfoDetailPriceBtnBoxDecreaseBtn}
                     type="button"
@@ -53,6 +72,7 @@ export function AddCartPopup({ data }) {
                     {productCount}
                   </div>
                   <button
+                    ref={plusBtn}
                     aria-label="수량올리기"
                     className={styles.cartPopupInfoDetailPriceBtnBoxIncreaseBtn}
                     type="button"
