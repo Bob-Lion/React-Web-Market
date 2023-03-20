@@ -1,6 +1,7 @@
 # Firebase/Auth 훅
 
 Firebase 인증(Authentication) 커스텀 훅 가이드 문서입니다.
+커스텀 훅으로 제공되지 않는 기능은 [Authentication](https://firebase.google.com/docs/auth/web/start?hl=ko) 공식 문서를 참고해 구현해야 합니다.
 
 - [useAuthState](#useauthstate)
 - [useSignUp](#usesignup)
