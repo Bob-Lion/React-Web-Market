@@ -1,5 +1,6 @@
 import CustomSwiper from '../CustomSwiper/CustomSwiper';
 import classes from './ProductCarousel.module.scss';
+import './ProductCarousel.scss';
 
 export default function ProductCarousel(props) {
   const { title } = props;
@@ -9,7 +10,7 @@ export default function ProductCarousel(props) {
     position: 'relative',
   };
   return (
-    <section className={classes.ProductCarousel}>
+    <section className={'ProductCarousel'}>
       {title ? <h3 className={classes.ProductCarouselTitle}>{title}</h3> : ``}
       <CustomSwiper
         customStyle={style}

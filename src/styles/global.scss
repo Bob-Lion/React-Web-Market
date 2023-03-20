@@ -7,8 +7,8 @@ body {
   margin: 0;
   font: inherit;
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
-    "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR",
-    "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR',
+    'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
     sans-serif;
   background-color: #fff;
   color: #000;
@@ -23,7 +23,21 @@ body {
     box-sizing: border-box;
   }
 
-
+  /* 숨김 콘텐츠 */
+  .a11y-hidden,
+  legend {
+    /* display: none; */
+    position: absolute;
+    /* top:  -9999em; */
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    /* clip: rect(0 0 0 0);  */
+    /* 구형 브라우저에서 적용 가능 */
+    clip-path: polygon(0 0, 0 0, 0 0);
+    /* clip-path: inset(50%); */
+    /* inset으로도 표현 가능 */
+  }
 }
 
 button {
