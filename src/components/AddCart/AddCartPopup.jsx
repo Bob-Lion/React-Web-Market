@@ -4,23 +4,40 @@ import styles from './AddCartPopup.module.scss';
 export function AddCartPopup({ data }) {
   const [productCount, setProductCount] = useState(1);
   return (
-    <div className={styles.addCartBackground}>
-      <div className={styles.addCartWindow}>
-        <div className={styles.addCartPopup}>
-          <div>
-            <div>
-              <div>
-                <span>{data.name}</span>
+    <div className={styles.cartPopupBackground}>
+      <div className={styles.cartPopupWindow}>
+        <div className={styles.cartPopup}>
+          <div className={styles.cartPopupInfo}>
+            <div className={styles.cartPopupInfoDetail}>
+              <div className={styles.cartPopupInfoDetailName}>
+                <span className={styles.cartPopupInfoDetailNameText}>
+                  {data.name}
+                </span>
               </div>
-              <div>
+              <div className={styles.cartPopupInfoDetailPrice}>
                 <div>
-                  <span>{data.salePrice}</span>
+                  <span className={styles.cartPopupInfoDetailPriceText}>
+                    {data.salePrice}
+                  </span>
                 </div>
-                <div>
-                  <button type="button" aria-label="수량내리기"></button>
-                  <div>{productCount}</div>
-                  <button type="button" aria-label="수량올리기"></button>
+                <div className={styles.cartPopupInfoDetailPriceBtnBox}>
+                  <button
+                    type="button"
+                    aria-label="수량내리기"
+                    className={styles.cartPopupInfoDetailPriceBtnBoxDecreaseBtn}
+                  ></button>
+                  <div className={styles.cartPopupInfoDetailPriceBtnBoxCount}>
+                    {productCount}
+                  </div>
+                  <button
+                    type="button"
+                    aria-label="수량올리기"
+                    className={styles.cartPopupInfoDetailPriceBtnBoxIncreaseBtn}
+                  ></button>
                 </div>
+              </div>
+              <div className={styles.cartPopupInfoDetailPriceStock}>
+                현재 재고 : {data.stock}
               </div>
             </div>
           </div>
