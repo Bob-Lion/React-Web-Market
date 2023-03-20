@@ -3,6 +3,18 @@ import styles from './AddCartPopup.module.scss';
 
 export function AddCartPopup({ data }) {
   const [productCount, setProductCount] = useState(1);
+
+  const handleDecrease = () => {
+    if (productCount > 1) {
+      setProductCount(productCount - 1);
+    }
+  };
+
+  const handleIncrease = () => {
+    if (productCount < data.stock) {
+      setProductCount(productCount + 1);
+    }
+  };
   return (
     <div className={styles.cartPopupBackground}>
       <div className={styles.cartPopupWindow}>
@@ -16,22 +28,28 @@ export function AddCartPopup({ data }) {
               </div>
               <div className={styles.cartPopupInfoDetailPrice}>
                 <div className={styles.cartPopupInfoDetailPriceText}>
-                  <span>{data.salePrice}</span>
+                  <span>
+                    {data.salePrice
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                  </span>
                   <span>원</span>
                 </div>
                 <div className={styles.cartPopupInfoDetailPriceBtnBox}>
                   <button
-                    type="button"
                     aria-label="수량내리기"
                     className={styles.cartPopupInfoDetailPriceBtnBoxDecreaseBtn}
+                    type="button"
+                    onClick={handleDecrease}
                   ></button>
                   <div className={styles.cartPopupInfoDetailPriceBtnBoxCount}>
                     {productCount}
                   </div>
                   <button
-                    type="button"
                     aria-label="수량올리기"
                     className={styles.cartPopupInfoDetailPriceBtnBoxIncreaseBtn}
+                    type="button"
+                    onClick={handleIncrease}
                   ></button>
                 </div>
               </div>
@@ -45,19 +63,21 @@ export function AddCartPopup({ data }) {
               <p className={styles.cartPopupPriceTotalText}>합계</p>
               <div>
                 <span className={styles.cartPopupPriceTotalPrice}>
-                  {data.salePrice * productCount}
+                  {(data.salePrice * productCount)
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                 </span>
                 <span className={styles.cartPopupPriceTotalWon}>원</span>
               </div>
             </div>
           </div>
           <div className={styles.cartPopupCtr}>
-            <button type="button" className={styles.cartPopupCtrCancleBtn}>
-              <span type="button" className={styles.cartPopupCtrCancleBtnText}>
+            <button className={styles.cartPopupCtrCancleBtn} type="button">
+              <span className={styles.cartPopupCtrCancleBtnText} type="button">
                 취소
               </span>
             </button>
-            <button type="button" className={styles.cartPopupCtrAddBtn}>
+            <button className={styles.cartPopupCtrAddBtn} type="button">
               <span className={styles.cartPopupCtrAddBtnText}>
                 장바구니 담기
               </span>
