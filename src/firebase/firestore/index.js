@@ -10,3 +10,4 @@ export * from './useCreateData';
 export * from './useReadData';
 export * from './useUpdateData';
 export * from './useDeleteData';
+export * from './useDataState';

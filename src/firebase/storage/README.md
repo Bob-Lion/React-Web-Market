@@ -1,6 +1,7 @@
 # Firebase/Storage 훅
 
 Firebase 스토리지(Storage) 커스텀 훅 가이드 문서입니다.
+커스텀 훅으로 제공되지 않는 기능은 [Cloud Storage](https://firebase.google.com/docs/storage/web/start?hl=ko) 공식 문서를 참고해 구현해야 합니다.
 
 - [useUploadFiles](#useuploadfiles)
 - [useAllDownloadURL](#usealldownloadurl)
