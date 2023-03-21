@@ -1,0 +1,21 @@
+.Group {
+  &Header {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    width: 1050px;
+    margin-top: 50px;
+    margin-bottom: 75px;
+
+    &TotalCount {
+      position: absolute;
+      margin-right: 1000px;
+    }
+    &Button {
+      color: #cccccc;
+      &svg {
+        background: red;
+      }
+    }
+  }
+}
