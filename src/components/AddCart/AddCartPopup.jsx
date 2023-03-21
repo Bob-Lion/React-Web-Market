@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { popupVisible } from '@/@atom/addCartPopup/popupvisible';
 import styles from './AddCartPopup.module.scss';
-import minus from '../../../public/icons/web-icons/Minus.svg';
 
 export function AddCartPopup({ data }) {
   const [productCount, setProductCount] = useState(1);
@@ -45,12 +44,14 @@ export function AddCartPopup({ data }) {
     setCartPopupVisible(false);
   };
 
-  const handleData = () => {
+  // 로컬스토리지에 해당 상품 docId 랑 선택한 수량 저장, 이미 로컬스토리지에 상품 id 가 들어있다면 값이 바뀌지 않고 alert 창으로 표시
+  const handleLocalData = () => {
     setCartPopupVisible(false);
     const productInfo = {
       docId: data.id,
       count: productCount,
     };
+    // 로컬에 있는 객체 데이터 중복 여부 확인
     const addCartLocalData = JSON.parse(localStorage.getItem('addCart')) || [];
     let isduplicate = false;
     addCartLocalData.forEach((product) => {
@@ -65,6 +66,8 @@ export function AddCartPopup({ data }) {
 
     addCartLocalData.push(productInfo);
     localStorage.setItem('addCart', JSON.stringify(addCartLocalData));
+
+    // console.log(JSON.parse(localStorage.getItem('addCart')));
   };
   return (
     <div className={styles.cartPopupBackground}>
@@ -137,7 +140,7 @@ export function AddCartPopup({ data }) {
             <button
               className={styles.cartPopupCtrAddBtn}
               type="button"
-              onClick={handleData}
+              onClick={handleLocalData}
             >
               <span className={styles.cartPopupCtrAddBtnText}>
                 장바구니 담기

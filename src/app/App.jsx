@@ -28,31 +28,30 @@ import { useEffect } from 'react';
 // };
 
 function App() {
-  const [a, setA] = useRecoilState(popupVisible);
-  const hdPopupVisible = () => {
-    setA(true);
-  };
-  const { readData, data, error: readError } = useReadData('products');
+  // const [a, setA] = useRecoilState(popupVisible);
+  // const hdPopupVisible = () => {
+  //   setA(true);
+  // };
+  // const { readData, data, error: readError } = useReadData('products');
 
-  async function handleReadData(e) {
-    e.preventDefault();
-    // 모든 데이터를 가져옵니다.
-    await readData('DnP8uh5EmasnRZalU112');
+  // async function handleReadData(e) {
+  //   e.preventDefault();
+  //   // 모든 데이터를 가져옵니다.
+  //   await readData('DnP8uh5EmasnRZalU112');
+  //   // 또는 특정 도큐멘트 데이터만 가져옵니다.
+  //   // await readData('documentKey');
+  // }
 
-    // 또는 특정 도큐멘트 데이터만 가져옵니다.
-    // await readData('documentKey');
-  }
-
-  useEffect(() => {
-    console.log(data);
-    // console.log(data.price);
-  }, [data]);
+  // useEffect(() => {
+  //   console.log(data);
+  //   // console.log(data.price);
+  // }, [data]);
   return (
     <div className="App">
       {/* <ProductList /> */}
-      <button onClick={handleReadData}>데이터 나와라 얍~!</button>
+      {/* <button onClick={handleReadData}>데이터 나와라 얍~!</button>
       <button onClick={hdPopupVisible}>팝업창 나와라 얍~!</button>
-      {a ? <AddCartPopup data={data} /> : null}
+      {a ? <AddCartPopup data={data} /> : null} */}
     </div>
   );
 }
