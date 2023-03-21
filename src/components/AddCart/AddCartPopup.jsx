@@ -44,6 +44,28 @@ export function AddCartPopup({ data }) {
   const handlePoppupVisible = () => {
     setCartPopupVisible(false);
   };
+
+  const handleData = () => {
+    setCartPopupVisible(false);
+    const productInfo = {
+      docId: data.id,
+      count: productCount,
+    };
+    const addCartLocalData = JSON.parse(localStorage.getItem('addCart')) || [];
+    let isduplicate = false;
+    addCartLocalData.forEach((product) => {
+      if (productInfo.id === product.id) isduplicate = true;
+    });
+
+    if (isduplicate) {
+      localStorage.setItem('addCart', JSON.stringify(addCartLocalData));
+      alert('이미 장바구니에 담겨 있습니다 !');
+      return;
+    }
+
+    addCartLocalData.push(productInfo);
+    localStorage.setItem('addCart', JSON.stringify(addCartLocalData));
+  };
   return (
     <div className={styles.cartPopupBackground}>
       <div className={styles.cartPopupWindow}>
@@ -112,7 +134,11 @@ export function AddCartPopup({ data }) {
                 취소
               </span>
             </button>
-            <button className={styles.cartPopupCtrAddBtn} type="button">
+            <button
+              className={styles.cartPopupCtrAddBtn}
+              type="button"
+              onClick={handleData}
+            >
               <span className={styles.cartPopupCtrAddBtnText}>
                 장바구니 담기
               </span>

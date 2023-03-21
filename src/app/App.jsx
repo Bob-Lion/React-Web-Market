@@ -44,7 +44,6 @@ function App() {
   }
 
   useEffect(() => {
-    // const pdData = data;s
     console.log(data);
     // console.log(data.price);
   }, [data]);
