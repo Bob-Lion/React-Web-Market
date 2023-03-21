@@ -1,18 +1,17 @@
 //import axios from 'axios'
 import { useState } from 'react';
 import Pagination from 'react-js-pagination';
-import classes from './Pagination.module.scss';
-import { productData, product } from '../../@atom/productData';
+import classes from '@/components/Pagination/Pagination.module.scss';
+import { productData } from '@/@atom/productData';
 import { useRecoilValue } from 'recoil';
 
 const PaginationPost = () => {
-  //const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const [items, setItems] = useState(5);
+  const product = useRecoilValue(productData);
 
   const handlePageChange = (page) => {
     setPage(page); //page: index
-    console.log(page);
   };
   const itemChange = (e) => {
     console.log(items);
