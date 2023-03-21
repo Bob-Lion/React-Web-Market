@@ -23,16 +23,20 @@ export function AddCartPopup({ data }) {
   };
 
   useEffect(() => {
-    if (productCount > 1 && productCount < data.stock) {
+    if (productCount <= 1) {
+      minusBtn.current.style.backgroundPosition = '-8px -46px';
+      plusBtn.current.style.backgroundPosition = '-8px -8px';
+      minusBtn.current.style.cursor = 'default';
+      plusBtn.current.style.cursor = 'pointer';
+    } else if (productCount > 1 && productCount < data.stock) {
       minusBtn.current.style.backgroundPosition = '-8px -8px';
       plusBtn.current.style.backgroundPosition = '-8px -8px';
       minusBtn.current.style.cursor = 'pointer';
       plusBtn.current.style.cursor = 'pointer';
-    } else if (productCount == 1) {
-      minusBtn.current.style.backgroundPosition = '-8px -46px';
-      minusBtn.current.style.cursor = 'default';
     } else {
+      minusBtn.current.style.backgroundPosition = '-8px -8px';
       plusBtn.current.style.backgroundPosition = '-8px -46px';
+      minusBtn.current.style.cursor = 'pointer';
       plusBtn.current.style.cursor = 'default';
     }
   }, [productCount]);
