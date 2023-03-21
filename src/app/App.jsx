@@ -1,6 +1,8 @@
 import { ProductList } from '@/pages/ProductList/ProductList';
 import '@/app/App.module.scss';
 import { AddCartPopup } from '@/components/AddCart/AddCartPopup';
+import { useRecoilState } from 'recoil';
+import { popupVisible } from '@/@atom/addCartPopup/popupvisible';
 const data = {
   id: 'product-aaa',
   name: '[풀무원] 탱탱쫄면 (4개입)',
@@ -24,10 +26,16 @@ const data = {
 };
 
 function App() {
+  const [a, setA] = useRecoilState(popupVisible);
+  const hdPopupVisible = () => {
+    setA(true);
+  };
+  // console.log(a);
   return (
     <div className="App">
       {/* <ProductList /> */}
-      <AddCartPopup data={data} />
+      {/* <button onClick={hdPopupVisible}>팝업창 나와라 얍~!</button>
+      {a ? <AddCartPopup data={data} /> : null} */}
     </div>
   );
 }
