@@ -1,9 +1,9 @@
 import { AddCartProduct } from './AddCartProduct';
 
-export function AddCartSet() {
+export function AddCartSet({ data, productType }) {
   return (
     <div>
-      <div></div>
+      <div>{productType} 상품</div>
       <ul>
         <AddCartProduct />
       </ul>

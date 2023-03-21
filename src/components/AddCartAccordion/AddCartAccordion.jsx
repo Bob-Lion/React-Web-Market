@@ -8,17 +8,23 @@ export function AddCartAccordion({ data }) {
   // 냉동 식품 선별
   const frozen = storingWaySort(data, '냉동');
   // 상온 식품 선별
-  const roomTemperature = storingWaySort(data, '냉장');
+  const roomTemperature = storingWaySort(data, '상온');
+
+  console.log(roomTemperature);
 
   return (
     <div>
-      <ProductSelectCtrl />
-      {refrigerated.length > 0 ? <AddCartSet data={refrigerated} /> : null}
-      {frozen.length > 0 ? <AddCartSet data={frozen} /> : null}
-      {roomTemperature.length > 0 ? (
-        <AddCartSet data={roomTemperature} />
+      <ProductSelectCtrl cartData={data} />
+      {refrigerated.length > 0 ? (
+        <AddCartSet data={refrigerated} productType={'냉장'} />
       ) : null}
-      <ProductSelectCtrl />
+      {frozen.length > 0 ? (
+        <AddCartSet data={frozen} productType={'냉동'} />
+      ) : null}
+      {roomTemperature.length > 0 ? (
+        <AddCartSet data={roomTemperature} productType={'상온'} />
+      ) : null}
+      <ProductSelectCtrl cartData={data} />
     </div>
   );
 }
