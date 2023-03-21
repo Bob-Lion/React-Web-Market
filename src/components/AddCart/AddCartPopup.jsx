@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { popupVisible } from '@/@atom/addCartPopup/popupvisible';
 import styles from './AddCartPopup.module.scss';
-import minus from '../../../public/icons/web-icons/Minus.svg';
 
 export function AddCartPopup({ data }) {
   const [productCount, setProductCount] = useState(1);
@@ -23,22 +22,52 @@ export function AddCartPopup({ data }) {
   };
 
   useEffect(() => {
-    if (productCount > 1 && productCount < data.stock) {
+    if (productCount <= 1) {
+      minusBtn.current.style.backgroundPosition = '-8px -46px';
+      plusBtn.current.style.backgroundPosition = '-8px -8px';
+      minusBtn.current.style.cursor = 'default';
+      plusBtn.current.style.cursor = 'pointer';
+    } else if (productCount > 1 && productCount < data.stock) {
       minusBtn.current.style.backgroundPosition = '-8px -8px';
       plusBtn.current.style.backgroundPosition = '-8px -8px';
       minusBtn.current.style.cursor = 'pointer';
       plusBtn.current.style.cursor = 'pointer';
-    } else if (productCount == 1) {
-      minusBtn.current.style.backgroundPosition = '-8px -46px';
-      minusBtn.current.style.cursor = 'default';
     } else {
+      minusBtn.current.style.backgroundPosition = '-8px -8px';
       plusBtn.current.style.backgroundPosition = '-8px -46px';
+      minusBtn.current.style.cursor = 'pointer';
       plusBtn.current.style.cursor = 'default';
     }
   }, [productCount]);
 
   const handlePoppupVisible = () => {
     setCartPopupVisible(false);
+  };
+
+  // 로컬스토리지에 해당 상품 docId 랑 선택한 수량 저장, 이미 로컬스토리지에 상품 id 가 들어있다면 값이 바뀌지 않고 alert 창으로 표시
+  const handleLocalData = () => {
+    setCartPopupVisible(false);
+    const productInfo = {
+      docId: data.id,
+      count: productCount,
+    };
+    // 로컬에 있는 객체 데이터 중복 여부 확인
+    const addCartLocalData = JSON.parse(localStorage.getItem('addCart')) || [];
+    let isduplicate = false;
+    addCartLocalData.forEach((product) => {
+      if (productInfo.id === product.id) isduplicate = true;
+    });
+
+    if (isduplicate) {
+      localStorage.setItem('addCart', JSON.stringify(addCartLocalData));
+      alert('이미 장바구니에 담겨 있습니다 !');
+      return;
+    }
+
+    addCartLocalData.push(productInfo);
+    localStorage.setItem('addCart', JSON.stringify(addCartLocalData));
+
+    // console.log(JSON.parse(localStorage.getItem('addCart')));
   };
   return (
     <div className={styles.cartPopupBackground}>
@@ -108,7 +137,11 @@ export function AddCartPopup({ data }) {
                 취소
               </span>
             </button>
-            <button className={styles.cartPopupCtrAddBtn} type="button">
+            <button
+              className={styles.cartPopupCtrAddBtn}
+              type="button"
+              onClick={handleLocalData}
+            >
               <span className={styles.cartPopupCtrAddBtnText}>
                 장바구니 담기
               </span>
