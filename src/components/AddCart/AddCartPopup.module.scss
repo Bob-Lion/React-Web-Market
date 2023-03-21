@@ -1,0 +1,229 @@
+$TextColor: rgb(51, 51, 51);
+$PrimaryColor: rgb(209, 122, 1);
+
+.cartPopup {
+  &Background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 100;
+  }
+
+  &Window {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 500;
+  }
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  height: auto;
+  width: 440px;
+  overflow-x: hidden;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: none;
+
+  background-color: rgb(255, 255, 255);
+  color: rgba(0, 0, 0, 0.87);
+
+  // margin: 32px;
+  position: relative;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100% - 64px);
+  max-width: 600px;
+
+  &Info {
+    overflow: hidden auto;
+    max-height: 355px;
+    min-height: 120px;
+
+    &Detail {
+      margin: 2px 0px 4px;
+      padding: 12px 0px;
+      border-radius: 3px;
+
+      &Name {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &Text {
+          font-size: 14px;
+          line-height: 19px;
+          color: $TextColor;
+          display: -webkit-box;
+          overflow: hidden;
+          word-break: break-all;
+          white-space: normal;
+        }
+      }
+
+      &Price {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 6px;
+
+        &Text {
+          font-weight: bold;
+          font-size: 16px;
+          color: $TextColor;
+          line-height: 21px;
+        }
+
+        &BtnBox {
+          flex-direction: row;
+          align-items: center;
+          border: 1px solid rgb(221, 223, 225);
+          border-radius: 3px;
+          display: flex;
+          justify-content: center;
+          width: 101px;
+          height: 36px;
+
+          &DecreaseBtn {
+            display: inline-flex;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            border: none;
+            font-size: 1px;
+            color: transparent;
+            background-size: auto;
+            background-color: transparent;
+            background-image: url('../../../public/icons/web-icons/Minus.svg');
+            background-repeat: no-repeat;
+            // 회색 아이콘으로 이동시 top -46px 더 이동
+            background-position: -8px -46px;
+            vertical-align: top;
+          }
+
+          &Count {
+            display: inline-flex;
+            overflow: hidden;
+            white-space: nowrap;
+            -webkit-box-pack: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: $TextColor;
+            text-align: center;
+            width: 31px;
+            height: 28px;
+            line-height: 28px;
+          }
+
+          &IncreaseBtn {
+            display: inline-flex;
+            width: 28px;
+            height: 28px;
+            border: none;
+            font-size: 1px;
+            color: transparent;
+            background-size: auto;
+            background-color: transparent;
+            background-image: url('../../../public/icons/web-icons/Plus.svg');
+            // 회색 아이콘으로 이동시 top -46px 더 이동
+            background-position: -8px -8px;
+            vertical-align: top;
+          }
+        }
+        &Stock {
+          // margin-left: auto;
+          display: flex;
+          justify-content: flex-end;
+          margin-top: 20px;
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 16px;
+          color: rgb(204, 204, 204);
+        }
+      }
+    }
+  }
+
+  &Price {
+    width: 100%;
+    margin: 20px 0px;
+
+    &Total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &Text {
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 600;
+      }
+
+      &Price {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 24px;
+      }
+
+      &Won {
+        margin-left: 3px;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 24px;
+        vertical-align: 3px;
+      }
+    }
+  }
+
+  &Ctr {
+    display: flex;
+    flex-direction: row;
+    &CancleBtn {
+      width: 50%;
+      margin-right: 4px;
+
+      display: block;
+      padding: 0px 10px;
+      text-align: center;
+      // overflow: hidden;
+      width: 100%;
+      height: 52px;
+      border-radius: 3px;
+      color: $TextColor;
+      // background-color: rgb(255, 255, 255);
+      border: 1px solid rgb(221, 221, 221);
+
+      &Text {
+        font-size: 16px;
+        font-weight: 500;
+      }
+    }
+
+    &AddBtn {
+      width: 50%;
+      margin-left: 4px;
+
+      display: block;
+      padding: 0px 10px;
+      text-align: center;
+      // overflow: hidden;
+      width: 100%;
+      height: 52px;
+      border-radius: 3px;
+      color: rgb(255, 255, 255);
+      background-color: $PrimaryColor;
+      border: 0px none;
+
+      &Text {
+        font-size: 16px;
+        font-weight: 500;
+      }
+    }
+  }
+}
