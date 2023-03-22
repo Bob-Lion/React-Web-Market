@@ -19,9 +19,9 @@ export function useAuthState() {
 
   useEffect(() => {
     setIsLoading(true);
-    return onAuthStateChanged(
+    return onAuthStateChanged( //유저 상태의 변화를 감지
       auth,
-      (currentUser) => {
+      (currentUser) => { //현재 로그인한 사람을 확인
         setUser(currentUser);
         setIsLoading(false);
       },
