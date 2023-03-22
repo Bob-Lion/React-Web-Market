@@ -1,3 +1,3 @@
 export function CartPageProduct() {
-  return <></>;
+  return <div>상품 1</div>;
 }
