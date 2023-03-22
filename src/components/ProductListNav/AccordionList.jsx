@@ -4,7 +4,7 @@ import styles from './ProductListNav.module.scss';
 import { useState, useRef, useEffect } from 'react';
 
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { productListCheckReset } from '../../@atom/accordion/productListCheckReset';
+import { productCheckResetState } from '../../@atom/accordion/productCheckResetState';
 
 //아코디언 목록의 리스트
 export function AccordionList({
@@ -16,7 +16,7 @@ export function AccordionList({
 }) {
   const [btnToggle, setBtnToggle] = useState(false);
   const hoverSpan = useRef();
-  const listCheckReset = useSetRecoilState(productListCheckReset);
+  const listCheckReset = useSetRecoilState(productCheckResetState);
 
   const handleEnter = () => {
     hoverSpan.current.style.color = 'rgb(209, 122, 1)';

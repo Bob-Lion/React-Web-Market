@@ -1,8 +1,8 @@
 import resetButton from '@/../public/ProductListImage/resetButton.svg';
 import { useEffect, useRef, useState } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { productListCheckReset } from '@/@atom/accordion/productListCheckReset';
-import { productListResetBtn } from '@/@atom/accordion/productListResetBtn';
+import { productCheckResetState } from '@/@atom/accordion/productCheckResetState';
+import { productResetBtnState } from '@/@atom/accordion/productResetBtnState';
 import styles from './ProductListNav.module.scss';
 
 // 아코디언 필터 & 리셋 버튼
@@ -11,10 +11,9 @@ export function AccordionFillter({
   categorySelectData,
   setCategorySelectData,
 }) {
-
-  const checkReset = useRecoilValue(productListCheckReset);
+  const checkReset = useRecoilValue(productCheckResetState);
   const resetBtn = useRef();
-  const [resetBtnData, setResetBtnData] = useRecoilState(productListResetBtn);
+  const [resetBtnData, setResetBtnData] = useRecoilState(productResetBtnState);
 
   useEffect(() => {
     if (checkReset) {
