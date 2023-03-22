@@ -1,9 +1,9 @@
-import { AddCartAccordion } from '@/components/AddCartAccordion/AddCartAccordion';
-import { AddCartCredit } from '@/components/AddCartCredit/AddCartCredit';
+import { CartPageAccordion } from '@/components/CartPageAccordion/CartPageAccordion';
+import { CartPageCredit } from '@/components/CartPageCredit/CartPageCredit';
 import { useEffect, useMemo } from 'react';
 import { useReadData } from '@/firebase/firestore';
 
-export function AddCart() {
+export function CartPage() {
   const cartData = [
     {
       brand: '샘플 브랜드',
@@ -57,8 +57,8 @@ export function AddCart() {
     <div>
       <h2>장바구니</h2>
       <div>
-        <AddCartAccordion data={cartData} />
-        <AddCartCredit data={cartData} />
+        <CartPageAccordion data={cartData} />
+        <CartPageCredit data={cartData} />
       </div>
     </div>
   );
