@@ -2,9 +2,9 @@ import { storingWaySort } from '@/utils/storingWay/storingWaySort';
 import { useState } from 'react';
 import { CartPageSet } from './CartPageSet';
 import { ProductSelectCtrl } from './ProductSelectCtrl';
-import refrigeratedImg from '../../../public/icons/web-icons/Refrigerated.svg';
-import frozenImg from '../../../public/icons/web-icons/Frozen.svg';
-import normalImg from '../../../public/icons/web-icons/Normal.svg';
+import refrigeratedImg from '@/../public/icons/web-icons/Refrigerated.svg';
+import frozenImg from '@/../public/icons/web-icons/Frozen.svg';
+import normalImg from '@/../public/icons/web-icons/Normal.svg';
 
 export function CartPageAccordion({ data }) {
   // 냉장 식품 선별

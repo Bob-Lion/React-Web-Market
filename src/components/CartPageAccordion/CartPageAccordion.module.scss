@@ -37,3 +37,31 @@ $PrimaryColor: rgb(209, 122, 1);
   &Delete {
   }
 }
+
+// 상품 저장 방법 아코디언
+.storingWay {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  padding: 15px 5px 15px 0px;
+  border-top: 1px solid $TextColor;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 26px;
+
+  &Name {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+
+    &Img {
+      margin-right: 8px;
+    }
+  }
+
+  &Arrow {
+    width: 30px;
+    height: 30px;
+  }
+}
