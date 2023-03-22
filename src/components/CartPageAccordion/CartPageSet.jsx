@@ -3,9 +3,8 @@ import { CartPageStoringWay } from './CartPageStoringWay';
 
 export function CartPageSet({ data, productType, storingWayImg }) {
   const storingWayData = data.map((data) => {
-    return <CartPageProduct data={data} key={data.name} />;
+    return <CartPageProduct key={data.name} data={data} />;
   });
-  console.log(storingWayData);
 
   return (
     <div>

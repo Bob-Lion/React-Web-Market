@@ -7,7 +7,9 @@ export function ProductSelectCtrl({ cartData, checkCount }) {
     <div className={styles.selectCtrlContainer}>
       <div className={styles.selectCtrl}>
         <div className={styles.selectCtrlAll}>
-          <img alt="상품 선택 체크 버튼" src={checkBtnOn} />
+          <button type="button">
+            <img alt="상품 선택 체크 버튼" src={checkBtnOn} />
+          </button>
           <span className={styles.selectCtrlAllText}>
             전체 선택 {`(${checkCount}/${cartData.length})`}
           </span>

@@ -4,6 +4,8 @@ import { useEffect, useMemo } from 'react';
 import { useReadData } from '@/firebase/firestore';
 
 export function CartPage() {
+  const cartLocalData = JSON.parse(localStorage.getItem('addCart'));
+  const localCount = cartLocalData;
   const cartData = [
     {
       brand: '샘플 브랜드',
@@ -27,6 +29,9 @@ export function CartPage() {
       saleRatio: 10,
       stock: 10,
       storingWay: '냉장',
+
+      // 로컬스토리지에 있는 count 값 추가해 줘야댐
+      localCount: 3,
     },
     {
       brand: '샘플 브랜드2',
@@ -50,6 +55,9 @@ export function CartPage() {
       saleRatio: 50,
       stock: 8,
       storingWay: '냉동',
+
+      // 로컬스토리지에 있는 count 값 추가해 줘야댐
+      localCount: 5,
     },
   ];
 

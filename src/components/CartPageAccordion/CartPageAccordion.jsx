@@ -7,6 +7,7 @@ import frozenImg from '@/../public/icons/web-icons/Frozen.svg';
 import normalImg from '@/../public/icons/web-icons/Normal.svg';
 
 export function CartPageAccordion({ data }) {
+  console.log(data);
   // 냉장 식품 선별
   const refrigerated = storingWaySort(data, '냉장');
   // 냉동 식품 선별
