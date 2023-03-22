@@ -101,7 +101,10 @@ export function CartPageProduct({ data }) {
       </div>
       <div className={styles.cartPageProductPrice}>
         <span className={styles.cartPageProductPriceText}>
-          {data.salePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
+          {(data.salePrice * productCount)
+            .toString()
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+          원
         </span>
       </div>
       <button className={styles.cartPageProductCancleBtn} type="button">
