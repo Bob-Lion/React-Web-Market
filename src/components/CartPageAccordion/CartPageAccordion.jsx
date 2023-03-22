@@ -2,6 +2,9 @@ import { storingWaySort } from '@/utils/storingWay/storingWaySort';
 import { useState } from 'react';
 import { CartPageSet } from './CartPageSet';
 import { ProductSelectCtrl } from './ProductSelectCtrl';
+import refrigeratedImg from '../../../public/icons/web-icons/Refrigerated.svg';
+import frozenImg from '../../../public/icons/web-icons/Frozen.svg';
+import normalImg from '../../../public/icons/web-icons/Normal.svg';
 
 export function CartPageAccordion({ data }) {
   // 냉장 식품 선별
@@ -19,13 +22,25 @@ export function CartPageAccordion({ data }) {
     <div>
       <ProductSelectCtrl cartData={data} checkCount={checkCount} />
       {refrigerated.length > 0 ? (
-        <CartPageSet data={refrigerated} productType={'냉장'} />
+        <CartPageSet
+          data={refrigerated}
+          productType={'냉장'}
+          storingWayImg={refrigeratedImg}
+        />
       ) : null}
       {frozen.length > 0 ? (
-        <CartPageSet data={frozen} productType={'냉동'} />
+        <CartPageSet
+          data={frozen}
+          productType={'냉동'}
+          storingWayImg={frozenImg}
+        />
       ) : null}
       {roomTemperature.length > 0 ? (
-        <CartPageSet data={roomTemperature} productType={'상온'} />
+        <CartPageSet
+          data={roomTemperature}
+          productType={'상온'}
+          storingWayImg={normalImg}
+        />
       ) : null}
       <ProductSelectCtrl cartData={data} checkCount={checkCount} />
     </div>

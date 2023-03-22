@@ -1,9 +1,13 @@
 import { CartPageProduct } from './CartPageProduct';
+import { CartPageStoringWay } from './CartPageStoringWay';
 
-export function CartPageSet({ data, productType }) {
+export function CartPageSet({ data, productType, storingWayImg }) {
   return (
     <div>
-      <div>{productType} 상품</div>
+      <CartPageStoringWay
+        productType={productType}
+        storingWayImg={storingWayImg}
+      />
       <ul>
         <CartPageProduct />
       </ul>
