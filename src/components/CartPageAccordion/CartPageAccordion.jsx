@@ -1,13 +1,15 @@
 import { storingWaySort } from '@/utils/storingWay/storingWaySort';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CartPageSet } from './CartPageSet';
 import { ProductSelectCtrl } from './ProductSelectCtrl';
 import refrigeratedImg from '@/../public/icons/web-icons/Refrigerated.svg';
 import frozenImg from '@/../public/icons/web-icons/Frozen.svg';
 import normalImg from '@/../public/icons/web-icons/Normal.svg';
+import { useRecoilState } from 'recoil';
+import { cartTotalSeletState } from '@/@atom/addCart/cartTotalSeletState';
 
 export function CartPageAccordion({ data }) {
-  console.log(data);
+  // console.log(data);
   // 냉장 식품 선별
   const refrigerated = storingWaySort(data, '냉장');
   // 냉동 식품 선별
@@ -16,12 +18,16 @@ export function CartPageAccordion({ data }) {
   const roomTemperature = storingWaySort(data, '상온');
 
   // 선택된 상품 개수 관리
-  const [checkCount, setCheckCount] = useState(0);
+  const [checkTotalCount, setCheckTotalCount] =
+    useRecoilState(cartTotalSeletState);
+  useEffect(() => {
+    setCheckTotalCount(data.length);
+  }, data);
   console.log(frozen);
 
   return (
     <div>
-      <ProductSelectCtrl cartData={data} checkCount={checkCount} />
+      <ProductSelectCtrl cartData={data} checkCount={checkTotalCount} />
       {refrigerated.length > 0 ? (
         <CartPageSet
           data={refrigerated}
@@ -43,7 +49,7 @@ export function CartPageAccordion({ data }) {
           storingWayImg={normalImg}
         />
       ) : null}
-      <ProductSelectCtrl cartData={data} checkCount={checkCount} />
+      <ProductSelectCtrl cartData={data} checkCount={checkTotalCount} />
     </div>
   );
 }

@@ -3,12 +3,19 @@ import checkBtnOn from '@/../public/ProductListImage/Check_on.svg';
 import checkBtnOff from '@/../public/ProductListImage/Check_off.svg';
 import cancleBtn from '@/../public/icons/web-icons/Cancel.svg';
 import styles from './CartPageAccordion.module.scss';
+import { useRecoilState } from 'recoil';
+import { cartTotalSeletState } from '@/@atom/addCart/cartTotalSeletState';
 
 export function CartPageProduct({ data }) {
   // console.log(data);
   const [productCount, setProductCount] = useState(data.localCount);
   const minusBtn = useRef();
   const plusBtn = useRef();
+
+  // 버튼 토글 상태
+  const [selectBtnTogle, setSelectBtnTogle] = useState(true);
+  const [totalSelectState, setTotalSelectState] =
+    useRecoilState(cartTotalSeletState);
 
   const handleDecrease = () => {
     if (productCount > 1) {
@@ -41,7 +48,15 @@ export function CartPageProduct({ data }) {
     }
   }, [productCount]);
 
-  const handleChecked = () => {};
+  const handleChecked = () => {
+    if (selectBtnTogle) {
+      setTotalSelectState(totalSelectState - 1);
+    } else {
+      setTotalSelectState(totalSelectState + 1);
+    }
+    setSelectBtnTogle(!selectBtnTogle);
+  };
+  console.log(totalSelectState);
 
   return (
     <li className={styles.cartPageProduct}>
@@ -50,7 +65,10 @@ export function CartPageProduct({ data }) {
         className={styles.cartPageProductCheckBtn}
         onClick={handleChecked}
       >
-        <img alt="상품 선택 체크 버튼" src={checkBtnOn} />
+        <img
+          alt="상품 선택 체크 버튼"
+          src={selectBtnTogle ? checkBtnOn : checkBtnOff}
+        />
       </button>
       <a className={`.willRouter ${styles.cartPageProductImg}`} href="#">
         <div className={styles.cartPageProductImgTest}></div>
