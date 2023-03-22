@@ -18,4 +18,13 @@ const firebaseConfig = {
   appId: VITE_APP_ID,
 };
 
+// const firebaseConfig = {
+//   apiKey: 'AIzaSyCL4Rt0HXA-atO8riWJ7vQtsToHGQ-76Sk',
+//   authDomain: 'yamoo9-firebase.firebaseapp.com',
+//   projectId: 'yamoo9-firebase',
+//   storageBucket: 'yamoo9-firebase.appspot.com',
+//   messagingSenderId: '425358474331',
+//   appId: '1:425358474331:web:20be14942fbfecf4ea137e',
+// };
+
 export const app = initializeApp(firebaseConfig);
