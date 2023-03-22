@@ -1,0 +1,39 @@
+$TextColor: rgb(51, 51, 51);
+$PrimaryColor: rgb(209, 122, 1);
+
+// 전체 선택, 선택삭제 컴포넌트
+.selectCtrl {
+  &Container {
+    padding: 18px 10px 16px 2px;
+  }
+
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  line-height: 26px;
+  font-weight: 500;
+
+  &All {
+    display: inline-flex;
+    padding: 0px;
+    color: $TextColor;
+    align-items: center;
+
+    &Text {
+      font-weight: 500;
+      margin-left: 12px;
+    }
+  }
+
+  &Line {
+    display: inline-block;
+    width: 1px;
+    height: 14px;
+    background: rgb(221, 221, 221);
+    margin: 2px 21px 0px 22px;
+    vertical-align: top;
+  }
+
+  &Delete {
+  }
+}
