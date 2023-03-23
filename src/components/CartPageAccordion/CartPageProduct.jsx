@@ -29,6 +29,7 @@ export function CartPageProduct({ data }) {
     }
   };
 
+  const productPrice = data.salePrice * productCount;
   useEffect(() => {
     if (productCount <= 1) {
       minusBtn.current.style.backgroundPosition = '-8px -46px';
@@ -48,15 +49,41 @@ export function CartPageProduct({ data }) {
     }
   }, [productCount]);
 
+  // useEffect(() => {
+  //   totalSelectState === cartCount
+  //     ? setAllSelectState(true)
+  //     : setAllSelectState(false);
+  // }, [totalSelectState]);
+
+  // const handleChecked = () => {
+  //   if (selectBtnTogle) {
+  //     setTotalSelectState(totalSelectState - 1);
+  //     // setAllSelectState(false);
+  //   } else {
+  //     setTotalSelectState(totalSelectState + 1);
+  //   }
+
+  //   setSelectBtnTogle(!selectBtnTogle);
+  // };
+  // console.log(totalSelectState);
+
+  useEffect(() => {
+    setTotalSelectState((prev) => [...prev, data.name]);
+  }, []);
+
+  useEffect(() => {
+    console.log(totalSelectState);
+  }, [totalSelectState]);
+
   const handleChecked = () => {
-    if (selectBtnTogle) {
-      setTotalSelectState(totalSelectState - 1);
+    if (!selectBtnTogle) {
+      setTotalSelectState((prev) => [...prev, data.name]);
     } else {
-      setTotalSelectState(totalSelectState + 1);
+      setTotalSelectState(totalSelectState.filter((el) => el !== data.name));
     }
+
     setSelectBtnTogle(!selectBtnTogle);
   };
-  console.log(totalSelectState);
 
   return (
     <li className={styles.cartPageProduct}>
@@ -67,7 +94,7 @@ export function CartPageProduct({ data }) {
       >
         <img
           alt="상품 선택 체크 버튼"
-          src={selectBtnTogle ? checkBtnOn : checkBtnOff}
+          src={totalSelectState.includes(data.name) ? checkBtnOn : checkBtnOff}
         />
       </button>
       <a className={`.willRouter ${styles.cartPageProductImg}`} href="#">
@@ -101,14 +128,11 @@ export function CartPageProduct({ data }) {
       </div>
       <div className={styles.cartPageProductPrice}>
         <span className={styles.cartPageProductPriceText}>
-          {(data.salePrice * productCount)
-            .toString()
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-          원
+          {productPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
         </span>
       </div>
       <button className={styles.cartPageProductCancleBtn} type="button">
-        <img src={cancleBtn} alt="장바구니에 담긴 상품 취소 버튼" />
+        <img alt="장바구니에 담긴 상품 취소 버튼" src={cancleBtn} />
       </button>
     </li>
   );

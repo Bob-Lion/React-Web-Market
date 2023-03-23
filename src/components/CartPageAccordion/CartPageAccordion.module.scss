@@ -19,6 +19,13 @@ $PrimaryColor: rgb(209, 122, 1);
     color: $TextColor;
     align-items: center;
 
+    &Btn {
+      display: inline-flex;
+      padding: 0px;
+      color: $TextColor;
+      align-items: center;
+    }
+
     &Text {
       font-weight: 500;
       margin-left: 12px;

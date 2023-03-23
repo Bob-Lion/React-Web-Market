@@ -18,16 +18,20 @@ export function CartPageAccordion({ data }) {
   const roomTemperature = storingWaySort(data, '상온');
 
   // 선택된 상품 개수 관리
-  const [checkTotalCount, setCheckTotalCount] =
-    useRecoilState(cartTotalSeletState);
-  useEffect(() => {
-    setCheckTotalCount(data.length);
-  }, data);
+  // const [checkTotalCount, setCheckTotalCount] =
+  //   useRecoilState(cartTotalSeletState);
+  // useEffect(() => {
+  //   setCheckTotalCount(data.length);
+  // }, data);
   console.log(frozen);
 
   return (
     <div>
-      <ProductSelectCtrl cartData={data} checkCount={checkTotalCount} />
+      <ProductSelectCtrl
+        cartData={data}
+        // checkCount={checkTotalCount}
+        // setCheckTotalCount={setCheckTotalCount}
+      />
       {refrigerated.length > 0 ? (
         <CartPageSet
           data={refrigerated}
@@ -49,7 +53,11 @@ export function CartPageAccordion({ data }) {
           storingWayImg={normalImg}
         />
       ) : null}
-      <ProductSelectCtrl cartData={data} checkCount={checkTotalCount} />
+      <ProductSelectCtrl
+        cartData={data}
+        // checkCount={checkTotalCount}
+        // setCheckTotalCount={setCheckTotalCount}
+      />
     </div>
   );
 }
