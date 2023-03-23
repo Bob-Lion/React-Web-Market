@@ -70,6 +70,7 @@ $PrimaryColor: rgb(209, 122, 1);
   &Arrow {
     width: 30px;
     height: 30px;
+    transform: rotate(270deg);
   }
 }
 
@@ -195,4 +196,11 @@ $PrimaryColor: rgb(209, 122, 1);
     height: 30px;
     margin-left: 9px;
   }
+}
+
+.accordionBody {
+  transition: all 250ms cubic-bezier(0.83, 0, 0.17, 1) 0s;
+  height: auto;
+  opacity: 1;
+  overflow: hidden;
 }
