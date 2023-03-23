@@ -4,6 +4,7 @@ import { useEffect, useMemo } from 'react';
 import { useReadData } from '@/firebase/firestore';
 import { useRecoilState } from 'recoil';
 import { cartTotalSeletState } from '@/@atom/cartPage/cartTotalSeletState';
+import styles from './CartPage.module.scss';
 
 export function CartPage() {
   const cartLocalData = JSON.parse(localStorage.getItem('addCart'));
@@ -66,9 +67,9 @@ export function CartPage() {
   ];
 
   return (
-    <div>
+    <div className={styles.cartPage}>
       <h2>장바구니</h2>
-      <div>
+      <div className={styles.cartPageContainer}>
         <CartPageAccordion data={cartData} />
         <CartPageCredit data={cartData} />
       </div>
