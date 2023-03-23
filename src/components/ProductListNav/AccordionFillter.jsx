@@ -17,7 +17,7 @@ export function AccordionFillter({
 
   useEffect(() => {
     if (checkReset) {
-      resetBtn.current.style.color = 'rgb(209, 122, 1)';
+      resetBtn.current.style.color = 'rgb(161, 95, 4)';
     } else {
       resetBtn.current.style.color = 'rgb(221, 221, 221)';
     }

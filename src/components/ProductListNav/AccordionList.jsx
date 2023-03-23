@@ -19,7 +19,7 @@ export function AccordionList({
   const listCheckReset = useSetRecoilState(productCheckResetState);
 
   const handleEnter = () => {
-    hoverSpan.current.style.color = 'rgb(209, 122, 1)';
+    hoverSpan.current.style.color = 'rgb(161, 95, 4)';
   };
   const handleLeave = () => {
     hoverSpan.current.style.color = 'rgb(51, 51, 51)';
