@@ -1,19 +1,24 @@
 import styles from './CartPageCredit.module.scss';
 import serchIcon from '@/../public/icons/web-icons/Search.svg';
 import { useRecoilState } from 'recoil';
-import { cartTotalSeletState } from '@/@atom/cartPage/cartTotalSeletState';
-import { selectTotalPriceState } from '@/@atom/cartPage/selectTotalPriceState';
+import { selectInfoState } from '@/@atom/cartPage/selectInfoState';
+import { useEffect, useState } from 'react';
 
 export function CartPageCredit() {
-  const [totalSelectState, setTotalSelectState] =
-    useRecoilState(cartTotalSeletState);
+  const [selectInfo, setSelectInfo] = useRecoilState(selectInfoState);
 
-  const [selectTotalPrice, setSelectTotalPrice] = useRecoilState(
-    selectTotalPriceState
-  );
+  // const [totalPrice, setTotalPrice] = useState(0);
 
-  // console.log(totalSelectState);
-  // console.log(selectTotalPrice);
+  // console.log();
+  const totalPrice = selectInfo.map((a) => a.price).reduce((a, b) => a + b);
+
+  // const sumPrice = selectInfo.reduce((a, b) => {
+  //   return a.price + b;
+  // });
+
+  // setTotalPrice(sumPrice);
+
+  // console.log(totalPrice);
 
   return (
     <div className={styles.cartCredit}>
@@ -48,7 +53,7 @@ export function CartPageCredit() {
           <div className={styles.cartCreditTotalPriceInfo}>
             <span className={styles.cartCreditTotalPriceText}>상품금액</span>
             <span className={styles.cartCreditTotalPriceNumber}>
-              49900
+              {totalPrice}
               <span className={styles.cartCreditTotalPriceWon}>원</span>
             </span>
           </div>
@@ -66,19 +71,22 @@ export function CartPageCredit() {
           <div className={styles.cartCreditTotalPriceDelivery}>
             <span className={styles.cartCreditTotalPriceText}>배송비</span>
             <span className={styles.cartCreditTotalPriceNumber}>
-              +3000<span className={styles.cartCreditTotalPriceWon}>원</span>
+              {totalPrice > 40000 ? 0 : 3000}
+              <span className={styles.cartCreditTotalPriceWon}>원</span>
             </span>
           </div>
-          <p className={styles.cartCreditTotalPriceDeliveryDs}>
-            4500원 추가주문 시, <strong>무료배송</strong>
-          </p>
+          {totalPrice < 40000 ? (
+            <p className={styles.cartCreditTotalPriceDeliveryDs}>
+              {40000 - totalPrice}원 추가주문 시, <strong>무료배송</strong>
+            </p>
+          ) : null}
           <div className={styles.cartCreditTotalPriceCreditPrice}>
             <span className={styles.cartCreditTotalPriceText}>
               결제예정금액
             </span>
             <span className={styles.cartCreditTotalPriceCreditPriceText}>
               <strong className={styles.cartCreditTotalPriceCreditPriceStrong}>
-                15000
+                {totalPrice > 40000 ? totalPrice : totalPrice + 3000}
               </strong>
               <span className={styles.cartCreditTotalPriceWon}>원</span>
             </span>
