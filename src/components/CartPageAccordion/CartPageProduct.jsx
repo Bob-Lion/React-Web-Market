@@ -3,8 +3,9 @@ import checkBtnOn from '@/../public/ProductListImage/Check_on.svg';
 import checkBtnOff from '@/../public/ProductListImage/Check_off.svg';
 import cancleBtn from '@/../public/icons/web-icons/Cancel.svg';
 import styles from './CartPageAccordion.module.scss';
-import { useRecoilState } from 'recoil';
-import { cartTotalSeletState } from '@/@atom/addCart/cartTotalSeletState';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { cartTotalSeletState } from '@/@atom/cartPage/cartTotalSeletState';
+import { selectTotalPriceState } from '@/@atom/cartPage/selectTotalPriceState';
 
 export function CartPageProduct({ data }) {
   // console.log(data);
@@ -16,6 +17,10 @@ export function CartPageProduct({ data }) {
   const [selectBtnTogle, setSelectBtnTogle] = useState(true);
   const [totalSelectState, setTotalSelectState] =
     useRecoilState(cartTotalSeletState);
+
+  const [selectTotalPrice, setSelectTotalPrice] = useRecoilState(
+    selectTotalPriceState
+  );
 
   const handleDecrease = () => {
     if (productCount > 1) {
@@ -49,37 +54,26 @@ export function CartPageProduct({ data }) {
     }
   }, [productCount]);
 
-  // useEffect(() => {
-  //   totalSelectState === cartCount
-  //     ? setAllSelectState(true)
-  //     : setAllSelectState(false);
-  // }, [totalSelectState]);
-
-  // const handleChecked = () => {
-  //   if (selectBtnTogle) {
-  //     setTotalSelectState(totalSelectState - 1);
-  //     // setAllSelectState(false);
-  //   } else {
-  //     setTotalSelectState(totalSelectState + 1);
-  //   }
-
-  //   setSelectBtnTogle(!selectBtnTogle);
-  // };
-  // console.log(totalSelectState);
-
+  // 처음에 전체 선택이기 때문에 처음에 한번만 선택 배열에 전체 값을 넣어준다.
   useEffect(() => {
     setTotalSelectState((prev) => [...prev, data.name]);
+    setSelectTotalPrice((prev) => [...prev, productPrice]);
   }, []);
 
   useEffect(() => {
     console.log(totalSelectState);
+    console.log(selectTotalPrice);
   }, [totalSelectState]);
 
   const handleChecked = () => {
     if (!selectBtnTogle) {
       setTotalSelectState((prev) => [...prev, data.name]);
+      setSelectTotalPrice((prev) => [...prev, productPrice]);
+      // setSelectTotalPrice(selectTotalPrice + productPrice);
     } else {
       setTotalSelectState(totalSelectState.filter((el) => el !== data.name));
+      setSelectTotalPrice(selectTotalPrice.filter((el) => el !== productPrice));
+      // setSelectTotalPrice(selectTotalPrice - productPrice);
     }
 
     setSelectBtnTogle(!selectBtnTogle);

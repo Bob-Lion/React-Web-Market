@@ -3,7 +3,7 @@ import { CartPageCredit } from '@/components/CartPageCredit/CartPageCredit';
 import { useEffect, useMemo } from 'react';
 import { useReadData } from '@/firebase/firestore';
 import { useRecoilState } from 'recoil';
-import { cartTotalSeletState } from '@/@atom/addCart/cartTotalSeletState';
+import { cartTotalSeletState } from '@/@atom/cartPage/cartTotalSeletState';
 
 export function CartPage() {
   const cartLocalData = JSON.parse(localStorage.getItem('addCart'));

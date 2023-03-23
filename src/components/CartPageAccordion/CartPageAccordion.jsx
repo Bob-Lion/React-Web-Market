@@ -6,7 +6,7 @@ import refrigeratedImg from '@/../public/icons/web-icons/Refrigerated.svg';
 import frozenImg from '@/../public/icons/web-icons/Frozen.svg';
 import normalImg from '@/../public/icons/web-icons/Normal.svg';
 import { useRecoilState } from 'recoil';
-import { cartTotalSeletState } from '@/@atom/addCart/cartTotalSeletState';
+import { cartTotalSeletState } from '@/@atom/cartPage/cartTotalSeletState';
 
 export function CartPageAccordion({ data }) {
   // console.log(data);

@@ -3,11 +3,15 @@ import checkBtnOff from '@/../public/ProductListImage/Check_off.svg';
 import styles from './CartPageAccordion.module.scss';
 import { useRecoilState } from 'recoil';
 import { useEffect, useState } from 'react';
-import { cartTotalSeletState } from '@/@atom/addCart/cartTotalSeletState';
+import { cartTotalSeletState } from '@/@atom/cartPage/cartTotalSeletState';
+import { selectTotalPriceState } from '@/@atom/cartPage/selectTotalPriceState';
 
 export function ProductSelectCtrl({ cartData }) {
   const [totalSelectState, setTotalSelectState] =
     useRecoilState(cartTotalSeletState);
+  // const [selectTotalPrice, setSelectTotalPrice] = useRecoilState(
+  //   selectTotalPriceState
+  // );
   const [selectBtnTogle, setSelectBtnTogle] = useState(true);
 
   const handleAllSelect = () => {
@@ -17,6 +21,7 @@ export function ProductSelectCtrl({ cartData }) {
       setTotalSelectState(nameArr);
     } else {
       setTotalSelectState([]);
+      // setSelectTotalPrice([]);
     }
 
     setSelectBtnTogle(!selectBtnTogle);
