@@ -1,16 +1,22 @@
-//import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import classes from './ProductGroup.module.scss';
 import { productData } from '@/@atom/productData';
 import { useRecoilValue } from 'recoil';
+import { useReadData } from '@/firebase/firestore';
 
 const ProductGroupFilter = () => {
   const product = useRecoilValue(productData);
+
+  const { readData, data = null, error: readError } = useReadData(`products`);
+  useEffect(() => {
+    readData();
+  }, []);
+  const dataL = data || [];
+
   return (
     <div className={classes.Group}>
       <div className={classes.GroupHeader}>
-        <div className={classes.GroupHeaderTotalCount}>
-          총 {product.length}건
-        </div>
+        <div className={classes.GroupHeaderTotalCount}>총 {dataL.length}건</div>
         <div className={classes.GroupHeaderButton}>
           <a className={classes.GroupHeaderButtonHot} href="#!">
             <span>추천순</span>
