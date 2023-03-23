@@ -6,6 +6,7 @@ import styles from './CartPageAccordion.module.scss';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { cartTotalSeletState } from '@/@atom/cartPage/cartTotalSeletState';
 import { selectTotalPriceState } from '@/@atom/cartPage/selectTotalPriceState';
+import { selectInfoState } from '@/@atom/cartPage/selectInfoState';
 
 export function CartPageProduct({ data }) {
   // console.log(data);
@@ -21,6 +22,8 @@ export function CartPageProduct({ data }) {
   const [selectTotalPrice, setSelectTotalPrice] = useRecoilState(
     selectTotalPriceState
   );
+
+  const [selectInfo, setSelectInfo] = useRecoilState(selectInfoState);
 
   const handleDecrease = () => {
     if (productCount > 1) {
@@ -58,12 +61,35 @@ export function CartPageProduct({ data }) {
   useEffect(() => {
     setTotalSelectState((prev) => [...prev, data.name]);
     setSelectTotalPrice((prev) => [...prev, productPrice]);
+    setSelectInfo((prev) => [
+      ...prev,
+      { name: data.name, price: productPrice },
+    ]);
   }, []);
 
   useEffect(() => {
     console.log(totalSelectState);
     console.log(selectTotalPrice);
   }, [totalSelectState]);
+
+  useEffect(() => {
+    // console.log('aa');
+    if (totalSelectState.includes(data.name)) {
+      const newItem = { name: data.name, price: productPrice };
+      const updateData = selectInfo.map((item) => {
+        if (item.name === newItem.name) return newItem;
+        else return item;
+      });
+
+      if (
+        updateData.filter((item) => item.name === newItem.name).length === 0
+      ) {
+        updateData.push(newItem);
+      }
+      // console.log(updateData);
+      setSelectInfo(updateData);
+    }
+  }, [productPrice]);
 
   const handleChecked = () => {
     if (!selectBtnTogle) {

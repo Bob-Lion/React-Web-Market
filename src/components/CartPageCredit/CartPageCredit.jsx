@@ -1,7 +1,20 @@
 import styles from './CartPageCredit.module.scss';
 import serchIcon from '@/../public/icons/web-icons/Search.svg';
+import { useRecoilState } from 'recoil';
+import { cartTotalSeletState } from '@/@atom/cartPage/cartTotalSeletState';
+import { selectTotalPriceState } from '@/@atom/cartPage/selectTotalPriceState';
 
 export function CartPageCredit() {
+  const [totalSelectState, setTotalSelectState] =
+    useRecoilState(cartTotalSeletState);
+
+  const [selectTotalPrice, setSelectTotalPrice] = useRecoilState(
+    selectTotalPriceState
+  );
+
+  // console.log(totalSelectState);
+  // console.log(selectTotalPrice);
+
   return (
     <div className={styles.cartCredit}>
       <div className={styles.cartCreditContainer}>
