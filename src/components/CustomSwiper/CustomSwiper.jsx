@@ -15,6 +15,7 @@ export default function CustomSwiper(props) {
     prevBtnClass = null,
     nextBtnClass = null,
     customStyle = null,
+    swiperSliderContensArray = [],
   } = props;
 
   const swiperParams = {
@@ -23,8 +24,12 @@ export default function CustomSwiper(props) {
     scrollbar: { draggable: true },
     slidesPerView: 4,
     spaceBetween: 18,
-    onSlideChange: () => console.log('slide change'),
-    onSwiper: (swiper) => console.log(swiper),
+    onSlideChange: () => {
+      // console.log('slide change')
+    },
+    onSwiper: (swiper) => {
+      // console.log(swiper)
+    },
     direction: 'horizontal',
     ...props.swiperParams,
   };
@@ -39,14 +44,20 @@ export default function CustomSwiper(props) {
     sliderRef.current.swiper.slideNext();
   }, []);
 
+  // console.log('아이', children.type);
+  // console.log('아이', children.props.productData);
   return (
-    <div className={classes.CustomSwiper} style={customStyle}>
+    <div className={'CustomSwiper'} style={customStyle}>
       {prevBtnClass ? (
         <button className={prevBtnClass} type="button" onClick={handlePrev} />
       ) : null}
 
+      {insideTitle ? (
+        <span className="CustomSwiperInsideTitle">{insideTitle}</span>
+      ) : null}
+
       <Swiper {...swiperParams}>
-        {loadSwiperSlider(tempContentsArray).map((slider) => {
+        {swiperSliderContensArray.map((slider) => {
           return slider;
         })}
       </Swiper>
@@ -56,27 +67,4 @@ export default function CustomSwiper(props) {
       ) : null}
     </div>
   );
-}
-
-const tempContentsArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-
-function loadSwiperSlider(contentsArray) {
-  let sliders = [];
-  if (contentsArray) {
-    /* todo --------------------------------------------------------------------- */
-    // contentsArray 내용으로 sliders 채워야함
-    contentsArray.forEach((o, i) => {
-      sliders.push(
-        <SwiperSlide key={i}>
-          {i + 1}
-          <ProductCard />
-        </SwiperSlide>
-      );
-    });
-    //
-  } else {
-    // warning about empty arr
-  }
-
-  return sliders;
 }
