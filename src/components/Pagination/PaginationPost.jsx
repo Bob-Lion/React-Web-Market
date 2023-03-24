@@ -2,13 +2,13 @@
 import { useState } from 'react';
 import Pagination from 'react-js-pagination';
 import classes from '@/components/Pagination/Pagination.module.scss';
-import { productData } from '@/@atom/productData';
+import { productDataState } from '@/@atom/productDataState';
 import { useRecoilValue } from 'recoil';
 
 const PaginationPost = () => {
   const [page, setPage] = useState(1);
   const [items, setItems] = useState(5);
-  const product = useRecoilValue(productData);
+  const product = useRecoilValue(productDataState);
 
   const handlePageChange = (page) => {
     setPage(page); //page: index
