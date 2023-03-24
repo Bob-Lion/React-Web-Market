@@ -42,11 +42,11 @@ function MiniHeader () {
           {miniHeaderState ? null : <button className= {classes.header_delivery__btn} type='button'><span>샛별 · 택배</span> 배송안내</button>}
 
           {miniHeaderState ? 
-            <div className={classes.mini_header_search}>
-              <form className={classes.mini_header_search__form} name='search form'>
+            <div className={classes.mini_header__search}>
+              <form className={classes.mini_header__search__form} name='search form'>
                 <input name='search input' placeholder="검색어를 입력해주세요" type='search'></input>
-                <button className={classes.mini_header_search__form_button} type='submit'>
-                    <img alt='search button' className={classes.mini_header_search__form_button__img}  src={miniHeaderSearchIcon} />
+                <button className={classes.mini_header__search__form_button} type='submit'>
+                    <img alt='search button' className={classes.mini_header__search__form_button__img}  src={miniHeaderSearchIcon} />
                 </button>
               </form>
             </div> : null}

@@ -2,7 +2,7 @@
 .topbanner{
   display: flex;
   justify-content: center;
-  background-color: #5F0080;
+  background-color: hwb(285 0% 50%);
 
   &__wrapper{
     display: flex;
@@ -156,6 +156,7 @@
   background-color: rgb(255, 255, 255);
   /* 미니헤더 고정  */
   &__fixed{
+    position: relative;
     display: flex;
     justify-content:center;
     background-color: rgb(255, 255, 255);
@@ -171,12 +172,13 @@
     width: 1050px;
     height: 56px;
   }
-  &_category__btn_fixed{
+  &__category__btn_fixed{
     font-size: 16px;
     font-weight: 600;
     width: 120px;
+    margin-left: -11px;
   }
-  &_nav{
+  &__nav{
     width: 480px;
     display: flex;
     align-items: center;
@@ -189,19 +191,19 @@
     text-align: center;
     }
   }
-  &_search{
+  &__search{
     display: flex;
     padding-left: 14px;
     border-radius: 6px;
-    box-shadow: rgb(247, 247, 247) 0px 0px 0px 1px inset;
+    box-shadow: rgb(244, 244, 244) 0px 0px 0px 1px inset;
     width: 242px;
     height: 36px;
-    background-color: rgb(247, 247, 247);
+    background-color: rgb(244, 244, 244);
 
     &__form{
       width: 400px;
       display: flex;
-      border: 1px solid rgb(247, 247, 247);
+      border: 1px solid rgb(244, 244, 244);
       border-radius: 6px;
 
       & input{
@@ -230,6 +232,7 @@
 /* 미니헤더 끝 */
 
 .header__bottome{
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -242,28 +245,115 @@
   font-size: 16px;
   font-weight: 600;
   color: rgb(51, 51, 51);
+
+  &:hover{
+    color: rgb(95, 0, 128);
+
+    &_img{
+      margin-right: 14px;
+    }
+  }
 }
-.header_category__btn:hover{
+/* 카테고리 서브메뉴 */
+.mini_header__bottome__fixed{
+  position: relative;
+}
+.header_catecory__nav{
+  display: flex;
+  position: absolute;
+  top:100%;
+  
+  &__wrapper{
+    background: #FFFFFF;
+    border-top: 1px solid rgb(217, 217, 217);
+
+    & li{
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      width: 247px;
+      height: 40px;
+      padding-left: 13px;
+      line-height: 260%;
+      
+      /* 선물하기 아이콘 */
+      &>img{
+        display: inline-block;
+        /* 선물하기 아이콘 제외 모든 것 */
+        &>a{
+          display: flex;
+          width: 100%;
+          font-size: 15px;
+        }
+      }
+    }
+    // 나머지아이콘
+    & a>img{
+      display: inline-block;
+      padding-right: 12px;
+    }
+  }
+}
+
+/* 카테고리 side nav 메뉴 */
+.header_catecory__side_nav__wrapper{
+  background: rgb(244, 244, 244);
+  position: absolute;
+  width: 247px;
+  top:100%;
+  right: 53%;
+  height: 881px;
+  border-top: 1px solid rgb(217, 217, 217);
+
+  & ul{
+    height: 100%;
+
+    &>li{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100%;
+      width: 100%;
+      height: 40px;
+      gap:12px;
+      padding-left: 13px;
+      font-size: 15px;
+    }
+  }
+}
+
+
+/* hover시 효과 */
+.header_catecory__nav__wrapper li:hover{
+  background: rgb(244, 244, 244);
+}
+.header_catecory__nav__wrapper li>a:hover{
+  filter: invert(17%) sepia(82%) saturate(4420%) hue-rotate(281deg) brightness(52%) contrast(112%);
+}
+.header_catecory__side_nav__wrapper ul>li:hover a{
   color: rgb(95, 0, 128);
+  border-bottom: 1px solid rgb(95, 0, 128);
 }
-.header_category__btn_img{
-  margin-right: 14px;
-}
+
+
 /* 신상품,베스트,알뜰쇼핑,특가 */
 .header_nav{
   display: flex;
   align-items: center;
-}
-.header_nav li{
-  width: 150px;
-  text-align: center;
-  font-size: 16px;
-  font-weight: 600;
-  color: rgb(51, 51, 51);
-}
-.header_nav li :hover{
-  color: rgb(95, 0, 128);
-  border-bottom: 1px solid rgb(95, 0, 128);
+  
+  & li{
+    width: 150px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: rgb(51, 51, 51);
+
+    & :hover{
+      color: rgb(95, 0, 128);
+      border-bottom: 1px solid rgb(95, 0, 128);
+    }
+  }
 }
 /* 샛별배송 */
 .header_delivery__btn {
@@ -273,11 +363,12 @@
   font-size: 13px;
   font-weight: 600;
   padding: 6px 16px;
-}
-.header_delivery__btn span{
-  display: inline-block;
-  font-weight: 600;
-  color: rgb(95, 0, 128);
+
+  & span{
+    display: inline-block;
+    font-weight: 600;
+    color: rgb(95, 0, 128);
+  }
 }
 
 
@@ -286,7 +377,7 @@
 
 /* 지울것들 밑은 */
 
-.test1{
+/* .test1{
 background-color: pink;
 height: 500px;
 }
@@ -305,4 +396,4 @@ height: 500px;
 .test5{
   background-color:cadetblue;
   height: 500px;
-}
+} */
