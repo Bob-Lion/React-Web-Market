@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { popupVisibleState } from '@/@atom/addCartPopup/popupVisibleState';
+import { cartPopupVisibleState } from '@/@atom/addCartPopup/cartPopupVisibleState';
 import styles from './AddCartPopup.module.scss';
 
 export function AddCartPopup({ data }) {
   const [productCount, setProductCount] = useState(1);
-  const setCartPopupVisible = useSetRecoilState(popupVisibleState);
+  const setCartPopupVisible = useSetRecoilState(cartPopupVisibleState);
   const minusBtn = useRef();
   const plusBtn = useRef();
 

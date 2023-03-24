@@ -9,7 +9,7 @@ export function CartPageCredit() {
 
   // const [totalPrice, setTotalPrice] = useState(0);
 
-  // console.log(selectInfo);
+  console.log(selectInfo);
   // console.log('aa');
 
   let totalPrice = 0;

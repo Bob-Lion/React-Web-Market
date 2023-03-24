@@ -60,7 +60,6 @@ export function CartPageProduct({ data }) {
   // 처음에 전체 선택이기 때문에 처음에 한번만 선택 배열에 전체 값을 넣어준다.
   useEffect(() => {
     setTotalSelectState((prev) => [...prev, data.name]);
-    setSelectTotalPrice((prev) => [...prev, productPrice]);
     setSelectInfo((prev) => [
       ...prev,
       { name: data.name, price: productPrice },
@@ -69,7 +68,6 @@ export function CartPageProduct({ data }) {
 
   useEffect(() => {
     console.log(totalSelectState);
-    console.log(selectTotalPrice);
   }, [totalSelectState]);
 
   useEffect(() => {
@@ -89,17 +87,45 @@ export function CartPageProduct({ data }) {
       // console.log(updateData);
       setSelectInfo(updateData);
     }
-  }, [productPrice]);
+  }, [productPrice, totalSelectState]);
 
   const handleChecked = () => {
     if (!selectBtnTogle) {
       setTotalSelectState((prev) => [...prev, data.name]);
-      setSelectTotalPrice((prev) => [...prev, productPrice]);
-      // setSelectTotalPrice(selectTotalPrice + productPrice);
+      // setSelectTotalPrice((prev) => [...prev, productPrice]);
+      if (totalSelectState.includes(data.name)) {
+        const newItem = { name: data.name, price: productPrice };
+        const updateData = selectInfo.map((item) => {
+          if (item.name === newItem.name) return newItem;
+          else return item;
+        });
+
+        if (
+          updateData.filter((item) => item.name === newItem.name).length === 0
+        ) {
+          updateData.push(newItem);
+        }
+        // console.log(updateData);
+        setSelectInfo(updateData);
+      }
     } else {
       setTotalSelectState(totalSelectState.filter((el) => el !== data.name));
-      setSelectTotalPrice(selectTotalPrice.filter((el) => el !== productPrice));
-      // setSelectTotalPrice(selectTotalPrice - productPrice);
+      // setSelectTotalPrice(selectTotalPrice.filter((el) => el !== productPrice));
+      if (totalSelectState.includes(data.name)) {
+        const newItem = { name: data.name, price: 0 };
+        const updateData = selectInfo.map((item) => {
+          if (item.name === newItem.name) return newItem;
+          else return item;
+        });
+
+        if (
+          updateData.filter((item) => item.name === newItem.name).length === 0
+        ) {
+          updateData.push(newItem);
+        }
+        // console.log(updateData);
+        setSelectInfo(updateData);
+      }
     }
 
     setSelectBtnTogle(!selectBtnTogle);
