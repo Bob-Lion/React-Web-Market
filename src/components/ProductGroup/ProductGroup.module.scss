@@ -3,6 +3,7 @@
     position: relative;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     width: 783px;
     margin-bottom: 18px;
 
@@ -12,9 +13,7 @@
     }
     &Button {
       color: #cccccc;
-      &svg {
-        background: red;
-      }
+      display: flex;
     }
   }
 }
