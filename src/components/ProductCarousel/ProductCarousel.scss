@@ -1,10 +1,12 @@
 
 .ProductCarousel{
-  
+  width: 1050px;
+  margin: 0 auto;
   .ProductCard{
     position: relative;
     display: flex;
     flex-flow: column nowrap;
+
     // height: 100%;
 
     &MainWrapper{
@@ -71,6 +73,7 @@
 
         .ProductCardProductDetail{
           display: block;
+          display: none;
           width: 239px;
           font-weight: 400;
           font-size: 12px;
@@ -127,10 +130,26 @@
           text-decoration: line-through;
 
         }
+
+        .ProductCardReviewCount{
+          margin-top: 8px;
+          display: flex;
+          order: 5;
+          height: 17px;
+          color: #999999;
+          font-size: 12px;
+          line-height: 17px;
+          gap: 2px;
+
+          &Icon{
+            width: 15px;
+          }
+        }
   
         .ProductCardBadgeWrapper{
           margin-top: 8px;
-          display: flex;
+          // display: flex;
+          display: none;
           align-items: flex-start;
           gap: 8px;
           

@@ -1,0 +1,98 @@
+
+// section[class ^= '_RecentProductCarousel']{
+.RecentProductCarousel{
+  
+  right: 20px;
+  top: 237px;
+
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  text-align: center;
+  width: 80px;
+  background-color: #ffffff;
+  border: #dddddd solid 1px;
+  position: fixed;
+
+  .CustomSwiper{
+    display: flex;
+    flex-flow: column nowrap;
+    .CustomSwiperInsideTitle{
+      display: inline-block;
+      text-align: center;
+      font-size: 12px;
+      letter-spacing: -0.3px;
+      color: #333333;
+      font-weight: 600;
+      line-height: 16px;
+    }
+
+    .swiper {
+      width: 78px;
+      
+      /* height: auto; */
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      order: 2;
+      position: static;
+
+      .swiper-wrapper{
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        max-height: 209px;
+        width: 60px;
+        order: 2;
+        flex-grow: 0;
+
+        .swiper-slide {
+          text-align:center;
+          display:flex; /* 내용을 중앙정렬 하기위해 flex 사용 */
+          align-items:center; /* 위아래 기준 중앙정렬 */
+          justify-content:center; /* 좌우 기준 중앙정렬 */
+          height: -webkit-max-content!important;
+          height: -moz-max-content!important;
+          height: max-content!important;
+
+          .ProductCard{
+            display: flex;
+            flex-flow: column nowrap;
+            width: 60px;
+            height: 80px;
+            background-color: salmon;  
+
+            button{
+              padding: 0;
+            }
+            figure{
+              overflow: hidden;
+              width: 60px;
+              height: 80px;
+              
+              img{  
+                width: 100%;
+                height: 100%;
+                object-fit: fill;
+              }
+            }
+            .ProductCardInfoWrapper{
+              display: none;
+            }
+            .AddCartShortcutBtn{
+              display: none;
+            }
+          }
+        }
+      }
+
+    }
+
+
+    
+    .swiper-button-lock { /* disable 되었을 때 스와이퍼에서 버튼에 넣는 속성*/
+      opacity: 0.5;
+    }
+
+  }
+}
