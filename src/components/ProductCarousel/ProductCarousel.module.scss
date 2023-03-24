@@ -16,7 +16,7 @@
   width: 60px;
   height: 60px;
   position: absolute;
-  top: 50%;
+  top: 160px;
   transform: matrix(1, 0, 0, 1, 0, 0);
   flex: none;
   order: 4;
@@ -24,6 +24,7 @@
   z-index: 4;
   border-radius: 50%;
   background: url('@/../public/icons/web-icons/Arrow-black.svg') no-repeat center;
+  transition: 100ms;
 
   &Prev{
     left: calc(50% - 555px);
@@ -32,4 +33,10 @@
     right:calc(50% - 555px);
     transform: scaleX(-1);
   }
+}
+
+.horizontalSwiperNavigation:hover{
+  background: url('@/../public/icons/web-icons/Arrow-purple.svg') no-repeat center;
+  transition: 300ms;
+  
 }

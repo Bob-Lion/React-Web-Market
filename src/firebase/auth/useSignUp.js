@@ -39,8 +39,8 @@ export function useSignUp(sendEmailVerification = false) {
           await updateProfile(user, { displayName });
         }
 
-        if (sendEmailVerification && user) {
-          await firebaseSendEmailVerification(user);
+        if (sendEmailVerification && user) { //사용자에게 주소 인증 메일을 보내기
+          await firebaseSendEmailVerification(user); 
         }
 
         setUser(user);
