@@ -5,6 +5,8 @@ import { useReadData } from '@/firebase/firestore';
 import { useRecoilState } from 'recoil';
 import { cartTotalSeletState } from '@/@atom/cartPage/cartTotalSeletState';
 import styles from './CartPage.module.scss';
+import Header from '@/components/Header/Header';
+import Footer from '@/components/Footer/Footer';
 
 export function CartPage() {
   const cartLocalData = JSON.parse(localStorage.getItem('addCart'));
@@ -67,12 +69,16 @@ export function CartPage() {
   ];
 
   return (
-    <div className={styles.cartPage}>
-      <h2>장바구니</h2>
-      <div className={styles.cartPageContainer}>
-        <CartPageAccordion data={cartData} />
-        <CartPageCredit data={cartData} />
+    <>
+      <Header />
+      <div className={styles.cartPage}>
+        <h2 className={styles.cartPageTitle}>장바구니</h2>
+        <div className={styles.cartPageContainer}>
+          <CartPageAccordion data={cartData} />
+          <CartPageCredit data={cartData} />
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }
