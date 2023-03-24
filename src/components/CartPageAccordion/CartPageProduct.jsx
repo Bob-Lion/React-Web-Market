@@ -7,6 +7,7 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 import { cartTotalSeletState } from '@/@atom/cartPage/cartTotalSeletState';
 import { selectTotalPriceState } from '@/@atom/cartPage/selectTotalPriceState';
 import { selectInfoState } from '@/@atom/cartPage/selectInfoState';
+import { selectPriceState } from '@/@atom/cartPage/selectPriceState';
 
 export function CartPageProduct({ data }) {
   // console.log(data);
@@ -23,21 +24,26 @@ export function CartPageProduct({ data }) {
     selectTotalPriceState
   );
 
+  const [selectPrice, setSelectPrice] = useRecoilState(selectPriceState);
+
   const [selectInfo, setSelectInfo] = useRecoilState(selectInfoState);
 
   const handleDecrease = () => {
     if (productCount > 1) {
       setProductCount(productCount - 1);
+      setSelectTotalPrice(selectTotalPrice - data.salePrice);
     }
   };
 
   const handleIncrease = () => {
     if (productCount < data.stock) {
       setProductCount(productCount + 1);
+      setSelectTotalPrice(selectTotalPrice + data.salePrice);
     }
   };
 
   const productPrice = data.salePrice * productCount;
+
   useEffect(() => {
     if (productCount <= 1) {
       minusBtn.current.style.backgroundPosition = '-8px -46px';
@@ -60,15 +66,31 @@ export function CartPageProduct({ data }) {
   // 처음에 전체 선택이기 때문에 처음에 한번만 선택 배열에 전체 값을 넣어준다.
   useEffect(() => {
     setTotalSelectState((prev) => [...prev, data.name]);
+    setSelectPrice((prev) => [...prev, productPrice]);
+    // setSelectPrice((prev) => [...prev, productPrice]);
+
+    // console.log(selectTotalPrice, productPrice);
     setSelectInfo((prev) => [
       ...prev,
       { name: data.name, price: productPrice },
     ]);
   }, []);
+  // console.log(selectTotalPrice);
 
   useEffect(() => {
     console.log(totalSelectState);
+    console.log(selectPrice);
   }, [totalSelectState]);
+
+  useEffect(() => {
+    if (selectPrice.length > 0) {
+      setSelectTotalPrice(selectPrice.reduce((a, b) => a + b));
+    }
+  }, [selectPrice]);
+
+  useEffect(() => {
+    console.log(selectTotalPrice);
+  }, [selectTotalPrice]);
 
   useEffect(() => {
     // console.log('aa');
@@ -92,6 +114,7 @@ export function CartPageProduct({ data }) {
   const handleChecked = () => {
     if (!selectBtnTogle) {
       setTotalSelectState((prev) => [...prev, data.name]);
+      setSelectTotalPrice(selectTotalPrice + productPrice);
       // setSelectTotalPrice((prev) => [...prev, productPrice]);
       if (totalSelectState.includes(data.name)) {
         const newItem = { name: data.name, price: productPrice };
@@ -110,6 +133,7 @@ export function CartPageProduct({ data }) {
       }
     } else {
       setTotalSelectState(totalSelectState.filter((el) => el !== data.name));
+      setSelectTotalPrice(selectTotalPrice - productPrice);
       // setSelectTotalPrice(selectTotalPrice.filter((el) => el !== productPrice));
       if (totalSelectState.includes(data.name)) {
         const newItem = { name: data.name, price: 0 };

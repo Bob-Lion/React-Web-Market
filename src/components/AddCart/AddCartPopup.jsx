@@ -53,14 +53,15 @@ export function AddCartPopup({ data }) {
     };
     // 로컬에 있는 객체 데이터 중복 여부 확인
     const addCartLocalData = JSON.parse(localStorage.getItem('addCart')) || [];
+
     let isduplicate = false;
     addCartLocalData.forEach((product) => {
-      if (productInfo.id === product.id) isduplicate = true;
+      if (productInfo.docId === product.docId) isduplicate = true;
     });
 
     if (isduplicate) {
       localStorage.setItem('addCart', JSON.stringify(addCartLocalData));
-      alert('이미 장바구니에 담겨 있습니다 !');
+      console.log('이미 장바구니에 담겨 있습니다 !');
       return;
     }
 

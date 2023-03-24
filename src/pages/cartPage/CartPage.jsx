@@ -2,15 +2,17 @@ import { CartPageAccordion } from '@/components/CartPageAccordion/CartPageAccord
 import { CartPageCredit } from '@/components/CartPageCredit/CartPageCredit';
 import { useEffect, useMemo } from 'react';
 import { useReadData } from '@/firebase/firestore';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { cartTotalSeletState } from '@/@atom/cartPage/cartTotalSeletState';
 import styles from './CartPage.module.scss';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
+import { cartPopupVisibleState } from '@/@atom/addCartPopup/cartPopupVisibleState';
 
 export function CartPage() {
   const cartLocalData = JSON.parse(localStorage.getItem('addCart'));
-  const localCount = cartLocalData;
+  // const localCount = cartLocalData;
+  let cpv = useRecoilValue(cartPopupVisibleState);
 
   // 로컬스토리지에 있는 count 값 추가해 줘야댐
   const cartData = [
@@ -67,6 +69,8 @@ export function CartPage() {
       localCount: 5,
     },
   ];
+  useEffect(() => {}, [cpv]);
+  console.log(cartLocalData);
 
   return (
     <>

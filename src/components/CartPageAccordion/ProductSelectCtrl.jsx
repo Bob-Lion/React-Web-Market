@@ -5,6 +5,7 @@ import { useRecoilState } from 'recoil';
 import { useEffect, useState } from 'react';
 import { cartTotalSeletState } from '@/@atom/cartPage/cartTotalSeletState';
 import { selectTotalPriceState } from '@/@atom/cartPage/selectTotalPriceState';
+import { selectInfoState } from '@/@atom/cartPage/selectInfoState';
 
 export function ProductSelectCtrl({ cartData }) {
   const [totalSelectState, setTotalSelectState] =
@@ -14,14 +15,28 @@ export function ProductSelectCtrl({ cartData }) {
   // );
   const [selectBtnTogle, setSelectBtnTogle] = useState(true);
 
+  const [selectTotalPrice, setSelectTotalPrice] = useRecoilState(
+    selectTotalPriceState
+  );
+  const [selectInfo, setSelectInfo] = useRecoilState(selectInfoState);
+
+  // const totolPrice = selectInfo.reduce((a, b) => a.price + b);
+  let totalPrice = 0;
+
+  if (selectInfo.length > 0) {
+    totalPrice = selectInfo.map((a) => a.price).reduce((a, b) => a + b);
+  }
+
   const handleAllSelect = () => {
     if (!selectBtnTogle) {
       const nameArr = [];
       cartData.forEach((el) => nameArr.push(el.name));
       setTotalSelectState(nameArr);
+      setSelectTotalPrice(selectTotalPrice + totalPrice);
     } else {
       setTotalSelectState([]);
       // setSelectTotalPrice([]);
+      setSelectTotalPrice(selectTotalPrice - totalPrice);
     }
 
     setSelectBtnTogle(!selectBtnTogle);
