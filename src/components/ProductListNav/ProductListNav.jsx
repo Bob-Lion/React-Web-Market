@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { many_product_sort, name_sort, priceSort } from '@/utils';
 import { Accordion } from './Accordion';
 import { useRecoilValue } from 'recoil';
-import { productData } from '@/@atom/productData';
+import { productDataState } from '@/@atom/productDataState';
 
 export function ProductListNav() {
   return (

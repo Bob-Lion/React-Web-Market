@@ -384,38 +384,38 @@ const bobLionOnly_data = includeSort(product, 'bobLionOnly');
 // 유형 데이터
 const type_data = [bobLionOnly_data];
 
-export const productData = atom({
-  key: 'productData',
+export const productDataState = atom({
+  key: 'productDataState',
   default: product,
 });
 
-export const categorySortData = atom({
-  key: 'categorySortData',
+export const categorySortDataState = atom({
+  key: 'categorySortDataState',
   default: category_sort_data,
 });
-export const brandNameSortData = atom({
-  key: 'brandNameSortData',
+export const brandNameSortDataState = atom({
+  key: 'brandNameSortDataState',
   default: brand_name_sort_data,
 });
-export const brandProductSortData = atom({
-  key: 'brandProductSortData',
+export const brandProductSortDataState = atom({
+  key: 'brandProductSortDataState',
   default: brand_product_sort_data,
 });
-export const brandSortData = atom({
-  key: 'brandSortData',
+export const brandSortDataState = atom({
+  key: 'brandSortDataState',
   default: brand_sort_data,
 });
-export const priceSortData = atom({
-  key: 'priceSortData',
+export const priceSortDataState = atom({
+  key: 'priceSortDataState',
   default: price_sort_data,
 });
 
-export const benefiSortData = atom({
-  key: 'benefiSortData',
+export const benefiSortDataState = atom({
+  key: 'benefiSortDataState',
   default: benefit_data,
 });
 
-export const typeSortData = atom({
-  key: 'typeSortData',
+export const typeSortDataState = atom({
+  key: 'typeSortDataState',
   default: type_data,
 });
