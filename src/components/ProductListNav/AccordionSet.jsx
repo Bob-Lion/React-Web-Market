@@ -30,19 +30,6 @@ export function AccordionSet({ data, listName, selectData, setSelectData }) {
         'all 250ms cubic-bezier(0.83, 0, 0.17, 1) 0s';
     }
   });
-  /* const handleChangeData = (sortName) => {
-    // sort === 'name' ? setSortData(data[0]) : setSortData(data[1]);
-    if (sortName === 'name') {
-      setSortData(data[0]);
-      nameSortBtn.current.style.color = 'rgb(209, 122, 1)';
-      productSortBtn.current.style.color = 'rgb(51, 51, 51)';
-    }
-    if (sortName === 'product') {
-      setSortData(data[1]);
-      nameSortBtn.current.style.color = 'rgb(51, 51, 51)';
-      productSortBtn.current.style.color = 'rgb(209, 122, 1)';
-    }
-  }; */
 
   const handleAccordionList = () => {
     if (opacityToggle) {

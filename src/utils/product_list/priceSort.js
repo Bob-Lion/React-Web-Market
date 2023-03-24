@@ -20,7 +20,7 @@ export function priceSort(product) {
   const third = ['10,980 ~ 16,200원', thirdPrice.length];
   const fourth = ['16,200원 이상', fourthPrice.length];
 
-  const priceSortData = [first, second, third, fourth];
+  const priceSortDataState = [first, second, third, fourth];
 
-  return priceSortData;
+  return priceSortDataState;
 }

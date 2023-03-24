@@ -6,29 +6,28 @@ import { useRef, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 
 import {
-  categorySortData,
-  brandSortData,
-  priceSortData,
-  benefiSortData,
-  typeSortData,
-} from '@/@atom/productData';
-import { selectList } from '@/@atom/accordion/selectList';
-import { categorySelect } from '@/@atom/accordion/categorySelect';
-import { productListCheckReset } from '../../@atom/accordion/productListCheckReset';
+  categorySortDataState,
+  brandSortDataState,
+  priceSortDataState,
+  benefiSortDataState,
+  typeSortDataState,
+} from '@/@atom/productDataState';
+import { accordionSelectListState } from '@/@atom/accordion/accordionSelectListState';
+import { categorySelectState } from '@/@atom/accordion/categorySelectState';
+import { productCheckResetState } from '../../@atom/accordion/productCheckResetState';
 
 // import { accordionCategory } from '@/@atom/accordion/accordionCategory.js';
 export function Accordion() {
   // 카테고리 데이터 불러오기
-  const categoryData = useRecoilValue(categorySortData);
+  const categoryData = useRecoilValue(categorySortDataState);
   // 브랜드 데이터 불러오기
-  const brandData = useRecoilValue(brandSortData);
+  const brandData = useRecoilValue(brandSortDataState);
   // 가격 데이터 불러오기
-  const priceData = useRecoilValue(priceSortData);
+  const priceData = useRecoilValue(priceSortDataState);
   // 혜택 데이터 불러오기
-  const benefitData = useRecoilValue(benefiSortData);
+  const benefitData = useRecoilValue(benefiSortDataState);
   // 유형 데이터 불러오기
-  const typeData = useRecoilValue(typeSortData);
-
+  const typeData = useRecoilValue(typeSortDataState);
 
   // const [categorySelectData, setCategorySelectData] = useRecoilState();
   const [categorySelectData, setCategorySelectData] = useState([]);
@@ -36,7 +35,6 @@ export function Accordion() {
   const [priceSelectData, setPriceSelectData] = useState([]);
   const [benefitSelectData, setBenefitSelectData] = useState([]);
   const [typeSelectData, setTypeSelectData] = useState([]);
-
 
   return (
     <div>

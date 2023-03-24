@@ -1,0 +1,11 @@
+.cartPage {
+  padding-bottom: 80px;
+  margin: 0 10%;
+  &Container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    letter-spacing: -0.5px;
+    gap: 24px;
+  }
+}
