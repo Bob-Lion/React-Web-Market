@@ -1,6 +1,4 @@
 import { useState } from 'react';
-
-import '@/app/App.scss'
 import classes from '@/components/Header/Header.module.scss';
 
 import HeaderTopbanner from '@/components/Header/HeaderTopbanner';
