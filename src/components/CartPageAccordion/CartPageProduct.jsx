@@ -8,10 +8,11 @@ import { cartTotalSeletState } from '@/@atom/cartPage/cartTotalSeletState';
 import { selectTotalPriceState } from '@/@atom/cartPage/selectTotalPriceState';
 import { selectInfoState } from '@/@atom/cartPage/selectInfoState';
 import { selectPriceState } from '@/@atom/cartPage/selectPriceState';
+import { changePriceNumToString } from '@/utils/priceNumberToString';
 
 export function CartPageProduct({ data }) {
   // console.log(data);
-  const [productCount, setProductCount] = useState(data.localCount);
+  const [productCount, setProductCount] = useState(data.count);
   const minusBtn = useRef();
   const plusBtn = useRef();
 
@@ -32,6 +33,23 @@ export function CartPageProduct({ data }) {
     if (productCount > 1) {
       setProductCount(productCount - 1);
       setSelectTotalPrice(selectTotalPrice - data.salePrice);
+      // setTotalSelectState((prev) => [...prev, data.name]);
+      // setSelectTotalPrice((prev) => [...prev, productPrice]);
+      if (totalSelectState.includes(data.name)) {
+        const newItem = { name: data.name, price: productPrice };
+        const updateData = selectInfo.map((item) => {
+          if (item.name === newItem.name) return newItem;
+          else return item;
+        });
+
+        if (
+          updateData.filter((item) => item.name === newItem.name).length === 0
+        ) {
+          updateData.push(newItem);
+        }
+        // console.log(updateData);
+        setSelectInfo(updateData);
+      }
     }
   };
 
@@ -39,6 +57,23 @@ export function CartPageProduct({ data }) {
     if (productCount < data.stock) {
       setProductCount(productCount + 1);
       setSelectTotalPrice(selectTotalPrice + data.salePrice);
+      // setTotalSelectState((prev) => [...prev, data.name]);
+      // setSelectTotalPrice((prev) => [...prev, productPrice]);
+      if (totalSelectState.includes(data.name)) {
+        const newItem = { name: data.name, price: productPrice };
+        const updateData = selectInfo.map((item) => {
+          if (item.name === newItem.name) return newItem;
+          else return item;
+        });
+
+        if (
+          updateData.filter((item) => item.name === newItem.name).length === 0
+        ) {
+          updateData.push(newItem);
+        }
+        // console.log(updateData);
+        setSelectInfo(updateData);
+      }
     }
   };
 
@@ -78,9 +113,10 @@ export function CartPageProduct({ data }) {
   // console.log(selectTotalPrice);
 
   useEffect(() => {
-    console.log(totalSelectState);
-    console.log(selectPrice);
-  }, [totalSelectState]);
+    // console.log(totalSelectState);
+    // console.log(selectPrice);
+    console.log('selectInfo : ', selectInfo);
+  }, [selectInfo]);
 
   useEffect(() => {
     if (selectPrice.length > 0) {
@@ -89,7 +125,7 @@ export function CartPageProduct({ data }) {
   }, [selectPrice]);
 
   useEffect(() => {
-    console.log(selectTotalPrice);
+    // console.log(selectTotalPrice);
   }, [selectTotalPrice]);
 
   useEffect(() => {
@@ -168,7 +204,12 @@ export function CartPageProduct({ data }) {
         />
       </button>
       <a className={`.willRouter ${styles.cartPageProductImg}`} href="#">
-        <div className={styles.cartPageProductImgTest}></div>
+        {/* <div className={styles.cartPageProductImgTest}></div> */}
+        <img
+          className={styles.cartPageProductImgTest}
+          src={data.mainImg}
+          alt="상품 메인 이미지"
+        />
       </a>
       <div className={styles.cartPageProductName}>
         <a className={`.willRouter`} href="#">
@@ -198,7 +239,7 @@ export function CartPageProduct({ data }) {
       </div>
       <div className={styles.cartPageProductPrice}>
         <span className={styles.cartPageProductPriceText}>
-          {productPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
+          {changePriceNumToString(productPrice)}
         </span>
       </div>
       <button className={styles.cartPageProductCancleBtn} type="button">

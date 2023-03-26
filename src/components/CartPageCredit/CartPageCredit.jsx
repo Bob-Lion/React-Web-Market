@@ -4,6 +4,7 @@ import { useRecoilState } from 'recoil';
 // import { selectInfoState } from '@/@atom/cartPage/selectInfoState';
 import { useEffect, useState } from 'react';
 import { selectTotalPriceState } from '@/@atom/cartPage/selectTotalPriceState';
+import { changePriceNumToStringNoWon } from '@/utils/priceNumberToStringNoWon';
 // import { selectInfoState } from '@/@atom/cartPage/selectInfoState';
 
 export function CartPageCredit() {
@@ -68,7 +69,7 @@ export function CartPageCredit() {
           <div className={styles.cartCreditTotalPriceInfo}>
             <span className={styles.cartCreditTotalPriceText}>상품금액</span>
             <span className={styles.cartCreditTotalPriceNumber}>
-              {selectTotalPrice}
+              {changePriceNumToStringNoWon(selectTotalPrice)}
               <span className={styles.cartCreditTotalPriceWon}>원</span>
             </span>
           </div>
@@ -103,8 +104,8 @@ export function CartPageCredit() {
             <span className={styles.cartCreditTotalPriceCreditPriceText}>
               <strong className={styles.cartCreditTotalPriceCreditPriceStrong}>
                 {selectTotalPrice > 40000
-                  ? selectTotalPrice
-                  : selectTotalPrice + 3000}
+                  ? changePriceNumToStringNoWon(selectTotalPrice)
+                  : changePriceNumToStringNoWon(selectTotalPrice + 3000)}
               </strong>
               <span className={styles.cartCreditTotalPriceWon}>원</span>
             </span>
