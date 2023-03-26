@@ -7,10 +7,15 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 import { cartTotalSeletState } from '@/@atom/cartPage/cartTotalSeletState';
 import { selectTotalPriceState } from '@/@atom/cartPage/selectTotalPriceState';
 import { selectInfoState } from '@/@atom/cartPage/selectInfoState';
+import { selectPriceState } from '@/@atom/cartPage/selectPriceState';
+import { changePriceNumToString } from '@/utils/priceNumberToString';
+import { localStorageDeleteData } from '@/utils/localStorageDeleteData';
+import { localDataRanderState } from '@/@atom/cartPage/localDataRanderState';
+import { removeDuplicates } from '@/utils/removeDuplicates';
 
 export function CartPageProduct({ data }) {
   // console.log(data);
-  const [productCount, setProductCount] = useState(data.localCount);
+  const [productCount, setProductCount] = useState(data.count);
   const minusBtn = useRef();
   const plusBtn = useRef();
 
@@ -23,21 +28,65 @@ export function CartPageProduct({ data }) {
     selectTotalPriceState
   );
 
+  const [selectPrice, setSelectPrice] = useRecoilState(selectPriceState);
+
   const [selectInfo, setSelectInfo] = useRecoilState(selectInfoState);
+
+  const [localDataRander, setLocalDataRander] =
+    useRecoilState(localDataRanderState);
 
   const handleDecrease = () => {
     if (productCount > 1) {
       setProductCount(productCount - 1);
+      setSelectTotalPrice(selectTotalPrice - data.salePrice);
+      // setTotalSelectState((prev) => [...prev, data.name]);
+      // setSelectTotalPrice((prev) => [...prev, productPrice]);
+      if (totalSelectState.includes(data.name)) {
+        const newItem = { name: data.name, price: productPrice };
+        const updateData = selectInfo.map((item) => {
+          if (item.name === newItem.name) return newItem;
+          else return item;
+        });
+
+        if (
+          updateData.filter((item) => item.name === newItem.name).length === 0
+        ) {
+          updateData.push(newItem);
+        }
+        const noDuplicateData = removeDuplicates(updateData, 'name');
+        // console.log(updateData);
+        setSelectInfo(noDuplicateData);
+      }
     }
   };
 
   const handleIncrease = () => {
     if (productCount < data.stock) {
       setProductCount(productCount + 1);
+      setSelectTotalPrice(selectTotalPrice + data.salePrice);
+      // setTotalSelectState((prev) => [...prev, data.name]);
+      // setSelectTotalPrice((prev) => [...prev, productPrice]);
+      if (totalSelectState.includes(data.name)) {
+        const newItem = { name: data.name, price: productPrice };
+        const updateData = selectInfo.map((item) => {
+          if (item.name === newItem.name) return newItem;
+          else return item;
+        });
+
+        if (
+          updateData.filter((item) => item.name === newItem.name).length === 0
+        ) {
+          updateData.push(newItem);
+        }
+        const noDuplicateData = removeDuplicates(updateData, 'name');
+        // console.log(updateData);
+        setSelectInfo(noDuplicateData);
+      }
     }
   };
 
   const productPrice = data.salePrice * productCount;
+
   useEffect(() => {
     if (productCount <= 1) {
       minusBtn.current.style.backgroundPosition = '-8px -46px';
@@ -60,15 +109,33 @@ export function CartPageProduct({ data }) {
   // 처음에 전체 선택이기 때문에 처음에 한번만 선택 배열에 전체 값을 넣어준다.
   useEffect(() => {
     setTotalSelectState((prev) => [...prev, data.name]);
+    setSelectPrice((prev) => [...prev, productPrice]);
+    // setSelectPrice((prev) => [...prev, productPrice]);
+
+    // console.log(selectTotalPrice, productPrice);
     setSelectInfo((prev) => [
       ...prev,
       { name: data.name, price: productPrice },
     ]);
   }, []);
+  // console.log(selectTotalPrice);
 
   useEffect(() => {
-    console.log(totalSelectState);
-  }, [totalSelectState]);
+    // console.log(totalSelectState);
+    // console.log(selectPrice);
+    // console.log('selectInfo : ', selectInfo);
+  }, [selectInfo]);
+
+  useEffect(() => {
+    if (selectPrice.length > 0) {
+      // console.log('selectPrice: ', selectPrice);
+      setSelectTotalPrice(selectInfo.reduce((a, b) => a + b.price, 0));
+    }
+  }, [selectPrice]);
+
+  useEffect(() => {
+    // console.log(selectTotalPrice);
+  }, [selectTotalPrice]);
 
   useEffect(() => {
     // console.log('aa');
@@ -84,14 +151,20 @@ export function CartPageProduct({ data }) {
       ) {
         updateData.push(newItem);
       }
+      const noDuplicateData = removeDuplicates(updateData, 'name');
       // console.log(updateData);
-      setSelectInfo(updateData);
+      setSelectInfo(noDuplicateData);
     }
   }, [productPrice, totalSelectState]);
 
   const handleChecked = () => {
     if (!selectBtnTogle) {
+      minusBtn.current.disabled = false;
+      plusBtn.current.disabled = false;
+      minusBtn.current.style.cursor = 'pointer';
+      plusBtn.current.style.cursor = 'pointer';
       setTotalSelectState((prev) => [...prev, data.name]);
+      setSelectTotalPrice(selectTotalPrice + productPrice);
       // setSelectTotalPrice((prev) => [...prev, productPrice]);
       if (totalSelectState.includes(data.name)) {
         const newItem = { name: data.name, price: productPrice };
@@ -105,11 +178,17 @@ export function CartPageProduct({ data }) {
         ) {
           updateData.push(newItem);
         }
+        const noDuplicateData = removeDuplicates(updateData, 'name');
         // console.log(updateData);
-        setSelectInfo(updateData);
+        setSelectInfo(noDuplicateData);
       }
     } else {
+      minusBtn.current.disabled = true;
+      plusBtn.current.disabled = true;
+      minusBtn.current.style.cursor = 'not-allowed';
+      plusBtn.current.style.cursor = 'not-allowed';
       setTotalSelectState(totalSelectState.filter((el) => el !== data.name));
+      setSelectTotalPrice(selectTotalPrice - productPrice);
       // setSelectTotalPrice(selectTotalPrice.filter((el) => el !== productPrice));
       if (totalSelectState.includes(data.name)) {
         const newItem = { name: data.name, price: 0 };
@@ -123,12 +202,37 @@ export function CartPageProduct({ data }) {
         ) {
           updateData.push(newItem);
         }
+        const noDuplicateData = removeDuplicates(updateData, 'name');
         // console.log(updateData);
-        setSelectInfo(updateData);
+        setSelectInfo(noDuplicateData);
       }
     }
 
     setSelectBtnTogle(!selectBtnTogle);
+  };
+
+  const handleProductDelete = () => {
+    // console.log('상품 삭제');
+    localStorageDeleteData('addCart', (object) => object.name === data.name);
+    setLocalDataRander(!localDataRander);
+    setTotalSelectState(totalSelectState.filter((el) => el !== data.name));
+    setSelectTotalPrice(selectTotalPrice - productPrice);
+    if (totalSelectState.includes(data.name)) {
+      const newItem = { name: data.name, price: 0 };
+      const updateData = selectInfo.map((item) => {
+        if (item.name === newItem.name) return newItem;
+        else return item;
+      });
+
+      if (
+        updateData.filter((item) => item.name === newItem.name).length === 0
+      ) {
+        updateData.push(newItem);
+      }
+      const noDuplicateData = removeDuplicates(updateData, 'name');
+      // console.log(updateData);
+      setSelectInfo(noDuplicateData);
+    }
   };
 
   return (
@@ -144,7 +248,12 @@ export function CartPageProduct({ data }) {
         />
       </button>
       <a className={`.willRouter ${styles.cartPageProductImg}`} href="#">
-        <div className={styles.cartPageProductImgTest}></div>
+        {/* <div className={styles.cartPageProductImgTest}></div> */}
+        <img
+          className={styles.cartPageProductImgTest}
+          src={data.mainImg}
+          alt="상품 메인 이미지"
+        />
       </a>
       <div className={styles.cartPageProductName}>
         <a className={`.willRouter`} href="#">
@@ -174,10 +283,14 @@ export function CartPageProduct({ data }) {
       </div>
       <div className={styles.cartPageProductPrice}>
         <span className={styles.cartPageProductPriceText}>
-          {productPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
+          {changePriceNumToString(productPrice)}
         </span>
       </div>
-      <button className={styles.cartPageProductCancleBtn} type="button">
+      <button
+        className={styles.cartPageProductCancleBtn}
+        type="button"
+        onClick={handleProductDelete}
+      >
         <img alt="장바구니에 담긴 상품 취소 버튼" src={cancleBtn} />
       </button>
     </li>
