@@ -9,6 +9,9 @@ import { selectTotalPriceState } from '@/@atom/cartPage/selectTotalPriceState';
 import { selectInfoState } from '@/@atom/cartPage/selectInfoState';
 import { selectPriceState } from '@/@atom/cartPage/selectPriceState';
 import { changePriceNumToString } from '@/utils/priceNumberToString';
+import { localStorageDeleteData } from '@/utils/localStorageDeleteData';
+import { localDataRanderState } from '@/@atom/cartPage/localDataRanderState';
+import { removeDuplicates } from '@/utils/removeDuplicates';
 
 export function CartPageProduct({ data }) {
   // console.log(data);
@@ -29,6 +32,9 @@ export function CartPageProduct({ data }) {
 
   const [selectInfo, setSelectInfo] = useRecoilState(selectInfoState);
 
+  const [localDataRander, setLocalDataRander] =
+    useRecoilState(localDataRanderState);
+
   const handleDecrease = () => {
     if (productCount > 1) {
       setProductCount(productCount - 1);
@@ -47,8 +53,9 @@ export function CartPageProduct({ data }) {
         ) {
           updateData.push(newItem);
         }
+        const noDuplicateData = removeDuplicates(updateData, 'name');
         // console.log(updateData);
-        setSelectInfo(updateData);
+        setSelectInfo(noDuplicateData);
       }
     }
   };
@@ -71,8 +78,9 @@ export function CartPageProduct({ data }) {
         ) {
           updateData.push(newItem);
         }
+        const noDuplicateData = removeDuplicates(updateData, 'name');
         // console.log(updateData);
-        setSelectInfo(updateData);
+        setSelectInfo(noDuplicateData);
       }
     }
   };
@@ -115,12 +123,13 @@ export function CartPageProduct({ data }) {
   useEffect(() => {
     // console.log(totalSelectState);
     // console.log(selectPrice);
-    console.log('selectInfo : ', selectInfo);
+    // console.log('selectInfo : ', selectInfo);
   }, [selectInfo]);
 
   useEffect(() => {
     if (selectPrice.length > 0) {
-      setSelectTotalPrice(selectPrice.reduce((a, b) => a + b));
+      // console.log('selectPrice: ', selectPrice);
+      setSelectTotalPrice(selectInfo.reduce((a, b) => a + b.price, 0));
     }
   }, [selectPrice]);
 
@@ -142,13 +151,18 @@ export function CartPageProduct({ data }) {
       ) {
         updateData.push(newItem);
       }
+      const noDuplicateData = removeDuplicates(updateData, 'name');
       // console.log(updateData);
-      setSelectInfo(updateData);
+      setSelectInfo(noDuplicateData);
     }
   }, [productPrice, totalSelectState]);
 
   const handleChecked = () => {
     if (!selectBtnTogle) {
+      minusBtn.current.disabled = false;
+      plusBtn.current.disabled = false;
+      minusBtn.current.style.cursor = 'pointer';
+      plusBtn.current.style.cursor = 'pointer';
       setTotalSelectState((prev) => [...prev, data.name]);
       setSelectTotalPrice(selectTotalPrice + productPrice);
       // setSelectTotalPrice((prev) => [...prev, productPrice]);
@@ -164,10 +178,15 @@ export function CartPageProduct({ data }) {
         ) {
           updateData.push(newItem);
         }
+        const noDuplicateData = removeDuplicates(updateData, 'name');
         // console.log(updateData);
-        setSelectInfo(updateData);
+        setSelectInfo(noDuplicateData);
       }
     } else {
+      minusBtn.current.disabled = true;
+      plusBtn.current.disabled = true;
+      minusBtn.current.style.cursor = 'not-allowed';
+      plusBtn.current.style.cursor = 'not-allowed';
       setTotalSelectState(totalSelectState.filter((el) => el !== data.name));
       setSelectTotalPrice(selectTotalPrice - productPrice);
       // setSelectTotalPrice(selectTotalPrice.filter((el) => el !== productPrice));
@@ -183,12 +202,37 @@ export function CartPageProduct({ data }) {
         ) {
           updateData.push(newItem);
         }
+        const noDuplicateData = removeDuplicates(updateData, 'name');
         // console.log(updateData);
-        setSelectInfo(updateData);
+        setSelectInfo(noDuplicateData);
       }
     }
 
     setSelectBtnTogle(!selectBtnTogle);
+  };
+
+  const handleProductDelete = () => {
+    // console.log('상품 삭제');
+    localStorageDeleteData('addCart', (object) => object.name === data.name);
+    setLocalDataRander(!localDataRander);
+    setTotalSelectState(totalSelectState.filter((el) => el !== data.name));
+    setSelectTotalPrice(selectTotalPrice - productPrice);
+    if (totalSelectState.includes(data.name)) {
+      const newItem = { name: data.name, price: 0 };
+      const updateData = selectInfo.map((item) => {
+        if (item.name === newItem.name) return newItem;
+        else return item;
+      });
+
+      if (
+        updateData.filter((item) => item.name === newItem.name).length === 0
+      ) {
+        updateData.push(newItem);
+      }
+      const noDuplicateData = removeDuplicates(updateData, 'name');
+      // console.log(updateData);
+      setSelectInfo(noDuplicateData);
+    }
   };
 
   return (
@@ -242,7 +286,11 @@ export function CartPageProduct({ data }) {
           {changePriceNumToString(productPrice)}
         </span>
       </div>
-      <button className={styles.cartPageProductCancleBtn} type="button">
+      <button
+        className={styles.cartPageProductCancleBtn}
+        type="button"
+        onClick={handleProductDelete}
+      >
         <img alt="장바구니에 담긴 상품 취소 버튼" src={cancleBtn} />
       </button>
     </li>

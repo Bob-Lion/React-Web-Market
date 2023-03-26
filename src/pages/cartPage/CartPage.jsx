@@ -10,9 +10,29 @@ import Footer from '@/components/Footer/Footer';
 import { cartPopupVisibleState } from '@/@atom/addCartPopup/cartPopupVisibleState';
 import { async } from '@firebase/util';
 import { filterByDocId } from '@/utils/filterDocId';
+import { localDataRanderState } from '@/@atom/cartPage/localDataRanderState';
 
 export function CartPage() {
-  const cartLocalData = JSON.parse(localStorage.getItem('addCart'));
+  const [localDataRander, setLocalDataRander] =
+    useRecoilState(localDataRanderState);
+
+  // const [data, setData] = useState([]);
+
+  // useEffect(() => {
+  //   const cartLocalData = JSON.parse(localStorage.getItem('addCart'));
+  //   setData(cartLocalData ? JSON.parse(cartLocalData) : []);
+  // }, []);
+
+  // useEffect(() => {
+  //   localStorage.setItem('myData', JSON.stringify(data));
+  // }, [data]);
+  let cartLocalData = [];
+
+  cartLocalData = JSON.parse(localStorage.getItem('addCart'));
+
+  useEffect(() => {
+    cartLocalData = JSON.parse(localStorage.getItem('addCart'));
+  }, [localDataRander]);
   // const localCount = cartLocalData;
   // const { readData, data = null, error: readError } = useReadData(`products`);
 
