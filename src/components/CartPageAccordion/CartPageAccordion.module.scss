@@ -94,7 +94,7 @@ $PrimaryColor: rgb(161, 95, 4);
     &Test {
       width: 60px;
       height: 78px;
-      background-color: yellow;
+      // background-color: yellow;
     }
   }
 
@@ -203,4 +203,20 @@ $PrimaryColor: rgb(161, 95, 4);
   height: auto;
   opacity: 1;
   overflow: hidden;
+}
+
+.nonAddCartProduct {
+  display: flex;
+  justify-content: center;
+  // border-top: 10px;
+  width: 720px;
+  // height: 200px;
+  padding: 115px 0;
+  border-top: 1px solid #333;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #b5b5b5;
+  // justify-content: center;
+  // text-align: center;
 }

@@ -1,3 +1,4 @@
+
 import './App.css';
 import RegisterPage from '@/pages/Register/RegisterPage';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';

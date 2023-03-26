@@ -1,84 +1,121 @@
 import { CartPageAccordion } from '@/components/CartPageAccordion/CartPageAccordion';
 import { CartPageCredit } from '@/components/CartPageCredit/CartPageCredit';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useReadData } from '@/firebase/firestore';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { cartTotalSeletState } from '@/@atom/cartPage/cartTotalSeletState';
 import styles from './CartPage.module.scss';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
+import { cartPopupVisibleState } from '@/@atom/addCartPopup/cartPopupVisibleState';
+import { async } from '@firebase/util';
+import { filterByDocId } from '@/utils/filterDocId';
+import { localDataRanderState } from '@/@atom/cartPage/localDataRanderState';
 
 export function CartPage() {
-  const cartLocalData = JSON.parse(localStorage.getItem('addCart'));
-  const localCount = cartLocalData;
+  const [localDataRander, setLocalDataRander] =
+    useRecoilState(localDataRanderState);
+
+  // const [data, setData] = useState([]);
+
+  // useEffect(() => {
+  //   const cartLocalData = JSON.parse(localStorage.getItem('addCart'));
+  //   setData(cartLocalData ? JSON.parse(cartLocalData) : []);
+  // }, []);
+
+  // useEffect(() => {
+  //   localStorage.setItem('myData', JSON.stringify(data));
+  // }, [data]);
+  let cartLocalData = [];
+
+  cartLocalData = JSON.parse(localStorage.getItem('addCart'));
+
+  useEffect(() => {
+    cartLocalData = JSON.parse(localStorage.getItem('addCart'));
+  }, [localDataRander]);
+  // const localCount = cartLocalData;
+  // const { readData, data = null, error: readError } = useReadData(`products`);
+
+  // let cpv = useRecoilValue(cartPopupVisibleState);
+
+  // useEffect(() => {
+  //   readData();
+  // }, []);
 
   // 로컬스토리지에 있는 count 값 추가해 줘야댐
-  const cartData = [
-    {
-      brand: '샘플 브랜드',
-      category: '건강식품',
-      description: 'description 샘플',
-      detailImg: ['asd', 'dfg'],
-      detailInfo: {
-        productWeight: '500ml',
-        producer: '주식회사 밥을사자',
-        alergicInfo: '대두,밀,고등어 함유',
-      },
-      id: 'DnP8uh5EmasnRZalU112',
-      isBobOnly: false,
-      isLimited: true,
-      key: ' DnP8uh5EmasnRZalU112',
-      likeCount: 4,
-      name: 'sampleProduct',
-      price: 10000,
-      reviewCount: 11,
-      salePrice: 9000,
-      saleRatio: 10,
-      stock: 10,
-      storingWay: '냉장',
+  const cartData = [];
 
-      // 로컬스토리지에 있는 count 값 추가해 줘야댐
-      localCount: 3,
-    },
-    {
-      brand: '샘플 브랜드2',
-      category: '채소',
-      description: 'description 샘플2',
-      detailImg: ['asd', 'dfg'],
-      detailInfo: {
-        productWeight: '500ml',
-        producer: '주식회사 밥을사자',
-        alergicInfo: '대두,밀,고등어 함유',
-      },
-      id: 'DnP8uh5EmasnRZalU112',
-      isBobOnly: true,
-      isLimited: true,
-      key: ' DnP8uh5EmasnRZalU112',
-      likeCount: 4,
-      name: 'sampleProduct2',
-      price: 20000,
-      reviewCount: 14,
-      salePrice: 10000,
-      saleRatio: 50,
-      stock: 8,
-      storingWay: '냉동',
+  // let cartData2 = useRef([]);
 
-      // 로컬스토리지에 있는 count 값 추가해 줘야댐
-      localCount: 5,
-    },
-  ];
+  // let cartData3 = useRef([]);
 
-  return (
-    <>
-      <Header />
-      <div className={styles.cartPage}>
-        <h2 className={styles.cartPageTitle}>장바구니</h2>
-        <div className={styles.cartPageContainer}>
-          <CartPageAccordion data={cartData} />
-          <CartPageCredit data={cartData} />
+  /* useEffect(() => {
+    cartLocalData.map((localData) => {
+      const dataDocId = localData.docId;
+      // const dataCount = localData.count;
+      readData(dataDocId);
+      console.log(data);
+      // data.count = dataCount;
+      // cartData2.push({ ...data });
+    });
+  }, []); */
+
+  // useEffect(() => {
+  //   if (data) {
+  //     cartData2.current = cartLocalData.map((localData) => {
+  //       const firebaseData = filterByDocId(data, localData.docId);
+  //       return { ...firebaseData[0] };
+  //     });
+
+  //     // console.log(
+  //     //   cartData2.current.map((item, index) => {
+  //     //     item.count = cartLocalData[index].count;
+  //     //     return item;
+  //     //   })
+  //     // );
+  //     cartData3.current = cartData2.current.map((item, index) => {
+  //       item.count = cartLocalData[index].count;
+  //       return item;
+  //     });
+  //     console.log(cartData3.current);
+  //   }
+  // }, [data]);
+
+  if (!cartData) {
+    //
+  } else {
+    console.log(cartLocalData);
+    // console.log('ajhsbajs', cartData3.current);
+    // const cartData1 =
+
+    // useEffect(() => {
+    //   cartLocalData.map((data) => {
+    //     const dataDocId = data.docId;
+    //     const dataCount = data.count;
+    //     const dbReadData = readData(dataDocId);
+    //     dbReadData.count = dataCount;
+    //     cartData2.push(dbReadData);
+    //   });
+    // }, [cartLocalData]);
+
+    // useEffect(() => {}, [cpv]);
+    // console.log(cartLocalData);
+    // console.log(cartData2);
+    // console.log('aaa', cartData2);
+
+    return (
+      <>
+        <Header />
+        {/* <button onClick={handleData}>asfafas</button> */}
+        <div className={styles.cartPage}>
+          <h2 className={styles.cartPageTitle}>장바구니</h2>
+          <div className={styles.cartPageContainer}>
+            <CartPageAccordion data={cartLocalData} />
+            <CartPageCredit data={cartLocalData} />
+          </div>
         </div>
-      </div>
-      <Footer />
-    </>
-  );
+        <Footer />
+      </>
+    );
+  }
 }
