@@ -1,0 +1,206 @@
+$TextColor: rgb(51, 51, 51);
+$PrimaryColor: rgb(161, 95, 4);
+
+// 전체 선택, 선택삭제 컴포넌트
+.selectCtrl {
+  &Container {
+    padding: 18px 10px 16px 8px;
+  }
+
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  line-height: 26px;
+  font-weight: 500;
+
+  &All {
+    display: inline-flex;
+    padding: 0px;
+    color: $TextColor;
+    align-items: center;
+
+    &Btn {
+      display: inline-flex;
+      padding: 0px;
+      color: $TextColor;
+      align-items: center;
+    }
+
+    &Text {
+      font-weight: 500;
+      margin-left: 12px;
+    }
+  }
+
+  &Line {
+    display: inline-block;
+    width: 1px;
+    height: 14px;
+    background: rgb(221, 221, 221);
+    margin: 2px 21px 0px 22px;
+    vertical-align: top;
+  }
+
+  &Delete {
+  }
+}
+
+// 상품 저장 방법 아코디언
+.storingWay {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  padding: 15px 5px 15px 0px;
+  border-top: 1px solid $TextColor;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 26px;
+
+  &Name {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+
+    &Img {
+      margin-right: 8px;
+    }
+  }
+
+  &Arrow {
+    width: 30px;
+    height: 30px;
+    transform: rotate(270deg);
+  }
+}
+
+.cartPageProduct {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 20px 0px;
+
+  &CheckBtn {
+    margin-left: 2px;
+    margin-right: 12px;
+  }
+
+  &Img {
+    display: inline-block;
+    width: 60px;
+    height: 78px;
+    margin-right: 20px;
+
+    &Test {
+      width: 60px;
+      height: 78px;
+      background-color: yellow;
+    }
+  }
+
+  &Name {
+    display: flex;
+    flex-direction: column;
+    width: 345px;
+    margin-right: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: break-all;
+
+    &Detail {
+      max-height: 54px;
+      // padding-top: 8px;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 22px;
+      overflow: hidden;
+      word-break: break-all;
+      white-space: normal;
+    }
+  }
+
+  &CountBtn {
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid rgb(221, 223, 225);
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    width: 88px;
+
+    &DecreaseBtn {
+      display: inline-flex;
+      padding: 0;
+      width: 30px;
+      height: 30px;
+      border: none;
+      font-size: 1px;
+      color: transparent;
+      background-size: auto;
+      background-color: transparent;
+      background-image: url('../../../public/icons/web-icons/Minus.svg');
+      background-repeat: no-repeat;
+      // 회색 아이콘으로 이동시 top -46px 더 이동
+      background-position: -8px -46px;
+      vertical-align: top;
+    }
+
+    &Count {
+      display: inline-flex;
+      overflow: hidden;
+      white-space: nowrap;
+      -webkit-box-pack: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 600;
+      color: $TextColor;
+      text-align: center;
+      width: 31px;
+      height: 28px;
+      line-height: 28px;
+    }
+
+    &IncreaseBtn {
+      display: inline-flex;
+      width: 28px;
+      height: 28px;
+      border: none;
+      font-size: 1px;
+      color: transparent;
+      background-size: auto;
+      background-color: transparent;
+      background-image: url('../../../public/icons/web-icons/Plus.svg');
+      // 회색 아이콘으로 이동시 top -46px 더 이동
+      background-position: -8px -8px;
+      vertical-align: top;
+    }
+  }
+
+  &Price {
+    // display: flex;
+    // flex-direction: column;
+    width: 127px;
+    text-align: right;
+    word-break: break-all;
+
+    &Text {
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 24px;
+      color: $TextColor;
+    }
+  }
+
+  &CancleBtn {
+    width: 30px;
+    height: 30px;
+    margin-left: 9px;
+  }
+}
+
+.accordionBody {
+  transition: all 250ms cubic-bezier(0.83, 0, 0.17, 1) 0s;
+  height: auto;
+  opacity: 1;
+  overflow: hidden;
+}
