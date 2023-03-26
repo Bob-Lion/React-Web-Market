@@ -1,16 +1,23 @@
-import { ProductList } from '@/pages/ProductList/ProductList';
-import '@/app/App.scss';
-import { AddCartPopup } from '@/components/AddCart/AddCartPopup';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { cartPopupVisibleState } from '@/@atom/addCartPopup/cartPopupVisibleState';
-import { useReadData } from '@/firebase/firestore';
-import { useEffect } from 'react';
-import { CartPage } from '@/pages/CartPage/CartPage';
-import { currentProductState } from '@/@atom/currentProductState';
-import ProductCarousel from '@/components/ProductCarousel/ProductCarousel';
+
+import './App.css';
+import RegisterPage from '@/pages/Register/RegisterPage';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import HomePage from '@/pages/Home/HomePage';
+import { CartPage } from '@/pages/cartPage/CartPage';
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      <Routes>
+        <Route element={<HomePage />} path="/" />
+        {/* <Route element={<RegisterPage />} path="/register" /> */}
+        <Route element={<CartPage />} path="/cart" />
+        {/* <Route element={<Page />} path="/logIn" />
+          <Route element={<Page />} path="/productList" />
+          <Route element={<Page />} path="/productDetail" /> */}
+      </Routes>
+    </div>
+  );
 }
 
 export default App;

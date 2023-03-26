@@ -3,6 +3,15 @@
   src: url('../assets/pretendard-font/Pretendard-Regular.woff');
 }
 
+body,
+body::before,
+body::after,
+body *,
+body *::before,
+body *::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font: inherit;
@@ -14,30 +23,17 @@ body {
   color: #000;
 
   box-sizing: border-box;
-
-  &::before,
-  &::after,
-  & *,
-  & *::before,
-  & *::after {
-    box-sizing: border-box;
-  }
-
-  /* 숨김 콘텐츠 */
-  .a11y-hidden,
-  legend {
-    /* display: none; */
-    position: absolute;
-    /* top:  -9999em; */
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    /* clip: rect(0 0 0 0);  */
-    /* 구형 브라우저에서 적용 가능 */
-    clip-path: polygon(0 0, 0 0, 0 0);
-    /* clip-path: inset(50%); */
-    /* inset으로도 표현 가능 */
-  }
+}
+/* 숨김 콘텐츠 */
+.a11y-hidden,
+legend {
+  overflow: hidden;
+  position: absolute !important;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
 }
 
 button {
