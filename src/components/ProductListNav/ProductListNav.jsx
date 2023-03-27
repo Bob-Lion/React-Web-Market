@@ -6,9 +6,8 @@ import { productDataState } from '@/@atom/productDataState';
 
 export function ProductListNav({ data }) {
   if (!data) {
-    console.log('데이터 없음');
+    // 데이터 받아오는 중
   } else {
-    console.log('데이터 있음');
     return (
       <>
         <Accordion data={data} />

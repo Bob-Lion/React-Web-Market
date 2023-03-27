@@ -58,14 +58,11 @@ export function AccordionList({
 
     if (listName === '카테고리') {
       setCategorySelectData(classificationData);
-      console.log('카테고리 데이터가 담겼습니다.');
     }
 
     if (listName === '브랜드') {
       setBrandSelectData(classificationData);
-      console.log('브랜드 데이터가 담겼습니다.');
     }
-    // setSelectData(selectData);
 
     // 리셋 버튼 활성화 상태 설정
     if (selectData.length > 0) {
@@ -73,14 +70,9 @@ export function AccordionList({
     } else {
       listCheckReset(false);
     }
-    // setAccordionModal(!accordionModal);
 
     setBtnToggle(!btnToggle);
   };
-
-  // useEffect(() => {
-  //   console.log(selectData);
-  // }, [selectData]);
 
   return (
     <li className={`${styles.accordionList} ${modalStyle}`}>

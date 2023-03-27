@@ -2,9 +2,9 @@ import resetButton from '@/../public/ProductListImage/resetButton.svg';
 import { useEffect, useRef, useState } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { productCheckResetState } from '@/@atom/accordion/productCheckResetState';
-import { productResetBtnState } from '@/@atom/accordion/productResetBtnState';
+// import { productResetBtnState } from '@/@atom/accordion/productResetBtnState';
 import styles from './ProductListNav.module.scss';
-// import { accordionModalState } from '@/@atom/accordion/accordionModalState';
+import { accordionModalState } from '@/@atom/accordion/accordionModalState';
 
 // 아코디언 필터 & 리셋 버튼
 
@@ -14,9 +14,9 @@ export function AccordionFillter({
 }) {
   const checkReset = useRecoilValue(productCheckResetState);
   const resetBtn = useRef();
-  const [resetBtnData, setResetBtnData] = useRecoilState(productResetBtnState);
-  // const [accordionModal, setAccordionModal] =
-  //   useRecoilState(accordionModalState);
+  // const [resetBtnData, setResetBtnData] = useRecoilState(productResetBtnState);
+  const [accordionModal, setAccordionModal] =
+    useRecoilState(accordionModalState);
 
   useEffect(() => {
     if (checkReset) {
@@ -28,8 +28,7 @@ export function AccordionFillter({
 
   const handleResetBtn = () => {
     setCategorySelectData(categorySelectData.splice(0));
-    console.log(categorySelectData);
-    // setAccordionModal(!accordionModal);
+    setAccordionModal(!accordionModal);
   };
 
   return (
