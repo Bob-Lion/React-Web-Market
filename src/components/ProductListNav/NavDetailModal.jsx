@@ -2,6 +2,8 @@ import { BrandSortBtn } from './BrandSortBtn';
 import modalClose from '@/../public/ProductListImage/ModalClose.svg';
 import resetButton from '@/../public/ProductListImage/resetButton.svg';
 import styles from './ProductListNav.module.scss';
+import { useRecoilState } from 'recoil';
+import { accordionModalState } from '@/@atom/accordion/accordionModalState';
 
 export function NavDetailModal({
   data,
@@ -11,8 +13,12 @@ export function NavDetailModal({
   // modalVisible,
   setModalVisible,
 }) {
+  const [accordionModal, setAccordionModal] =
+    useRecoilState(accordionModalState);
+
   const handleModalClose = () => {
     setModalVisible(false);
+    setAccordionModal(!accordionModal);
   };
   return (
     <div className={styles.moreModalBackground}>

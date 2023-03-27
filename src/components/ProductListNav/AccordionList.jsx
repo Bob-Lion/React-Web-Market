@@ -3,8 +3,9 @@ import click_check_off from '@/../public/ProductListImage/Check_off.svg';
 import styles from './ProductListNav.module.scss';
 import { useState, useRef, useEffect } from 'react';
 
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { productCheckResetState } from '../../@atom/accordion/productCheckResetState';
+import { accordionModalState } from '@/@atom/accordion/accordionModalState';
 
 //아코디언 목록의 리스트
 export function AccordionList({
@@ -18,6 +19,9 @@ export function AccordionList({
   const hoverSpan = useRef();
   const listCheckReset = useSetRecoilState(productCheckResetState);
 
+  const [accordionModal, setAccordionModal] =
+    useRecoilState(accordionModalState);
+
   const handleEnter = () => {
     hoverSpan.current.style.color = 'rgb(161, 95, 4)';
   };
@@ -26,14 +30,24 @@ export function AccordionList({
   };
   const handleClickCheck = () => {
     // 체크 버튼이 활성화 될때 값이 배열에 없으면 추가하고 체크버튼이 비활성화 될때 해당 값을 삭제해 준다.
-    if (!btnToggle && !selectData.includes(name)) {
+    if (!selectData.includes(name)) {
       selectData.push(name);
-    } else if (btnToggle && selectData.includes(name)) {
+      // setSelectData((prev) => [...prev, name]);
+    } else {
       const index = selectData.indexOf(name);
       selectData.splice(index, 1);
+      // setSelectData((prev) => {
+      //   return prev.filter((item) => {
+      //     if (item !== name) {
+      //       console.log(selectData);
+      //       return item;
+      //     }
+      //   });
+      // });
     }
 
     console.log(selectData);
+    // setSelectData(selectData);
 
     // 리셋 버튼 활성화 상태 설정
     if (selectData.length > 0) {
@@ -41,12 +55,14 @@ export function AccordionList({
     } else {
       listCheckReset(false);
     }
+    // setAccordionModal(!accordionModal);
 
     setBtnToggle(!btnToggle);
   };
-  // useEffect(() => {
-  //   return selectData.includes(name) ? click_check_on : click_check_off;
-  // }, [name, selectData]);
+
+  useEffect(() => {
+    console.log(selectData);
+  }, [selectData]);
 
   return (
     <li className={`${styles.accordionList} ${modalStyle}`}>
@@ -59,7 +75,7 @@ export function AccordionList({
           <img
             alt="해당 리스트 체크하는 버튼"
             src={selectData.includes(name) ? click_check_on : click_check_off}
-            // src={check}
+            // src={check}s
           ></img>
         </button>
         <span

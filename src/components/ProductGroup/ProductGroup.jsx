@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 import classes from './ProductGroup.module.scss';
 import './ProductGroup.scss';
 import { useRecoilValue, useRecoilState } from 'recoil';
-import { useReadData } from '@/firebase/firestore';
+// import { useReadData } from '@/firebase/firestore';
 import { currentProductState } from '@/@atom/currentProductState';
 import ProductCard from '@/components/ProductCard/ProductCard';
 import ProductGroupFilter from './ProductGroupFilter';
-import PaginationPost from './../Pagination/PaginationPost';
+// import PaginationPost from './../Pagination/PaginationPost';
 import Pagination from 'react-js-pagination';
 
 function loadProductsCard(contentsArray, ContentElem) {
@@ -24,7 +24,7 @@ function loadProductsCard(contentsArray, ContentElem) {
   return elementsArr;
 }
 
-const ProductGroup = () => {
+const ProductGroup = ({ data }) => {
   const [page, setPage] = useState(1);
   const [items, setItems] = useState(6);
 
@@ -40,10 +40,10 @@ const ProductGroup = () => {
     setItems(Number(e.target.value));
   };
 
-  const { readData, data = null, error: readError } = useReadData(`products`);
-  useEffect(() => {
-    readData();
-  }, []);
+  // const { readData, data = null, error: readError } = useReadData(`products`);
+  // useEffect(() => {
+  //   readData();
+  // }, []);
 
   if (!data) {
     console.log('no Data yet');
