@@ -1,0 +1,213 @@
+.ProductReview {
+  position: relative;
+  width: 1050px;
+  margin: 0 auto;
+
+  h2 {
+    font-weight: 700;
+    font-size: 28px;
+  }
+
+  // button {
+  //   width: 155px;
+  //   height: 44px;
+  //   // background: $primary;
+  //   // color: $white;
+  //   border-radius: 4px;
+  //   font-size: 16px;
+  //   font-weight: 600;
+  //   position: absolute;
+  //   top: 0;
+  //   right: 0;
+  // }
+
+  ul {
+    font-size: 12px;
+    font-weight: 600;
+    // color: $gray-500;
+    line-height: 1.8;
+    padding: 30px 0 56px 0;
+
+    li:before {
+      content: 'ㆍ';
+    }
+
+    li:first-child:before {
+      content: '';
+    }
+  }
+
+  &Section {
+    button {
+      position: absolute;
+      background: #5f0080;
+      border-radius: 4px;
+      top: 0px;
+      right: 0px;
+      width: 155px;
+      height: 44px;
+      color: white;
+    }
+    &Bold {
+      font-size: 16px;
+      // color: $content;
+      list-style: none;
+      display: block;
+      padding-left: -20px;
+    }
+  }
+
+  &List {
+    background: orange;
+    &Total {
+      // @include flexboxCenter($justify: space-between);
+      // color: $content;
+      background: pink;
+      font-size: 12px;
+      font-weight: 600px;
+      padding-bottom: 20px;
+      position: relative;
+      // display: flex;
+      // flex-flow: row wrap;
+      // justify-content: space-between;
+      // align-items: center;
+
+      button {
+        position: absolute;
+        right: 0px;
+      }
+      button:nth-child(1) {
+        font-size: 16px;
+        right: 90px;
+      }
+      button:nth-child(2) {
+        font-size: 16px;
+      }
+
+      div {
+        :nth-child(1):after {
+          content: '　|';
+          color: #a6a6a6;
+        }
+      }
+    }
+    &Noti {
+      padding: 20px;
+      font-size: 16px;
+      font-weight: 600;
+      background: skyblue;
+      border-bottom: 1px solid gray;
+      // color: $content;
+
+      &--notice {
+        border-radius: 1px;
+        margin-right: 9px;
+        font-size: 12px;
+        padding: 2px 6px;
+        background: gray;
+      }
+    }
+
+    &Content {
+      &Review {
+        padding-bottom: 16px;
+
+        &Div {
+          display: flex;
+          flex-flow: row nowrap;
+          border-bottom: 1px solid gray;
+          padding: 20px;
+
+          div {
+            font-size: 14px;
+            font-weight: 600;
+            width: 225px;
+
+            span:nth-child(1) {
+              // background: $secondary;
+              color: #020202;
+              border-radius: 1px;
+              padding: 2px 8px;
+              margin-right: 6px;
+            }
+
+            span:nth-child(2) {
+              border: 1px solid #000;
+              border-radius: 1px;
+              padding: 2px 8px;
+              margin-right: 6px;
+              // color: $primary;
+            }
+          }
+
+          article {
+            font-size: 14px;
+            font-weight: 600;
+            // color: $gray-400;
+
+            p {
+              padding: 25px 0;
+              font-weight: 400;
+              color: black;
+            }
+          }
+
+          .empty {
+            width: 100%;
+
+            article {
+              display: flex;
+              flex-flow: column nowrap;
+              justify-content: center;
+              width: 100%;
+              position: relative;
+              align-items: center;
+
+              img {
+                width: 41px;
+                height: 41px;
+                opacity: 0.2;
+              }
+
+              span {
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: center;
+                font-weight: 400;
+                // color: $gray-300;
+                font-size: 16px;
+                padding-top: 15px;
+              }
+            }
+          }
+        }
+
+        &Button {
+          display: flex;
+          flex-flow: row nowrap;
+          justify-content: center;
+          gap: 16px;
+          padding: 16px 0 72px 0;
+
+          button {
+            width: 56px;
+            height: 56px;
+            border: 1px solid gray;
+            border-radius: 4px;
+          }
+        }
+        // &Left {
+        //   background: url('/css/img/Icon/Arrow-2.svg') no-repeat;
+        //   background-size: 60px;
+        //   background-position: -3px -94px;
+        // }
+
+        // &Right {
+        //   background: url('/css/img/Icon/Arrow-2.svg') no-repeat;
+        //   background-size: 60px;
+        //   background-position: -3px -140px;
+        // }
+      }
+    }
+  }
+}

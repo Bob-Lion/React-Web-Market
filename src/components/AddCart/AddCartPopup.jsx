@@ -9,6 +9,8 @@ export function AddCartPopup({ data }) {
   const minusBtn = useRef();
   const plusBtn = useRef();
 
+  const productInfo = { ...data };
+
   const handleDecrease = () => {
     if (productCount > 1) {
       setProductCount(productCount - 1);
@@ -46,21 +48,24 @@ export function AddCartPopup({ data }) {
 
   // 로컬스토리지에 해당 상품 docId 랑 선택한 수량 저장, 이미 로컬스토리지에 상품 id 가 들어있다면 값이 바뀌지 않고 alert 창으로 표시
   const handleLocalData = () => {
+    console.log(productInfo);
+    productInfo.count = productCount;
     setCartPopupVisible(false);
-    const productInfo = {
-      docId: data.id,
-      count: productCount,
-    };
+    // const productInfo = {
+    //   docId: data.id,
+    //   count: productCount,
+    // };
     // 로컬에 있는 객체 데이터 중복 여부 확인
     const addCartLocalData = JSON.parse(localStorage.getItem('addCart')) || [];
+
     let isduplicate = false;
     addCartLocalData.forEach((product) => {
-      if (productInfo.id === product.id) isduplicate = true;
+      if (productInfo.key === product.key) isduplicate = true;
     });
 
     if (isduplicate) {
       localStorage.setItem('addCart', JSON.stringify(addCartLocalData));
-      alert('이미 장바구니에 담겨 있습니다 !');
+      console.log('이미 장바구니에 담겨 있습니다 !');
       return;
     }
 
