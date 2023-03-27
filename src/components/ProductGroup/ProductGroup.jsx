@@ -62,21 +62,41 @@ const ProductGroup = ({ data }) => {
   }, [categorySelectData, brandSelectData]);
 
   if (data) {
-    console.log('data: ', data);
     selectCategorySortData = allDataFilterSelect(
       data,
       categorySelectData,
       'category'
     );
     selectBrandSortData = allDataFilterSelect(data, brandSelectData, 'brand');
-    selectSortData = [];
+    if (selectCategorySortData.length < 1 && selectBrandSortData.length < 1) {
+      selectSortData = data;
+    } else if (
+      selectCategorySortData.length > 0 &&
+      selectBrandSortData.length < 1
+    ) {
+      selectSortData = selectCategorySortData;
+    } else if (
+      selectCategorySortData.length < 1 &&
+      selectBrandSortData.length > 0
+    ) {
+      selectSortData = selectBrandSortData;
+    } else if (
+      selectCategorySortData.length > 0 &&
+      selectBrandSortData.length > 0
+    ) {
+      selectSortData = allDataFilterSelect(
+        selectCategorySortData,
+        selectBrandSortData.map((a) => a.brand),
+        'brand'
+      );
+    }
   }
   if (!data) {
     console.log('no Data yet');
     return <div className={classes.ProductGroup}>no data yet</div>;
   } else {
     console.log('렌더링 되어지는 데이터 : ', selectCategorySortData);
-    const productCardsArr = loadProductsCard(data, ProductCard);
+    const productCardsArr = loadProductsCard(selectSortData, ProductCard);
 
     return (
       <div className="ProductGroup">
