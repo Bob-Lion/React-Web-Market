@@ -33,7 +33,26 @@ export function CartPageAccordion({ data }) {
   //   setCheckTotalCount(data.length);
   // }, data);
   console.log(frozen);
-  if (data) {
+  if (!data || data.length < 1) {
+    return (
+      <div>
+        <ProductSelectCtrl
+          cartData={data}
+          // checkCount={checkTotalCount}
+          // setCheckTotalCount={setCheckTotalCount}
+        />
+        <div className={styles.nonAddCartProduct}>
+          장바구니에 담긴 상품이 없습니다.
+        </div>
+
+        <ProductSelectCtrl
+          cartData={data}
+          // checkCount={checkTotalCount}
+          // setCheckTotalCount={setCheckTotalCount}
+        />
+      </div>
+    );
+  } else {
     return (
       <div>
         <ProductSelectCtrl
@@ -62,25 +81,6 @@ export function CartPageAccordion({ data }) {
             storingWayImg={normalImg}
           />
         ) : null}
-        <ProductSelectCtrl
-          cartData={data}
-          // checkCount={checkTotalCount}
-          // setCheckTotalCount={setCheckTotalCount}
-        />
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        <ProductSelectCtrl
-          cartData={data}
-          // checkCount={checkTotalCount}
-          // setCheckTotalCount={setCheckTotalCount}
-        />
-        <div className={styles.nonAddCartProduct}>
-          장바구니에 담긴 상품이 없습니다.
-        </div>
-
         <ProductSelectCtrl
           cartData={data}
           // checkCount={checkTotalCount}
