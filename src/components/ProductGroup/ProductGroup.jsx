@@ -62,6 +62,7 @@ const ProductGroup = ({ data }) => {
   }, [categorySelectData, brandSelectData]);
 
   if (data) {
+    console.log('data: ', data);
     selectCategorySortData = allDataFilterSelect(
       data,
       categorySelectData,

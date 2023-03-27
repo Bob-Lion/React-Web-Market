@@ -15,7 +15,7 @@ export function ProductList() {
   return (
     <div>
       <div className={styles.productList}>
-        <ProductListNav product={data} />
+        <ProductListNav data={data} />
         <ProductGroup data={data} />
       </div>
     </div>
