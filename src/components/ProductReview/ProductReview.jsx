@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './ProductReview.scss';
 import ProductReviewUser from './ProductReviewUser';
+import ProductReviewPopup from './ProductReviewPopup';
 
 const ProductReview = () => {
+  const [ispopup, setIsPopup] = useState(false);
+
+  const handlePopup = () => {
+    return setIsPopup(true);
+  };
+  const closePopup = () => {
+    return setIsPopup(false);
+  };
+
   return (
     <div>
       <div className="ProductReview" id="review">
@@ -10,9 +20,18 @@ const ProductReview = () => {
           <header>
             <h2>상품후기</h2>
           </header>
-          <button data-name="send1" id="send1">
+          <button
+            className="ProductReviewSectionWrite"
+            type="button"
+            onClick={handlePopup}
+          >
             후기 작성하기
           </button>
+          <ProductReviewPopup
+            close={closePopup}
+            // header="후기 작성"
+            open={ispopup}
+          />
           <ul>
             <li className="ProductReviewSectionBold">
               글후기 50원 적립금 혜택이 있어요.
@@ -32,8 +51,8 @@ const ProductReview = () => {
           <div className="ProductReviewListTotal">
             <span id="review-counter">총 1개</span>
             <div>
-              <button>추천순</button>
-              <button>최근 등록순</button>
+              <button type="button">추천순</button>
+              <button type="button">최근 등록순</button>
             </div>
           </div>
 
