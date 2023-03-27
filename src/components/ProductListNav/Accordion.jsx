@@ -12,9 +12,9 @@ import {
   benefiSortDataState,
   typeSortDataState,
 } from '@/@atom/productDataState';
-import { accordionSelectListState } from '@/@atom/accordion/accordionSelectListState';
-import { categorySelectState } from '@/@atom/accordion/categorySelectState';
-import { productCheckResetState } from '../../@atom/accordion/productCheckResetState';
+// import { accordionSelectListState } from '@/@atom/accordion/accordionSelectListState';
+// import { categorySelectState } from '@/@atom/accordion/categorySelectState';
+// import { productCheckResetState } from '../../@atom/accordion/productCheckResetState';
 
 // import { accordionCategory } from '@/@atom/accordion/accordionCategory.js';
 export function Accordion() {

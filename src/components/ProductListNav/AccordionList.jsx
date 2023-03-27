@@ -6,12 +6,15 @@ import { useState, useRef, useEffect } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { productCheckResetState } from '../../@atom/accordion/productCheckResetState';
 import { accordionModalState } from '@/@atom/accordion/accordionModalState';
+import { categorySelectState } from '@/@atom/accordion/categorySelectState';
+import { brandSelectState } from '@/@atom/accordion/brandSelectState';
 
 //아코디언 목록의 리스트
 export function AccordionList({
   name,
   count,
   selectData,
+  listName,
   setSelectData,
   modalStyle,
 }) {
@@ -28,6 +31,10 @@ export function AccordionList({
   const handleLeave = () => {
     hoverSpan.current.style.color = 'rgb(51, 51, 51)';
   };
+
+  const setCategorySelectData = useSetRecoilState(categorySelectState);
+  const setBrandSelectData = useSetRecoilState(brandSelectState);
+
   const handleClickCheck = () => {
     // 체크 버튼이 활성화 될때 값이 배열에 없으면 추가하고 체크버튼이 비활성화 될때 해당 값을 삭제해 준다.
     if (!selectData.includes(name)) {
@@ -47,6 +54,17 @@ export function AccordionList({
     }
 
     console.log(selectData);
+    const classificationData = { ...selectData };
+
+    if (listName === '카테고리') {
+      setCategorySelectData(classificationData);
+      console.log('카테고리 데이터가 담겼습니다.');
+    }
+
+    if (listName === '브랜드') {
+      setBrandSelectData(classificationData);
+      console.log('브랜드 데이터가 담겼습니다.');
+    }
     // setSelectData(selectData);
 
     // 리셋 버튼 활성화 상태 설정
@@ -60,9 +78,9 @@ export function AccordionList({
     setBtnToggle(!btnToggle);
   };
 
-  useEffect(() => {
-    console.log(selectData);
-  }, [selectData]);
+  // useEffect(() => {
+  //   console.log(selectData);
+  // }, [selectData]);
 
   return (
     <li className={`${styles.accordionList} ${modalStyle}`}>
