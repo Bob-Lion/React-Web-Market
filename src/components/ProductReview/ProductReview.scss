@@ -38,7 +38,7 @@
   }
 
   &Section {
-    button {
+    &Write {
       position: absolute;
       background: #5f0080;
       border-radius: 4px;
@@ -58,15 +58,14 @@
   }
 
   &List {
-    background: orange;
     &Total {
       // @include flexboxCenter($justify: space-between);
       // color: $content;
-      background: pink;
       font-size: 12px;
       font-weight: 600px;
       padding-bottom: 20px;
       position: relative;
+      border-bottom: 1px solid #000;
       // display: flex;
       // flex-flow: row wrap;
       // justify-content: space-between;
@@ -95,7 +94,6 @@
       padding: 20px;
       font-size: 16px;
       font-weight: 600;
-      background: skyblue;
       border-bottom: 1px solid gray;
       // color: $content;
 
@@ -104,7 +102,7 @@
         margin-right: 9px;
         font-size: 12px;
         padding: 2px 6px;
-        background: gray;
+        background: #e1e1e1;
       }
     }
 
@@ -196,17 +194,19 @@
             border-radius: 4px;
           }
         }
-        // &Left {
-        //   background: url('/css/img/Icon/Arrow-2.svg') no-repeat;
-        //   background-size: 60px;
-        //   background-position: -3px -94px;
-        // }
+        &Left {
+          background: url('data:image/svg+xml;utf8,<svg width="34" height="112" viewBox="0 0 34 112" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13 19L17 15L21 19" stroke="#999999" stroke-width="1.2"/><path d="M21 41L17 45L13 41" stroke="#999999" stroke-width="1.2"/><path d="M19 73L15 69L19 65" stroke="#999999" stroke-width="1.2"/><path d="M15 91L19 95L15 99" stroke="#999999" stroke-width="1.2"/><rect x="0.5" y="0.5" width="33" height="111" rx="4.5" stroke="#9747FF" stroke-dasharray="10 5"/></svg>')
+            no-repeat;
+          background-size: 60px;
+          background-position: -3px -94px;
+        }
 
-        // &Right {
-        //   background: url('/css/img/Icon/Arrow-2.svg') no-repeat;
-        //   background-size: 60px;
-        //   background-position: -3px -140px;
-        // }
+        &Right {
+          background: url('data:image/svg+xml;utf8,<svg width="34" height="112" viewBox="0 0 34 112" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13 19L17 15L21 19" stroke="#999999" stroke-width="1.2"/><path d="M21 41L17 45L13 41" stroke="#999999" stroke-width="1.2"/><path d="M19 73L15 69L19 65" stroke="#999999" stroke-width="1.2"/><path d="M15 91L19 95L15 99" stroke="#999999" stroke-width="1.2"/><rect x="0.5" y="0.5" width="33" height="111" rx="4.5" stroke="#9747FF" stroke-dasharray="10 5"/></svg>')
+            no-repeat;
+          background-size: 60px;
+          background-position: -3px -140px;
+        }
       }
     }
   }
