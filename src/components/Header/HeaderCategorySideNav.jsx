@@ -1,5 +1,5 @@
 import classes from '@/components/Header/Header.module.scss';
-import { useEffect, useRef} from 'react'; 
+import { useRef} from 'react'; 
 
 function HeaderCategorySideNav(
   {setHover,hoverNavUnListState,setHoverNavUnList,
@@ -39,20 +39,11 @@ function HeaderCategorySideNav(
     setHoverNavUnList(false)
   }
   
-  useEffect(()=>{
-    categorySideNavRef.current.addEventListener('mouseenter', handleMouseEnterSideNav); 
-    categorySideNavRef.current.addEventListener('mouseleave', handleMouseLeaveSideNav);
-
-    return()=>{
-      categorySideNavRef.current.removeEventListener('mouseenter', handleMouseEnterSideNav); 
-      categorySideNavRef.current.removeEventListener('mouseleave', handleMouseLeaveSideNav);
-
-    }
-  });
 
   return(
     <div >
-      <div className={classes.header_catecory__side_nav__wrapper} ref={categorySideNavRef}  hidden ={hoverNavUnListState ? false : true} >
+      <div className={classes.header_catecory__side_nav__wrapper} ref={categorySideNavRef}  
+      hidden ={hoverNavUnListState ? false : true} onMouseEnter={handleMouseEnterSideNav} onMouseLeave={handleMouseLeaveSideNav} >
         {/* 선물하기 */}
         <ul className={classes.header_catecory__side_nav__gift}  hidden={categoryGiftState ? false: true}  
           onMouseEnter={()=>{setCategoryGift(true)}}    onMouseLeave={()=>{setCategoryGift(false)}}  >  

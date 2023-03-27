@@ -6,11 +6,13 @@ import { useRecoilValue, useRecoilState } from 'recoil';
 import { currentProductState } from '@/@atom/currentProductState';
 import ProductCard from '@/components/ProductCard/ProductCard';
 import ProductGroupFilter from './ProductGroupFilter';
+
 // import PaginationPost from './../Pagination/PaginationPost';
 import Pagination from 'react-js-pagination';
 import { categorySelectState } from '@/@atom/accordion/categorySelectState';
 import { brandSelectState } from '@/@atom/accordion/brandSelectState';
 import { allDataFilterSelect } from '@/utils/product_list/allDataFilterSelect';
+
 
 function loadProductsCard(contentsArray, ContentElem) {
   let elementsArr = [];
@@ -28,6 +30,7 @@ function loadProductsCard(contentsArray, ContentElem) {
 }
 
 const ProductGroup = ({ data }) => {
+
   const [page, setPage] = useState(1);
   const [items, setItems] = useState(6);
 
@@ -43,6 +46,7 @@ const ProductGroup = ({ data }) => {
     setItems(Number(e.target.value));
   };
 
+
   const [categorySelectData, setCategorySelectData] =
     useRecoilState(categorySelectState);
   const [brandSelectData, setBrandSelectData] =
@@ -55,6 +59,7 @@ const ProductGroup = ({ data }) => {
   let selectSortData = [];
   let selectCategorySortData = [];
   let selectBrandSortData = [];
+
 
   useEffect(() => {
     console.log('카테고리 데이터는 :', categorySelectData);
@@ -97,6 +102,7 @@ const ProductGroup = ({ data }) => {
   } else {
     console.log('렌더링 되어지는 데이터 : ', selectCategorySortData);
     const productCardsArr = loadProductsCard(selectSortData, ProductCard);
+
 
     return (
       <div className="ProductGroup">

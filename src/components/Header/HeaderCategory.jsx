@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState} from 'react';
 
 import classes from '@/components/Header/Header.module.scss';
 
@@ -29,10 +29,7 @@ import categoryPet from '@/../public/Header/categoryPet.svg';
 import categoryBaby from '@/../public/Header/categoryBaby.svg';
 import categoryTravel from '@/../public/Header/categoryTravel.svg';
 
-function HeaderCategory({Fixed}){
-  const categoryRef = useRef(); //카테고리 버튼
-  const categoryNavRef=useRef(); //밑 메뉴
-  const categoryNavUnListRef=useRef(); //밑 메뉴의 ul리스트
+function HeaderCategory( ){
 
   const [hoverState,setHover] = useState(false); //hover category btn state
   const [hoverNavUnListState,setHoverNavUnList]=useState(false); //hover category nav ul state
@@ -85,40 +82,17 @@ function HeaderCategory({Fixed}){
     setHoverNavUnList(false)
   }
 
-  useEffect(()=>{
-
-    categoryRef.current.addEventListener('mouseenter', handleMouseEnter); 
-    categoryRef.current.addEventListener('mouseleave', handleMouseLeave);
-
-    categoryNavRef.current.addEventListener('mouseenter', handleMouseEnterNav); 
-    categoryNavRef.current.addEventListener('mouseleave', handleMouseLeaveNav);
-
-    categoryNavUnListRef.current.addEventListener('mouseenter', handleMouseEnterUnList); 
-    categoryNavUnListRef.current.addEventListener('mouseleave', handleMouseLeaveUnList); 
-    
-    return()=>{
-      categoryRef.current.removeEventListener('mouseenter', handleMouseEnter); 
-      categoryRef.current.removeEventListener('mouseleave', handleMouseLeave);
-
-      categoryNavRef.current.removeEventListener('mouseenter', handleMouseEnterNav);
-      categoryNavRef.current.removeEventListener('mouseleave', handleMouseLeaveNav);
-
-      categoryNavUnListRef.current.removeEventListener('mouseenter', handleMouseEnterUnList);
-      categoryNavUnListRef.current.removeEventListener('mouseleave', handleMouseLeaveUnList);
-    }
-  })
-
   
   return(
     <>
-      <button className={classes.header_category__btn} type='button' ref={categoryRef} >
+      <button className={classes.header_category__btn} type='button' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
         <img alt='category Icon' className={classes.header_category__btn_img} src={categoryIcon} />
         카테고리
       </button>
 
-      <div className={classes.header_catecory__nav } ref={categoryNavRef} >
+      <div className={classes.header_catecory__nav } onMouseEnter={handleMouseEnterNav} onMouseLeave={handleMouseLeaveNav} >
 
-        <ul className={classes.header_catecory__nav__wrapper} hidden={!hoverState} ref={ categoryNavUnListRef} >
+        <ul className={classes.header_catecory__nav__wrapper} hidden={!hoverState} onMouseEnter={handleMouseEnterUnList} onMouseLeave={handleMouseLeaveUnList} >
           
           <li onMouseEnter={()=>{setCategoryGift(true)}} onMouseLeave={()=>{setCategoryGift(false)}} >
             <img alt='' src= {categoryGiftIcon}/><a href='#!' > 선물하기</a>
