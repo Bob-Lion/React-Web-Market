@@ -1,12 +1,9 @@
 import { useState, useEffect } from 'react';
 import classes from './ProductGroup.module.scss';
-import { productData } from '@/@atom/productData';
 import { useRecoilValue } from 'recoil';
 import { useReadData } from '@/firebase/firestore';
 
 const ProductGroupFilter = () => {
-  const product = useRecoilValue(productData);
-
   const { readData, data = null, error: readError } = useReadData(`products`);
   useEffect(() => {
     readData();
