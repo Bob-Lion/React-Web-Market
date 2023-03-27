@@ -54,7 +54,7 @@ export function AccordionList({
     }
 
     console.log(selectData);
-    const classificationData = { ...selectData };
+    const classificationData = selectData.slice();
 
     if (listName === '카테고리') {
       setCategorySelectData(classificationData);

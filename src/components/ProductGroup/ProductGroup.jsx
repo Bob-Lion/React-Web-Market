@@ -8,6 +8,9 @@ import ProductCard from '@/components/ProductCard/ProductCard';
 import ProductGroupFilter from './ProductGroupFilter';
 // import PaginationPost from './../Pagination/PaginationPost';
 import Pagination from 'react-js-pagination';
+import { categorySelectState } from '@/@atom/accordion/categorySelectState';
+import { brandSelectState } from '@/@atom/accordion/brandSelectState';
+import { allDataFilterSelect } from '@/utils/product_list/allDataFilterSelect';
 
 function loadProductsCard(contentsArray, ContentElem) {
   let elementsArr = [];
@@ -40,15 +43,38 @@ const ProductGroup = ({ data }) => {
     setItems(Number(e.target.value));
   };
 
+  const [categorySelectData, setCategorySelectData] =
+    useRecoilState(categorySelectState);
+  const [brandSelectData, setBrandSelectData] =
+    useRecoilState(brandSelectState);
+
   // const { readData, data = null, error: readError } = useReadData(`products`);
   // useEffect(() => {
   //   readData();
   // }, []);
+  let selectSortData = [];
+  let selectCategorySortData = [];
+  let selectBrandSortData = [];
 
+  useEffect(() => {
+    console.log('카테고리 데이터는 :', categorySelectData);
+    console.log('브랜드 데이터는 :', brandSelectData);
+  }, [categorySelectData, brandSelectData]);
+
+  if (data) {
+    selectCategorySortData = allDataFilterSelect(
+      data,
+      categorySelectData,
+      'category'
+    );
+    selectBrandSortData = allDataFilterSelect(data, brandSelectData, 'brand');
+    selectSortData = [];
+  }
   if (!data) {
     console.log('no Data yet');
     return <div className={classes.ProductGroup}>no data yet</div>;
   } else {
+    console.log('렌더링 되어지는 데이터 : ', selectCategorySortData);
     const productCardsArr = loadProductsCard(data, ProductCard);
 
     return (
