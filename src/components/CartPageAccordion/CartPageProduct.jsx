@@ -118,6 +118,7 @@ export function CartPageProduct({ data }) {
   // 처음에 전체 선택이기 때문에 처음에 한번만 선택 배열에 전체 값을 넣어준다.
   useEffect(() => {
     setTotalSelectState((prev) => [...prev, data.name]);
+
     setSelectPrice((prev) => [...prev, productPrice]);
 
     setSelectInfo((prev) => [
