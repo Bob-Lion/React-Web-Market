@@ -27,8 +27,8 @@ export function useCreateAuthUser(collectionKey = 'users') {
           const { email, displayName } = userAuth;
           const createAt = serverTimestamp();
           await setDoc(userDocRef, {
-            email,
-            displayName,
+            // email,
+            // displayName,
             createAt,
             ...additionData,
           });

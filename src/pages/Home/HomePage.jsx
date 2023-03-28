@@ -1,13 +1,15 @@
-import classes from './HomePage.module.scss';
-import { AddCartPopup } from '@/components/AddCart/AddCartPopup';
+// import classes from './HomePage.module.scss';
 import { useRecoilValue } from 'recoil';
+import { useNavigate } from 'react-router-dom';
+
+import { currentProductState } from '@/@atom/currentProductState';
+import { cartPopupVisibleState } from '@/@atom/addCartPopup/cartPopupVisibleState';
+import { AddCartPopup } from '@/components/AddCart/AddCartPopup';
 import ProductCarousel from '@/components/ProductCarousel/ProductCarousel';
 import RecentProductCarousel from '@/components/RecentProductCarousel/RecentProductCarousel';
-import { currentProductState } from '@/@atom/currentProductState';
 import Footer from '@/components/Footer/Footer';
-import { cartPopupVisibleState } from '@/@atom/addCartPopup/cartPopupVisibleState';
-import { useNavigate } from 'react-router-dom';
 import Header from '@/components/Header/Header';
+import PopupAd from '@/components/PopupAd/PopupAd';
 
 function HomePage() {
   let currentProduct = useRecoilValue(currentProductState);
@@ -25,9 +27,6 @@ function HomePage() {
 
   return (
     <div className="HomePage">
-      {/* <header
-        style={{ height: '180px', width: '100%', backgroundColor: 'blue' }}
-      ></header> */}
       <Header />
       <div style={{ position: 'relative' }}>
         <RecentProductCarousel title="최근 본 상품" />
@@ -35,10 +34,8 @@ function HomePage() {
         <ProductCarousel title="놓치면 후회할 가격" />
         {currentProduct && cpv ? <AddCartPopup data={currentProduct} /> : null}
       </div>
-      {/* <ProductList /> */}
-      {/* <button type="button" onClick={handelGetCurProduct}>
-        현재 선택된 상품 표시
-      </button> */}
+      {/* <PopupAd /> */}
+      <Footer />
     </div>
   );
 }
