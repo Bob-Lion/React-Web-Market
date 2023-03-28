@@ -1,7 +1,12 @@
 import { useState, useEffect } from 'react';
 import './ProductReviewPopup.scss';
+import { currentProductState } from '@/@atom/currentProductState';
+import { useRecoilState } from 'recoil';
 
 const ProductReviewPopup = (props) => {
+  const [CurrentProduct, setCurrentProduct] =
+    useRecoilState(currentProductState);
+
   // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
   const { open, close, header } = props;
 
@@ -53,11 +58,10 @@ const ProductReviewPopup = (props) => {
                       </span> */}
                     </div>
                     <div className="popup-review__container__title">
-                      <img
-                        alt="상품 이미지"
-                        src="https://img-cf.kurly.com/shop/data/goods/165303902534l0.jpg"
-                      />
-                      <div>[델몬트] 바나나</div>
+                      <img alt="상품 이미지" src={CurrentProduct.mainImg} />
+                      <div>
+                        [{CurrentProduct.brand}] {CurrentProduct.name}
+                      </div>
                     </div>
                     <div className="popup-review__container__main">
                       <div className="popup-review__container__main__title">
