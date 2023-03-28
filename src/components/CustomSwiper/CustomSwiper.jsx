@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import classes from './CustomSwiper.module.scss';
 import 'swiper/css/navigation';
 import 'swiper/css';
-import { A11y, Navigation, Pagination, Scrollbar } from 'swiper';
+import SwiperCore, { A11y, Autoplay, Navigation, Pagination } from 'swiper';
 import ProductCard from '../ProductCard/ProductCard';
 import { useCallback, useEffect, useRef } from 'react';
 
@@ -18,9 +18,11 @@ export default function CustomSwiper(props) {
     swiperSliderContensArray = [],
   } = props;
 
+  SwiperCore.use([Navigation, Autoplay]);
+
   const swiperParams = {
     ref: sliderRef,
-    modules: [Navigation, A11y],
+    modules: [Navigation, Autoplay],
     scrollbar: { draggable: true },
     slidesPerView: 4,
     spaceBetween: 18,
