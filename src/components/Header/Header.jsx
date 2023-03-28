@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import '@/app/App.css';
-import { isLoggedIn } from '@/@atom/Header/loginState';
+import { isLoggedInState } from '@/@atom/Header/loginState';
 import { currentUserState } from '@/@atom/user/currentUserState';
 import classes from '@/components/Header/Header.module.scss';
 
@@ -19,7 +19,7 @@ import triangleIcon from '@/../public/Header/triangleIcon.svg';
 import userNewLogo from '@/../public/Header/userNewLogo.svg';
 
 function Header() {
-  const [login, setLogin] = useRecoilState(isLoggedIn);
+  const [login, setLogin] = useRecoilState(isLoggedInState);
 
   const user = useRecoilValue(currentUserState);
 

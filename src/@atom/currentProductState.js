@@ -32,6 +32,7 @@ export const currentProductState = atom({
   //   salePrice: 11900,
   //   isLimited: false,
   //   key: '9MjWQLw5Kb36efL2rbkC',
+  //   reviewList : []
   // },
 });
 
