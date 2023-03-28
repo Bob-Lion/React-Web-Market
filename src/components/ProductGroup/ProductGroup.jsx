@@ -109,10 +109,8 @@ const ProductGroup = ({ data }) => {
   useEffect(() => {
     if (zIndexCtrl.current) {
       if (!modalVisibleCtrlState) {
-        console.log('z: ', zIndexCtrl.current);
         zIndexCtrl.current.style.zIndex = 1;
       } else {
-        console.log('z: ', zIndexCtrl.current);
         zIndexCtrl.current.style.zIndex = -1;
       }
     }
