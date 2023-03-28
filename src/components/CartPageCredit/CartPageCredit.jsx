@@ -13,29 +13,6 @@ export function CartPageCredit() {
     selectTotalPriceState
   );
 
-  // const [totalPrice, setTotalPrice] = useState(0);
-
-  // console.log(selectInfo);
-  // console.log('aa');
-
-  // let totalPrice = 0;
-
-  // if (selectInfo.length > 0) {
-  //   totalPrice = selectInfo.map((a) => a.price).reduce((a, b) => a + b);
-  // }
-
-  // const totalPrice = () => {
-  //   selectInfo.map((a) => a.price).reduce((a, b) => a + b);
-  // }
-
-  // const sumPrice = selectInfo.reduce((a, b) => {
-  //   return a.price + b;
-  // });
-
-  // setTotalPrice(sumPrice);
-
-  // console.log(totalPrice);
-
   return (
     <div className={styles.cartCredit}>
       <div className={styles.cartCreditContainer}>
