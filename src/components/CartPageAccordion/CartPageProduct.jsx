@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import checkBtnOn from '@/../public/ProductListImage/Check_on.svg';
 import checkBtnOff from '@/../public/ProductListImage/Check_off.svg';
 import cancleBtn from '@/../public/icons/web-icons/Cancel.svg';
@@ -12,12 +12,16 @@ import { changePriceNumToString } from '@/utils/priceNumberToString';
 import { localStorageDeleteData } from '@/utils/localStorageDeleteData';
 import { localDataRanderState } from '@/@atom/cartPage/localDataRanderState';
 import { removeDuplicates } from '@/utils/removeDuplicates';
+import { Link } from 'react-router-dom';
+import { currentProductState } from '@/@atom/currentProductState';
 
 export function CartPageProduct({ data }) {
   // console.log(data);
   const [productCount, setProductCount] = useState(data.count);
   const minusBtn = useRef();
   const plusBtn = useRef();
+
+  const setCurrentProductState = useSetRecoilState(currentProductState);
 
   // 버튼 토글 상태
   const [selectBtnTogle, setSelectBtnTogle] = useState(true);
@@ -87,6 +91,11 @@ export function CartPageProduct({ data }) {
 
   const productPrice = data.salePrice * productCount;
 
+  const handleChangeCurrentProduct = useCallback(() => {
+    setCurrentProductState(data);
+    console.log(data);
+  }, []);
+
   useEffect(() => {
     if (productCount <= 1) {
       minusBtn.current.style.backgroundPosition = '-8px -46px';
@@ -110,21 +119,12 @@ export function CartPageProduct({ data }) {
   useEffect(() => {
     setTotalSelectState((prev) => [...prev, data.name]);
     setSelectPrice((prev) => [...prev, productPrice]);
-    // setSelectPrice((prev) => [...prev, productPrice]);
 
-    // console.log(selectTotalPrice, productPrice);
     setSelectInfo((prev) => [
       ...prev,
       { name: data.name, price: productPrice },
     ]);
   }, []);
-  // console.log(selectTotalPrice);
-
-  useEffect(() => {
-    // console.log(totalSelectState);
-    // console.log(selectPrice);
-    // console.log('selectInfo : ', selectInfo);
-  }, [selectInfo]);
 
   useEffect(() => {
     if (selectPrice.length > 0) {
@@ -238,8 +238,8 @@ export function CartPageProduct({ data }) {
   return (
     <li className={styles.cartPageProduct}>
       <button
-        type="button"
         className={styles.cartPageProductCheckBtn}
+        type="button"
         onClick={handleChecked}
       >
         <img
@@ -247,20 +247,27 @@ export function CartPageProduct({ data }) {
           src={totalSelectState.includes(data.name) ? checkBtnOn : checkBtnOff}
         />
       </button>
-      <a className={`.willRouter ${styles.cartPageProductImg}`} href="#">
-        {/* <div className={styles.cartPageProductImgTest}></div> */}
-        <img
-          className={styles.cartPageProductImgTest}
-          src={data.mainImg}
-          alt="상품 메인 이미지"
-        />
-      </a>
+      <Link to="/productDetail">
+        <button
+          className={styles.cartPageProductImg}
+          type="button"
+          onClick={handleChangeCurrentProduct}
+        >
+          <img
+            alt="상품 메인 이미지"
+            className={styles.cartPageProductImgTest}
+            src={data.mainImg}
+          />
+        </button>
+      </Link>
       <div className={styles.cartPageProductName}>
-        <a className={`.willRouter`} href="#">
-          <p
-            className={styles.cartPageProductNameDetail}
-          >{`[${data.brand}] ${data.name} (${data.storingWay})`}</p>
-        </a>
+        <Link to="/productDetail">
+          <button type="button" onClick={handleChangeCurrentProduct}>
+            <p
+              className={styles.cartPageProductNameDetail}
+            >{`[${data.brand}] ${data.name} (${data.storingWay})`}</p>
+          </button>
+        </Link>
       </div>
       <div className={styles.cartPageProductCountBtn}>
         <button
