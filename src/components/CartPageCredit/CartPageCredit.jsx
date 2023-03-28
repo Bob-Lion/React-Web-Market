@@ -5,13 +5,30 @@ import { useRecoilState } from 'recoil';
 import { useEffect, useState } from 'react';
 import { selectTotalPriceState } from '@/@atom/cartPage/selectTotalPriceState';
 import { changePriceNumToStringNoWon } from '@/utils/priceNumberToStringNoWon';
+import { currentUserState } from '@/@atom/user/currentUserState';
+import { useReadData } from '@/firebase/firestore';
 // import { selectInfoState } from '@/@atom/cartPage/selectInfoState';
 
 export function CartPageCredit() {
   // const [selectInfo, setSelectInfo] = useRecoilState(selectInfoState);
+  // const { readData, data, error, readError } = useReadData('users');
+
+  // async function readUserData(userDocId) {
+  //   await readData(userDocId);
+  // }
+
+  // useEffect(()=>{
+  //   if(data){
+
+  //   }
+  // },[data])
+  // }
+
   const [selectTotalPrice, setSelectTotalPrice] = useRecoilState(
     selectTotalPriceState
   );
+
+  const [currentUser, setCurrentUser] = useRecoilState(currentUserState);
 
   return (
     <div className={styles.cartCredit}>
@@ -19,14 +36,20 @@ export function CartPageCredit() {
         <div className={styles.cartCreditAddress}>
           <p className={styles.cartCreditAddressTitle}>배송지</p>
           <div className={styles.cartCreditAddressInfo}>
-            <p className={styles.cartCreditAddressInfoText}>
-              <em className={styles.cartCreditAddressInfoTextEm}>
-                배송지를 등록
-              </em>
-              하고
-              <br />
-              <span>구매 가능한 상품을 확인하세요!</span>
-            </p>
+            {currentUser ? (
+              <p className={styles.cartCreditAddressInfoText}>
+                {currentUser.adress}
+              </p>
+            ) : (
+              <p className={styles.cartCreditAddressInfoText}>
+                <em className={styles.cartCreditAddressInfoTextEm}>
+                  배송지를 등록
+                </em>
+                하고
+                <br />
+                <span>구매 가능한 상품을 확인하세요!</span>
+              </p>
+            )}
             <button
               className={styles.cartCreditAddressInfoSerchBtn}
               type="button"
