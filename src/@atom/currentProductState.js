@@ -15,7 +15,7 @@ export const currentProductState = atom({
     isBobOnly: false,
     brand: '달콤트리',
     mainImg:
-      "'https://firebasestorage.googleapis.com/v0/b/react-web-market.appspot.com/o/products%2F%EB%8B%B9%EB%8F%84%EC%84%A0%EB%B3%84%20%EC%B2%9C%ED%98%9C%ED%96%A5%201.2kg%20(5~7%EC%9E%85)%2FmainImg.jpeg?alt=media&token=9de637fb-4604-4d5b-99dc-5bfb44e8cf62'",
+      'https://firebasestorage.googleapis.com/v0/b/react-web-market.appspot.com/o/products%2F%EB%8B%B9%EB%8F%84%EC%84%A0%EB%B3%84%20%EC%B2%9C%ED%98%9C%ED%96%A5%201.2kg%20(5~7%EC%9E%85)%2FmainImg.jpeg?alt=media&token=9de637fb-4604-4d5b-99dc-5bfb44e8cf62',
     price: 11900,
     stock: 30,
     detailInfo: {
