@@ -10,25 +10,23 @@ import { useReadData } from '@/firebase/firestore';
 // import { selectInfoState } from '@/@atom/cartPage/selectInfoState';
 
 export function CartPageCredit() {
-  // const [selectInfo, setSelectInfo] = useRecoilState(selectInfoState);
-  // const { readData, data, error, readError } = useReadData('users');
+  let cartLocalData = [];
 
-  // async function readUserData(userDocId) {
-  //   await readData(userDocId);
-  // }
-
-  // useEffect(()=>{
-  //   if(data){
-
-  //   }
-  // },[data])
-  // }
+  cartLocalData = JSON.parse(localStorage.getItem('addCart'));
 
   const [selectTotalPrice, setSelectTotalPrice] = useRecoilState(
     selectTotalPriceState
   );
 
   const [currentUser, setCurrentUser] = useRecoilState(currentUserState);
+
+  const handleOrder = () => {
+    if (currentUser) {
+      alert('주문 페이지로 이동합니다.');
+    } else {
+      alert('로그인 해야만 주문이 가능합니다.');
+    }
+  };
 
   return (
     <div className={styles.cartCredit}>
@@ -112,11 +110,21 @@ export function CartPageCredit() {
           </div>
         </div>
         <div className={styles.cartCreditOrder}>
-          <button className={styles.cartCreditOrderBtn} type="button">
-            <span className={styles.cartCreditOrderBtnText}>
-              배송지를 입력해주세요
-            </span>
-          </button>
+          {cartLocalData.length > 0 ? (
+            <button
+              className={styles.cartCreditOrderBtnOn}
+              onClick={handleOrder}
+              type="button"
+            >
+              <span className={styles.cartCreditOrderBtnText}>주문하기</span>
+            </button>
+          ) : (
+            <button className={styles.cartCreditOrderBtnOff} type="button">
+              <span className={styles.cartCreditOrderBtnText}>
+                배송지를 입력해주세요
+              </span>
+            </button>
+          )}
           <ul className={styles.cartCreditOrderExplanation}>
             <li
               className={styles.cartCreditOrderExplanationList}
