@@ -9,11 +9,13 @@ import { currentUserState } from '@/@atom/user/currentUserState';
 import { useReadData } from '@/firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { useSignIn } from '@/firebase/auth';
+import { isLoggedInState } from '@/@atom/Header/loginState';
 
 function LoginPage() {
   const [idValue, setId] = useState('');
   const [pwValue, setPw] = useState('');
   const setCurrentUser = useSetRecoilState(currentUserState);
+  const setIsLoggedIn = useSetRecoilState(isLoggedInState);
   const { readData, data } = useReadData('users');
 
   const saveUserId = (e) => {
@@ -46,6 +48,7 @@ function LoginPage() {
   useEffect(() => {
     if (data) {
       setCurrentUser(data);
+      setIsLoggedIn(true);
       navigate('/');
 
       // console.log(data);
