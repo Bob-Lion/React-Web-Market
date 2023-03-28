@@ -27,6 +27,12 @@ export default function CustomSwiper(props) {
     onSlideChange: () => {
       // console.log('slide change')
     },
+    onReachEnd: () => {
+      console.log('end');
+    },
+    onReachBeginning: () => {
+      console.log('begin');
+    },
     onSwiper: (swiper) => {
       // console.log(swiper)
     },
