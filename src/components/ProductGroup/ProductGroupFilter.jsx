@@ -15,6 +15,7 @@ const ProductGroupFilter = ({ data }) => {
             <span>추천순</span>
           </a>
           <svg
+            className={classes.divider__sort__img}
             fill="none"
             height="20"
             viewBox="0 0 14 20"
@@ -33,31 +34,31 @@ const ProductGroupFilter = ({ data }) => {
               fill="#CCCCCC"
             />
           </svg>
-          <span aria-hidden="true" className="divider__sort">
+          <span aria-hidden="true" className={classes.divider__sort}>
             |
           </span>
           <a className={classes.GroupHeaderButtonNew} href="#!">
             <span>신상품순</span>
           </a>
-          <span aria-hidden="true" className="divider__sort">
+          <span aria-hidden="true" className={classes.divider__sort}>
             |
           </span>
           <a className={classes.GroupHeaderButtonSale} href="#!">
             <span>판매량순</span>
           </a>
-          <span aria-hidden="true" className="divider__sort">
+          <span aria-hidden="true" className={classes.divider__sort}>
             |
           </span>
           <a className={classes.GroupHeaderButtonEvent} href="#!">
             <span>혜택순</span>
           </a>
-          <span aria-hidden="true" className="divider__sort">
+          <span aria-hidden="true" className={classes.divider__sort}>
             |
           </span>
           <a className={classes.GroupHeaderButtonRow} href="#!">
             <span>낮은 가격순</span>
           </a>
-          <span aria-hidden="true" className="divider__sort">
+          <span aria-hidden="true" className={classes.divider__sort}>
             |
           </span>
           <a className={classes.GroupHeaderButtonHigh} href="#!">
