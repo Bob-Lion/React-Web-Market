@@ -17,6 +17,7 @@ const ProductReviewPopup = (props) => {
     setContentValue(e.currentTarget.value);
   };
   console.log(ContentValue);
+  console.log(ContentValue.length);
 
   const onReset = () => {
     setTitleValue('');
@@ -164,7 +165,10 @@ const ProductReviewPopup = (props) => {
                               주시기 바랍니다.
                             </p>
                           </div> */}
-                          <span id="counter">0 / 5,000</span>
+                          <span id="counter">
+                            {' '}
+                            {ContentValue.length} / 5,000자
+                          </span>
                         </div>
                       </div>
                     </div>
