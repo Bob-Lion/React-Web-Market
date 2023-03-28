@@ -8,6 +8,7 @@ import HeaderNoLoginPopup from '@/components/Header/HeaderNoLoginPopup';
 import mapIcon from '@/../public/Header/mapIcon.svg';
 import favoriteIcon from '@/../public/Header/favoriteIcon.svg';
 import cartIcon from '@/../public/Header/cartIcon.svg';
+import {Link} from 'react-router-dom';
 
 function HeaderIcon ({Fixed,login,user}){
   //console.log(login);
@@ -45,13 +46,13 @@ function HeaderIcon ({Fixed,login,user}){
   return(
     <>
       <ul className={Fixed? classes.mini_headerIcon_wrapper : classes.headerIcon_wrapper}>
-        <li className={classes.headerIcon_wrapper__map_icon} ref={mapIconRef} /* onMouseOver={handleMouseOver} */ >
+        <li className={classes.headerIcon_wrapper__map_icon} ref={mapIconRef}  >
           <a href='#!'><img alt='map Icon' src={mapIcon} /></a>
         {login ? <HeaderLoginPopup mapIconHover={mapIconHover} user={{...user}}/> : <HeaderNoLoginPopup mapIconHover={mapIconHover}  /> }
         </li>
 
         <li><a href='#!'><img alt='favorite Icon' src={favoriteIcon} /></a></li>
-        <li><a href='#!'><img alt='cart Icon' src={cartIcon} /></a></li>
+        <li><Link to={'/cart'}><img alt='cart Icon' src={cartIcon} /></Link></li>
       </ul>
     </>
   );
