@@ -17,6 +17,7 @@ function App() {
         <Route element={<ProductList />} path="/productList" />
         <Route element={<ProductDetailPage />} path="/productDetail" />
       </Routes>
+      {/* <ProductInfo/> */}
     </div>
   );
 }
