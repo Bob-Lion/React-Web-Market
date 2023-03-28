@@ -69,9 +69,9 @@ export function AccordionSet({ data, listName, selectData, setSelectData }) {
       renderModalAllData.push(
         <AccordionList
           key={item[0]}
-          modalStyle={styles.moreModalListItem}
           count={item[1]}
           listName={listName}
+          modalStyle={styles.moreModalListItem}
           name={item[0]}
           selectData={selectData}
           setSelectData={setSelectData}
