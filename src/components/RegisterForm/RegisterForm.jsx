@@ -324,7 +324,7 @@ export default function RegisterForm(props) {
     //   isLocationValid,
     // ]);
     if (isVerifiedAll()) {
-      // updateUserAuth(updateUserStorage);
+      updateUserAuth(updateUserStorage);
     } else {
       console.log('필수입력사항 미흡');
     }
