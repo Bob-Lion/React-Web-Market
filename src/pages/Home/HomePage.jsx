@@ -34,7 +34,7 @@ function HomePage() {
         <ProductCarousel title="놓치면 후회할 가격" />
         {currentProduct && cpv ? <AddCartPopup data={currentProduct} /> : null}
       </div>
-      {/* <PopupAd /> */}
+      <PopupAd />
       <Footer />
     </div>
   );
