@@ -9,14 +9,14 @@ $PrimaryColor: rgb(161, 95, 4);
     width: 100%;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.3);
-    z-index: 100;
+    z-index: 1000;
   }
 
   &Window {
     position: relative;
     width: 100%;
     height: 100%;
-    z-index: 500;
+    z-index: 2000;
   }
   position: absolute;
   left: 50%;
