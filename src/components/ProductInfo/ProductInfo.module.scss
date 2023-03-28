@@ -2,6 +2,9 @@
 @import '@/styles/reset';
 @import '@/styles/normalize';
 
+$TextColor: rgb(51, 51, 51);
+$PrimaryColor: rgb(161, 95, 4);
+
 .a11yHidden {
   display: inline-block;
   overflow: hidden;
@@ -130,61 +133,95 @@
   } //productDetailInfo
 
   &Select {
-    background-color: aqua;
+    // background-color: aqua;
     width: 432px;
     height: 84px;
-    padding: 12px;
-    border: 1px solid #e1e1e1;
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 11px 10px 11px 15px;
+    font-size: 12px;
+    border: 1px solid rgb(244, 244, 244);
 
     &Item {
-      font-weight: 500;
+      line-height: 16px;
+      // width: 320px;
+      // color: $TextColor;
+      // overflow-wrap: break-word;
     }
 
-    // &Quantity {
-    //   width: 90px;
-    //   height: 30px;
-    //   margin-top: 10px;
-    //   border: 1px solid #c4c4c4;
-    //   display: flex;
-    //   align-items: center;
+    &PriceInfo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px;
 
-    //   span {
-    //     display: block;
-    //     width: 30px;
-    //     height: 30px;
-    //     color: #898989;
-    //     text-align: center;
-    //     line-height: 30px;
+      &Quantity {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+        border: 1px solid rgb(221, 223, 225);
+        width: 88px;
+        border-radius: 3px;
 
-    //     &:nth-child(1) {
-    //       font-size: 23px;
-    //       cursor: pointer;
-    //     }
+        &DecreaseBtn {
+          display: inline-flex;
+          padding: 0;
+          width: 30px;
+          height: 30px;
+          border: none;
+          font-size: 1px;
+          color: transparent;
+          background-size: auto;
+          background-color: transparent;
+          background-image: url('../../../public/icons/web-icons/Minus.svg');
+          background-repeat: no-repeat;
+          // 회색 아이콘으로 이동시 top -46px 더 이동
+          background-position: -8px -46px;
+          vertical-align: top;
+        }
 
-    //     &:nth-child(2) {
-    //       color: #333333;
-    //       font-size: 14px;
-    //       font-weight: 600;
-    //     }
+        &Count {
+          display: inline-flex;
+          overflow: hidden;
+          white-space: nowrap;
+          -webkit-box-pack: center;
+          justify-content: center;
+          font-size: 14px;
+          font-weight: 600;
+          color: $TextColor;
+          text-align: center;
+          width: 31px;
+          height: 28px;
+          line-height: 28px;
+        }
 
-    //     &:nth-child(3) {
-    //       font-size: 18px;
-    //       cursor: pointer;
-    //     }
-    //   }
-    // }
+        &IncreaseBtn {
+          display: inline-flex;
+          width: 28px;
+          height: 28px;
+          border: none;
+          font-size: 1px;
+          color: transparent;
+          background-size: auto;
+          background-color: transparent;
+          background-image: url('../../../public/icons/web-icons/Plus.svg');
+          // 회색 아이콘으로 이동시 top -46px 더 이동
+          background-position: -8px -8px;
+          vertical-align: top;
+        }
+      }
 
-    &Price {
-      position: absolute;
-      bottom: 12px;
-      right: 12px;
-      font-weight: 500;
+      &SumPrice {
+        font-weight: bold;
+        font-size: 12px;
+        color: $TextColor;
+        padding-right: 5px;
+      }
     }
   } // .productSelect
 
   &TotalPrice {
-    background-color: #fa622b;
     display: flex;
     justify-content: end;
     align-items: baseline;
@@ -212,8 +249,8 @@
     cursor: pointer;
   }
 
-  p {
-    background-color: #5f0080; // 장바구니 담기 버튼
+  &AddCartBtn {
+    background-color: $PrimaryColor; // 장바구니 담기 버튼
     width: 430px;
     height: 54px;
     border-radius: 4px;

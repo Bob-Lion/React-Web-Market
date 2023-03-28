@@ -1,10 +1,77 @@
 import classes from '@/components/ProductInfo/ProductInfo.module.scss';
 import { currentProductState } from '@/@atom/currentProductState';
 import { useRecoilState } from 'recoil';
+import { useEffect, useRef, useState } from 'react';
+import { changePriceNumToString } from '@/utils/priceNumberToString';
+import { changePriceNumToStringNoWon } from '@/utils/priceNumberToStringNoWon';
 
 export function ProductInfo() {
   const [CurrentProduct, setCurrentProduct] =
     useRecoilState(currentProductState);
+
+  const [productCount, setProductCount] = useState(1);
+  const minusBtn = useRef();
+  const plusBtn = useRef();
+
+  const productInfo = { ...CurrentProduct };
+
+  const handleDecrease = () => {
+    if (productCount > 1) {
+      setProductCount(productCount - 1);
+    }
+  };
+
+  const handleIncrease = () => {
+    if (productCount < CurrentProduct.stock) {
+      setProductCount(productCount + 1);
+    }
+  };
+
+  useEffect(() => {
+    if (productCount <= 1) {
+      minusBtn.current.style.backgroundPosition = '-8px -46px';
+      plusBtn.current.style.backgroundPosition = '-8px -8px';
+      minusBtn.current.style.cursor = 'default';
+      plusBtn.current.style.cursor = 'pointer';
+    } else if (productCount > 1 && productCount < CurrentProduct.stock) {
+      minusBtn.current.style.backgroundPosition = '-8px -8px';
+      plusBtn.current.style.backgroundPosition = '-8px -8px';
+      minusBtn.current.style.cursor = 'pointer';
+      plusBtn.current.style.cursor = 'pointer';
+    } else {
+      minusBtn.current.style.backgroundPosition = '-8px -8px';
+      plusBtn.current.style.backgroundPosition = '-8px -46px';
+      minusBtn.current.style.cursor = 'pointer';
+      plusBtn.current.style.cursor = 'default';
+    }
+  }, [productCount]);
+
+  const handleLocalData = () => {
+    // console.log(productInfo);
+    productInfo.count = productCount;
+    // const productInfo = {
+    //   docId: data.id,
+    //   count: productCount,
+    // };
+    // 로컬에 있는 객체 데이터 중복 여부 확인
+    const addCartLocalData = JSON.parse(localStorage.getItem('addCart')) || [];
+
+    let isduplicate = false;
+    addCartLocalData.forEach((product) => {
+      if (productInfo.key === product.key) isduplicate = true;
+    });
+
+    if (isduplicate) {
+      localStorage.setItem('addCart', JSON.stringify(addCartLocalData));
+      console.log('이미 장바구니에 담겨 있습니다 !');
+      return;
+    }
+
+    addCartLocalData.push(productInfo);
+    localStorage.setItem('addCart', JSON.stringify(addCartLocalData));
+
+    // console.log(JSON.parse(localStorage.getItem('addCart')));
+  };
 
   return (
     <div className={classes.productDetailWrap}>
@@ -124,25 +191,50 @@ export function ProductInfo() {
             <li>
               <p>상품선택</p>
               <div className={classes.productSelect}>
-                {/* <p className={classes.productSelectItem}>
+                <span className={classes.productSelectItem}>
                   [{CurrentProduct.brand}] {CurrentProduct.name}
-                </p>
-                <p className={classes.productSelectQuantity}>
-                  <span>-</span>
-                  <span>1</span>
-                  <span>+</span>
-                </p>
-                <p className={classes.producSelectPrice}>
-                  {CurrentProduct.salePrice
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                  원
-                </p> */}
+                </span>
+                <div className={classes.productSelectPriceInfo}>
+                  <div className={classes.productSelectPriceInfoQuantity}>
+                    <button
+                      ref={minusBtn}
+                      aria-label="수량내리기"
+                      className={
+                        classes.productSelectPriceInfoQuantityDecreaseBtn
+                      }
+                      type="button"
+                      onClick={handleDecrease}
+                    ></button>
+                    <div
+                      className={classes.productSelectPriceInfoQuantityCount}
+                    >
+                      {productCount}
+                    </div>
+                    <button
+                      ref={plusBtn}
+                      aria-label="수량올리기"
+                      className={
+                        classes.productSelectPriceInfoQuantityIncreaseBtn
+                      }
+                      type="button"
+                      onClick={handleIncrease}
+                    ></button>
+                  </div>
+                  <span className={classes.producSelectPriceInfoSumPrice}>
+                    {changePriceNumToString(CurrentProduct.salePrice)}
+                  </span>
+                </div>
               </div>
             </li>
           </ul>
           <p className={classes.productTotalPrice}>
-            총 상품금액: <span>4,980</span>원
+            총 상품금액:{' '}
+            <span>
+              {changePriceNumToStringNoWon(
+                productCount * CurrentProduct.salePrice
+              )}
+            </span>
+            원
           </p>
           <div className={classes.btnArea}>
             <img
@@ -153,7 +245,13 @@ export function ProductInfo() {
               alt="해당 상품의 재입고 알림을 받지 않는 상태입니다."
               src="img/ProductDetail/alarm-off.svg"
             />
-            <p>장바구니 담기</p>
+            <button
+              className={classes.btnAreaAddCartBtn}
+              type="button"
+              onClick={handleLocalData}
+            >
+              장바구니 담기
+            </button>
           </div>
         </div>
       </section>
