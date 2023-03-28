@@ -4,7 +4,7 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import HomePage from '@/pages/Home/HomePage';
 import { CartPage } from '@/pages/cartPage/CartPage';
 import { ProductList } from '@/pages/ProductList/ProductList';
-// import { ProductInfo } from '@components/ProductInfo/ProductInfo';
+import ProductDetailPage from '@/pages/ProductDetail/ProductDetailPage';
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
         <Route element={<CartPage />} path="/cart" />
         {/* <Route element={<Page />} path="/logIn" /> */}
         <Route element={<ProductList />} path="/productList" />
-        {/* <Route element={<Pro />} path="/productDetail" /> */}
+        <Route element={<ProductDetailPage />} path="/productDetail" />
       </Routes>
       {/* <ProductInfo/> */}
     </div>
