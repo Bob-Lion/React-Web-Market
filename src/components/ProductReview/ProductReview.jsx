@@ -69,8 +69,12 @@ const ProductReview = () => {
               <div id="review-inner"></div>
               <ProductReviewUser />
               <div className="ProductReviewListContentReviewButton">
-                <button className="ProductReviewListContentReviewButtonLeft"></button>
-                <button className="ProductReviewListContentReviewButtonRight"></button>
+                <button className="ProductReviewListContentReviewButtonLeft">
+                  {'<'}
+                </button>
+                <button className="ProductReviewListContentReviewButtonRight">
+                  {'>'}
+                </button>
               </div>
             </div>
           </div>
