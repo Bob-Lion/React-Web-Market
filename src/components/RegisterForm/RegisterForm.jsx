@@ -82,7 +82,7 @@ export default function RegisterForm(props) {
     setIsEventAgreementCheckBoxAgreedAll(curState);
     setIsCheckBoxAgreedAll(curState);
     setIsTermsOfConditionChecked(curState);
-    setIsTermsOfConditionChecked(curState);
+    setIsEssentialPrivacyInfoChecked(curState);
     setIsValidAgeChecked(curState);
 
     // console.log('AllBtnChecked', checkBoxAgreedList);
@@ -339,7 +339,7 @@ export default function RegisterForm(props) {
   async function updateUserAuth(updateUserStorage) {
     let user;
     try {
-      user = await signUp(email, password, id);
+      user = await signUp(id + '@boblion.com', password, name);
       updateUserStorage(user);
     } catch (signUpError) {
       console.error('useSignUp 함수의 signUp함수에서 문제 발생');
