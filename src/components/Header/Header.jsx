@@ -89,10 +89,10 @@ function Header() {
 
           <ul className={classes.header__top__customer}>
             <li className={classes.header__top__customer_register}>
-              <a href="#!">회원가입</a>
+            <Link to={'/register'}>회원가입</Link>
             </li>
             <li className={classes.header__top__customer_login}>
-              <a href="#!">로그인 </a>
+              <Link to={'/logIn'}>로그인 </Link>
             </li>
             <li className={classes.header__top__customer_service} onMouseEnter={handleMouseOver} onMouseLeave={handleMouseOut}>
               <a href="#!">
