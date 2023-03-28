@@ -2,12 +2,17 @@ import { useState, useEffect } from 'react';
 import classes from './ProductGroup.module.scss';
 import './ProductGroup.scss';
 import { useRecoilValue, useRecoilState } from 'recoil';
-import { useReadData } from '@/firebase/firestore';
+// import { useReadData } from '@/firebase/firestore';
 import { currentProductState } from '@/@atom/currentProductState';
 import ProductCard from '@/components/ProductCard/ProductCard';
 import ProductGroupFilter from './ProductGroupFilter';
-import PaginationPost from './../Pagination/PaginationPost';
+
+// import PaginationPost from './../Pagination/PaginationPost';
 import Pagination from 'react-js-pagination';
+import { categorySelectState } from '@/@atom/accordion/categorySelectState';
+import { brandSelectState } from '@/@atom/accordion/brandSelectState';
+import { allDataFilterSelect } from '@/utils/product_list/allDataFilterSelect';
+
 
 function loadProductsCard(contentsArray, ContentElem) {
   let elementsArr = [];
@@ -24,7 +29,8 @@ function loadProductsCard(contentsArray, ContentElem) {
   return elementsArr;
 }
 
-const ProductGroup = () => {
+const ProductGroup = ({ data }) => {
+
   const [page, setPage] = useState(1);
   const [items, setItems] = useState(6);
 
@@ -40,16 +46,63 @@ const ProductGroup = () => {
     setItems(Number(e.target.value));
   };
 
-  const { readData, data = null, error: readError } = useReadData(`products`);
-  useEffect(() => {
-    readData();
-  }, []);
 
+  const [categorySelectData, setCategorySelectData] =
+    useRecoilState(categorySelectState);
+  const [brandSelectData, setBrandSelectData] =
+    useRecoilState(brandSelectState);
+
+  // const { readData, data = null, error: readError } = useReadData(`products`);
+  // useEffect(() => {
+  //   readData();
+  // }, []);
+  let selectSortData = [];
+  let selectCategorySortData = [];
+  let selectBrandSortData = [];
+
+
+  useEffect(() => {
+    console.log('카테고리 데이터는 :', categorySelectData);
+    console.log('브랜드 데이터는 :', brandSelectData);
+  }, [categorySelectData, brandSelectData]);
+
+  if (data) {
+    selectCategorySortData = allDataFilterSelect(
+      data,
+      categorySelectData,
+      'category'
+    );
+    selectBrandSortData = allDataFilterSelect(data, brandSelectData, 'brand');
+    if (selectCategorySortData.length < 1 && selectBrandSortData.length < 1) {
+      selectSortData = data;
+    } else if (
+      selectCategorySortData.length > 0 &&
+      selectBrandSortData.length < 1
+    ) {
+      selectSortData = selectCategorySortData;
+    } else if (
+      selectCategorySortData.length < 1 &&
+      selectBrandSortData.length > 0
+    ) {
+      selectSortData = selectBrandSortData;
+    } else if (
+      selectCategorySortData.length > 0 &&
+      selectBrandSortData.length > 0
+    ) {
+      selectSortData = allDataFilterSelect(
+        selectCategorySortData,
+        selectBrandSortData.map((a) => a.brand),
+        'brand'
+      );
+    }
+  }
   if (!data) {
     console.log('no Data yet');
     return <div className={classes.ProductGroup}>no data yet</div>;
   } else {
-    const productCardsArr = loadProductsCard(data, ProductCard);
+    console.log('렌더링 되어지는 데이터 : ', selectCategorySortData);
+    const productCardsArr = loadProductsCard(selectSortData, ProductCard);
+
 
     return (
       <div className="ProductGroup">

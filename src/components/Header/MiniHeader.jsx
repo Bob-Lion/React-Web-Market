@@ -8,7 +8,7 @@ import HeaderIcon from '@/components/Header/HeaderIcon';
 
 import miniHeaderSearchIcon from '@/../public/Header/miniHeaderSearchIcon.svg';
 
-function MiniHeader () {
+function MiniHeader ({login,user}) {
   const miniHeaderRef=useRef();
   const [windowScrollY, setWindowScrollY] = useState(0);
   const [miniHeaderState,setMiniHeaderState]=useState(false);
@@ -35,7 +35,8 @@ function MiniHeader () {
     <>
       <div className={miniHeaderState ? classes.mini_header__fixed : classes.mini_header} ref={miniHeaderRef}>
         <section className={miniHeaderState ? classes.mini_header__bottome__fixed : classes.header__bottome}>
-          {miniHeaderState ? <HeaderCategory Fixed={miniHeaderState} /> : <HeaderCategory />}
+
+          <HeaderCategory />
 
           {miniHeaderState ? <HeaderNav Fixed={miniHeaderState} /> : <HeaderNav /> }
 
@@ -51,7 +52,7 @@ function MiniHeader () {
               </form>
             </div> : null}
 
-          {miniHeaderState ? <HeaderIcon Fixed={miniHeaderState} /> : null }
+          {miniHeaderState ? <HeaderIcon Fixed={miniHeaderState} login={login} user={{...user}}/> : null }
 
         </section>
       </div>

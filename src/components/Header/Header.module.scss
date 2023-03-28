@@ -44,14 +44,10 @@
       }
 
       & li{
-        font-size: 12px;
-        margin-left: 4px;
+        font-size: 11px;
+        height: 100%;
+        line-height: 250%;
 
-        &::after{
-          content: "l";
-          margin: 0 11px;
-          color:rgb(217, 217, 217);
-        }
         &:last-child::after{
           content: "";
           margin: 0 0;
@@ -59,7 +55,72 @@
       }
     }
   }
+
+  /* 로그인했을 때 (일반)유저이름  */
+.header__top__customer_username__logo{
+    margin-bottom: -4px;
+    padding: 3px 3px 3px 1px;
+    margin-right: 3px;
 }
+.header__top__customer_username span{
+  color: rgb(95, 0, 128);
+  border: 1px solid rgb(95, 0, 128);
+  padding: 0px 4px;
+    border-radius: 30px;
+    font-size: 10px;
+  }
+  .header__top__customer_register::after,
+  .header__top__customer_login::after,
+  .header__top__customer_service::after,
+  .header__top__customer_username::after{
+    content: "ㅣ";
+    margin: 0 5px;
+    color:rgb(217, 217, 217);
+  }
+  /* 로그인 했을 때 유저 이름에 뜨는 팝업 */
+  .header__top__customer_username{
+    position: relative;
+
+    &__popup{
+      position: absolute;
+      z-index: 2;
+      margin-left: -14px;
+      top: 29px;
+      padding: 2px 5px;
+      border: 1px solid rgb(221, 221, 221);
+      background-color: rgb(255, 255, 255);
+    }
+  }
+/* 고객센터 팝업 */
+}
+.header__top__customer_service{
+  position: relative;
+
+  &__popup{
+    position: absolute;
+    z-index: 2;
+    right: 0px;
+    top: 34px;
+    width: 120px;
+    padding: 3px 9px;
+    border: 1px solid rgb(221, 221, 221);
+    background-color: rgb(255, 255, 255);
+
+    & ul{
+      display: flex;
+    }
+    & li{
+    height: 24px;
+    line-height: 24px;
+    width: 100%;
+    }
+    & a{
+      width: 100%;
+      display: block;
+    }
+  }
+}
+
 
 /* 로고,마켓컬리,뷰티컬리 */
 .kurly_wrapper{
@@ -104,7 +165,7 @@
   }
 
   &__logo_icon{
-  padding-top: 14px;
+  padding-top: 7px;
   }
 
   &__new_icon{
@@ -115,7 +176,7 @@
 
 /* 검색어 */
 .kurly_search{
-  margin-left:58px;
+  margin-left:38px;
 
   &__form{
     width: 400px;
@@ -148,12 +209,159 @@
   }
 }
 
+/* location icon popup */
+.headerIcon_wrapper__map_icon{
+  position: relative;
+
+  /* 로그인 안했을 때 팝업 */
+  &__nologin_popup{  
+    position: absolute;
+    z-index: 2;
+    right: -115px;
+    top: 50px;
+    width: 270px;
+    padding: 15px 15px;
+    border: 1px solid rgb(221, 221, 221);
+    background-color: rgb(255, 255, 255);
+
+    &__img{
+      position: absolute;
+      top: -13px;
+      right: 123px;
+    }
+
+    & p{
+      margin-bottom: 5px;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    & p>span{
+      color: #5F0080;
+    }
+    
+    &__login_btn{
+      width: 80px;
+      height: 36px;
+      margin-right: 6px;
+      margin-top: 10px;
+      border: 2px solid #5F0080;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 550;
+      color: #5F0080;
+    }
+
+    &__location_search_btn{
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width:152px;
+      height: 36px;
+      margin-top: -1px;
+      background: #5F0080;
+      border-radius: 4px;
+      color: #FFFFFF;
+      font-size: 12px;
+      font-weight: 550;
+      vertical-align: middle;
+    }
+    
+    &__location_search_icon{
+      margin-left: -12px;
+      filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(160deg) brightness(107%) contrast(104%);
+    }
+  }
+}
+
+
+/* 로그인 했을 때 팝업 */
+/* 배송지 등록 안되어있을 때 */
+.headerIcon_wrapper__map_icon__login_popup__no_address{
+  position: absolute;
+  z-index: 2;
+  right: -115px;
+  top: 50px;
+  width: 270px;
+  padding: 15px 15px;
+  border: 1px solid rgb(221, 221, 221);
+  background-color: rgb(255, 255, 255);
+  
+  &__img{
+    position: absolute;
+    top: -13px;
+    right: 123px;
+  }
+
+  & p{
+    margin-bottom: 5px;
+    font-weight: 500;
+    font-size: 16px;
+    &>span{
+      color: #5F0080;
+    }
+    
+  }
+  &__location_search_btn{
+    width: 240px;
+    height: 36px;
+    margin-top: 5px;
+    border: 2px solid #5F0080;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 550;
+    background-color: #5F0080;
+    color: #FFFFFF;
+  }
+}
+
+/* 배송지 등록 되어있을 때 */
+.headerIcon_wrapper__map_icon__login_popup{
+  position: absolute;
+  z-index: 2;
+  right: -115px;
+  top: 50px;
+  width: 270px;
+  padding: 15px 15px;
+  border: 1px solid rgb(221, 221, 221);
+  background-color: rgb(255, 255, 255);
+
+  &__img{
+    position: absolute;
+    top: -13px;
+    right: 123px;
+  }
+
+  & p{
+    margin-bottom: 5px;
+    font-weight: 500;
+    font-size: 16px;
+
+    &>span{
+      color: #5F0080;
+    }
+  }
+  &__location_search_btn{
+    width: 240px;
+    height: 36px;
+    margin-top: 5px;
+    border: 2px solid #5F0080;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 550;
+    background-color: #ffffff;
+    color: #5F0080;
+  }
+}
+
+
 /* -----미니헤더----- */
 .mini_header{
   display: flex;
   justify-content:center;
   width: 100%;
   background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 3px 4px 0px;
   /* 미니헤더 고정  */
   &__fixed{
     position: relative;
@@ -163,7 +371,7 @@
     width: 100%;
     position: fixed;
     top: 0;
-    z-index: 2;
+    z-index: 10;
   }
   &__bottome__fixed{
     display: flex;
@@ -248,10 +456,9 @@
 
   &:hover{
     color: rgb(95, 0, 128);
-
-    &_img{
-      margin-right: 14px;
-    }
+  }
+  &_img{
+    margin-right: 14px;
   }
 }
 /* 카테고리 서브메뉴 */
@@ -262,10 +469,13 @@
   display: flex;
   position: absolute;
   top:100%;
+  z-index: 10;
   
   &__wrapper{
     background: #FFFFFF;
     border-top: 1px solid rgb(217, 217, 217);
+    border-bottom: 1px solid rgb(217, 217, 217);
+    border-left: 1px solid rgb(217, 217, 217);
 
     & li{
       display: flex;
@@ -280,11 +490,11 @@
       &>img{
         display: inline-block;
         /* 선물하기 아이콘 제외 모든 것 */
-        &>a{
-          display: flex;
-          width: 100%;
-          font-size: 15px;
-        }
+      }
+      &>a{
+        display: flex;
+        width: 100%;
+        font-size: 15px;
       }
     }
     // 나머지아이콘
@@ -304,6 +514,9 @@
   right: 53%;
   height: 881px;
   border-top: 1px solid rgb(217, 217, 217);
+  border-bottom: 1px solid rgb(217, 217, 217);
+  border-right: 1px solid rgb(217, 217, 217);
+  z-index: 10;
 
   & ul{
     height: 100%;
@@ -377,7 +590,7 @@
 
 /* 지울것들 밑은 */
 
-/* .test1{
+.test1{
 background-color: pink;
 height: 500px;
 }
@@ -396,4 +609,4 @@ height: 500px;
 .test5{
   background-color:cadetblue;
   height: 500px;
-} */
+}
