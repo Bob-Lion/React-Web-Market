@@ -38,7 +38,7 @@
   }
 
   &Section {
-    button {
+    &Write {
       position: absolute;
       background: #5f0080;
       border-radius: 4px;
@@ -58,15 +58,14 @@
   }
 
   &List {
-    background: orange;
     &Total {
       // @include flexboxCenter($justify: space-between);
       // color: $content;
-      background: pink;
       font-size: 12px;
       font-weight: 600px;
       padding-bottom: 20px;
       position: relative;
+      border-bottom: 1px solid #000;
       // display: flex;
       // flex-flow: row wrap;
       // justify-content: space-between;
@@ -95,7 +94,6 @@
       padding: 20px;
       font-size: 16px;
       font-weight: 600;
-      background: skyblue;
       border-bottom: 1px solid gray;
       // color: $content;
 
@@ -104,7 +102,7 @@
         margin-right: 9px;
         font-size: 12px;
         padding: 2px 6px;
-        background: gray;
+        background: #e1e1e1;
       }
     }
 
@@ -195,18 +193,16 @@
             border: 1px solid gray;
             border-radius: 4px;
           }
-        }
-        // &Left {
-        //   background: url('/css/img/Icon/Arrow-2.svg') no-repeat;
-        //   background-size: 60px;
-        //   background-position: -3px -94px;
-        // }
+          &Left {
+            background-size: 60px;
+            background-position: -3px -94px;
+          }
 
-        // &Right {
-        //   background: url('/css/img/Icon/Arrow-2.svg') no-repeat;
-        //   background-size: 60px;
-        //   background-position: -3px -140px;
-        // }
+          &Right {
+            background-size: 60px;
+            background-position: -3px -140px;
+          }
+        }
       }
     }
   }
