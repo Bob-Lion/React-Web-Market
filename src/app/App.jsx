@@ -10,7 +10,7 @@ import LoginPage from '@/pages/LoginPage/LoginPage';
 function App() {
   return (
     <div className="App">
-      <Routes>
+      <Routes basename={process.env.PUBLIC_URL}>
         <Route element={<HomePage />} path="/" />
         <Route element={<RegisterPage />} path="/register" />
         <Route element={<CartPage />} path="/cart" />
