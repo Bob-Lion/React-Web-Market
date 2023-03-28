@@ -199,10 +199,10 @@ export function ProductInfo() {
                     <button
                       ref={minusBtn}
                       aria-label="수량내리기"
+                      type="button"
                       className={
                         classes.productSelectPriceInfoQuantityDecreaseBtn
                       }
-                      type="button"
                       onClick={handleDecrease}
                     ></button>
                     <div
@@ -213,10 +213,10 @@ export function ProductInfo() {
                     <button
                       ref={plusBtn}
                       aria-label="수량올리기"
+                      type="button"
                       className={
                         classes.productSelectPriceInfoQuantityIncreaseBtn
                       }
-                      type="button"
                       onClick={handleIncrease}
                     ></button>
                   </div>
@@ -277,14 +277,16 @@ export function ProductInfo() {
 
         <div>
           <img alt="디테일 이미지 1" src={CurrentProduct.detailImg[0]} />
-          <p>{CurrentProduct.description}</p>
-          <p>{CurrentProduct.name}</p>
-          <p>{CurrentProduct.detailInfo.detailedDescription}</p>
+          <p className={classes.description}>{CurrentProduct.description}</p>
+          <p className={classes.name}>{CurrentProduct.name}</p>
+          <p className={classes.detailedDescription}>
+            {CurrentProduct.detailInfo.detailedDescription}
+          </p>
         </div>
 
         <div>
           <img alt="디테일 이미지 2" src={CurrentProduct.detailImg[1]} />
-          <p>WHY BOBSA</p>
+          <p className={classes.why}>WHY BOBSA</p>
           <img alt="" src="img/ProductDetail/WHY-BOBSA.png" />
         </div>
       </section>
