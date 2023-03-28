@@ -138,10 +138,10 @@ $PrimaryColor: rgb(161, 95, 4);
       &checkButton {
         display: flex;
         align-items: center;
-        margin-right: 8px;
       }
 
       &Name {
+        margin-left: 8px;
         margin-right: 4px;
         font-weight: 400;
         font-size: 14px;

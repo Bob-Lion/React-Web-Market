@@ -76,18 +76,21 @@ export function AccordionList({
 
   return (
     <li className={`${styles.accordionList} ${modalStyle}`}>
-      <a
+      {/* <a
         className={`.willRouter ${styles.accordionListItem}`}
         href="#"
+        
+      > */}
+      <button
+        className={styles.accordionListItemcheckButton}
+        type="button"
         onClick={handleClickCheck}
       >
-        <button className={styles.accordionListItemcheckButton} type="button">
-          <img
-            alt="해당 리스트 체크하는 버튼"
-            src={selectData.includes(name) ? click_check_on : click_check_off}
-            // src={check}s
-          ></img>
-        </button>
+        <img
+          alt="해당 리스트 체크하는 버튼"
+          src={selectData.includes(name) ? click_check_on : click_check_off}
+          // src={check}s
+        ></img>
         <span
           ref={hoverSpan}
           className={styles.accordionListItemName}
@@ -97,7 +100,8 @@ export function AccordionList({
           {name}
         </span>
         <span className={styles.accordionListItemCount}>{count}</span>
-      </a>
+      </button>
+      {/* </a> */}
     </li>
   );
 }
