@@ -125,7 +125,7 @@ const ProductGroup = ({ data }) => {
 
     return (
       <div ref={zIndexCtrl} className="ProductGroup">
-        <ProductGroupFilter />
+        <ProductGroupFilter data={selectSortData} />
         {productCardsArr
           .slice(items * (page - 1), items * (page - 1) + items)
           .map((card) => {

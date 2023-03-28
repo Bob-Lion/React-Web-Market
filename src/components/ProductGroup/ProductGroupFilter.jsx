@@ -3,22 +3,19 @@ import classes from './ProductGroup.module.scss';
 import { useRecoilValue } from 'recoil';
 import { useReadData } from '@/firebase/firestore';
 
-const ProductGroupFilter = () => {
-  const { readData, data = null, error: readError } = useReadData(`products`);
-  useEffect(() => {
-    readData();
-  }, []);
-  const dataL = data || [];
+const ProductGroupFilter = ({ data }) => {
+  // const dataL = data || [];
 
   return (
     <div className={classes.Group}>
       <div className={classes.GroupHeader}>
-        <div className={classes.GroupHeaderTotalCount}>총 {dataL.length}건</div>
+        <div className={classes.GroupHeaderTotalCount}>총 {data.length}건</div>
         <div className={classes.GroupHeaderButton}>
           <a className={classes.GroupHeaderButtonHot} href="#!">
             <span>추천순</span>
           </a>
           <svg
+            className={classes.divider__sort__img}
             fill="none"
             height="20"
             viewBox="0 0 14 20"
@@ -37,31 +34,31 @@ const ProductGroupFilter = () => {
               fill="#CCCCCC"
             />
           </svg>
-          <span aria-hidden="true" className="divider__sort">
+          <span aria-hidden="true" className={classes.divider__sort}>
             |
           </span>
           <a className={classes.GroupHeaderButtonNew} href="#!">
             <span>신상품순</span>
           </a>
-          <span aria-hidden="true" className="divider__sort">
+          <span aria-hidden="true" className={classes.divider__sort}>
             |
           </span>
           <a className={classes.GroupHeaderButtonSale} href="#!">
             <span>판매량순</span>
           </a>
-          <span aria-hidden="true" className="divider__sort">
+          <span aria-hidden="true" className={classes.divider__sort}>
             |
           </span>
           <a className={classes.GroupHeaderButtonEvent} href="#!">
             <span>혜택순</span>
           </a>
-          <span aria-hidden="true" className="divider__sort">
+          <span aria-hidden="true" className={classes.divider__sort}>
             |
           </span>
           <a className={classes.GroupHeaderButtonRow} href="#!">
             <span>낮은 가격순</span>
           </a>
-          <span aria-hidden="true" className="divider__sort">
+          <span aria-hidden="true" className={classes.divider__sort}>
             |
           </span>
           <a className={classes.GroupHeaderButtonHigh} href="#!">

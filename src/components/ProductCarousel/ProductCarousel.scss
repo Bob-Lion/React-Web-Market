@@ -1,77 +1,75 @@
-
-.ProductCarousel{
+.ProductCarousel {
   width: 1050px;
   margin: 0 auto;
-  .ProductCard{
+  .ProductCard {
     position: relative;
     display: flex;
     flex-flow: column nowrap;
 
     // height: 100%;
 
-    &MainWrapper{
+    &MainWrapper {
       padding: unset;
       text-align: left;
 
-      figure{
+      figure {
         overflow: hidden;
         position: relative;
         width: 249px;
         height: 320px;
         margin-bottom: 14px;
-        
-        img{  
-          background: rgb(161 95 4); 
+
+        img {
+          background: rgb(161 95 4);
           width: 249px;
           height: 320px;
           transition: 600ms;
         }
 
-        img:hover{
+        img:hover {
           transition: 860ms;
-          transform: scale(1.05,1.05);
+          transform: scale(1.05, 1.05);
         }
       }
 
-      .ProductCardInfoWrapper{
+      .ProductCardInfoWrapper {
         bottom: 0;
         min-height: 90px;
         display: flex;
         flex-flow: column nowrap;
         font-size: 14px;
-        
-        mark{
+
+        mark {
           display: block;
           background-color: #fff;
-        }  
-  
-        .ProductCardShippingInfo{
+        }
+
+        .ProductCardShippingInfo {
           width: 42px;
           height: 18px;
-        
+
           font-style: normal;
           font-weight: 600;
           font-size: 12px;
           line-height: 150%;
-        
+
           color: #898989;
-         
+
           flex: none;
           order: 0;
           flex-grow: 0;
-          
         }
-  
-        .ProductCardProductName{
+
+        .ProductCardProductName {
           width: 239px;
-          font-weight: bold ;
+          font-weight: bold;
           font-size: 18px;
           line-height: 24px;
           order: 1;
           color: #333333;
         }
 
-        .ProductCardProductDetail{
+        .ProductCardProductDetail {
           display: block;
           display: none;
           width: 239px;
@@ -82,8 +80,8 @@
           order: 2;
           flex-grow: 0;
         }
-  
-        .ProductCardPriceWrapper{
+
+        .ProductCardPriceWrapper {
           margin-top: 8px;
           display: flex;
           flex-flow: row nowrap;
@@ -93,21 +91,21 @@
           line-height: 24px;
           font-size: 18px;
           font-weight: 600;
-          
+
           flex: none;
           order: 3;
           flex-grow: 0;
 
-          .ProductCardDiscountRate{
+          .ProductCardDiscountRate {
             display: inline-block;
             margin-right: 8px;
-            color: #FA622F;
+            color: #fa622f;
             flex: none;
             order: 0;
             flex-grow: 0;
           }
 
-          .ProductCardSellPrice{
+          .ProductCardSellPrice {
             display: inline-block;
             color: #333333;
             flex: none;
@@ -115,8 +113,8 @@
             flex-grow: 0;
           }
         }
-  
-        .ProductCardUndiscountedPrice{
+
+        .ProductCardUndiscountedPrice {
           display: flex;
 
           height: 21px;
@@ -128,10 +126,9 @@
           flex-grow: 0;
           color: #b5b5b5;
           text-decoration: line-through;
-
         }
 
-        .ProductCardReviewCount{
+        .ProductCardReviewCount {
           margin-top: 8px;
           display: flex;
           order: 5;
@@ -141,56 +138,54 @@
           line-height: 17px;
           gap: 2px;
 
-          &Icon{
+          &Icon {
             width: 15px;
           }
         }
-  
-        .ProductCardBadgeWrapper{
+
+        .ProductCardBadgeWrapper {
           margin-top: 8px;
           // display: flex;
           display: none;
           align-items: flex-start;
           gap: 8px;
-          
+
           width: 123px;
           height: 26px;
           order: 5;
           flex-grow: 0;
-          
-          mark{
+
+          mark {
             display: flex;
             justify-content: center;
             text-align: center;
             padding: 4px;
             gap: 4px;
-            
+
             width: 65px;
             height: 26px;
             font-weight: 600;
             font-size: 12px;
-            line-height:160%;
-            background: #E1E1E1;
+            line-height: 160%;
+            background: #e1e1e1;
             border-radius: 4px;
-          
+
             flex: none;
             flex-grow: 0;
           }
-          .ProductCardBobOnly::after{
-            color: #5F0080;
-            content: "Bob only";
+          .ProductCardBobOnly::after {
+            color: rgb(161, 95, 4);
+            content: 'Bob only';
           }
-          .ProductCardLimitedProducts::after{
+          .ProductCardLimitedProducts::after {
             color: #333333;
-            content: "한정수량";
+            content: '한정수량';
           }
         }
-  
       }
     }
 
-
-    .AddCartShortcutBtn{
+    .AddCartShortcutBtn {
       position: absolute;
       top: 259px;
       left: 188px;

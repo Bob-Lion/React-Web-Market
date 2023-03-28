@@ -23,6 +23,6 @@
             <use fill="#FFF" xlink:href="#b"/>
         </g>
         <path d="M55 5H5v50h50z"/>
-        <path stroke="#5F0080" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m32 38-8-7.817L31.723 22"/>
+        <path stroke="rgb(161, 95, 4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m32 38-8-7.817L31.723 22"/>
     </g>
 </svg>
