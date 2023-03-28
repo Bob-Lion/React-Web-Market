@@ -4,7 +4,7 @@ import '@/app/App.css'
 import { isLoggedIn } from '@/@atom/Header/loginState';
 import {currentUserState} from '@/@atom/user/currentUserState';
 import classes from '@/components/Header/Header.module.scss';
-import { Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 import HeaderTopbanner from '@/components/Header/HeaderTopbanner';
 import HeaderIcon from '@/components/Header/HeaderIcon';

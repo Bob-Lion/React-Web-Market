@@ -14,8 +14,9 @@ function MiniHeader ({login,user}) {
   const [miniHeaderState,setMiniHeaderState]=useState(false);
 
   const handleScroll= ()=>{
-    if(windowScrollY > 140 ){
+    if(windowScrollY > 145 ){
       setWindowScrollY(window.pageYOffset)
+      console.log(windowScrollY)
       setMiniHeaderState(true);
       } 
       else {
