@@ -111,7 +111,7 @@ $PrimaryColor: rgb(161, 95, 4);
           .ProductCardDiscountRate {
             display: inline-block;
             margin-right: 8px;
-            color: $PrimaryColor;
+            color: #fa622f;
             flex: none;
             order: 0;
             flex-grow: 0;
@@ -219,7 +219,7 @@ $PrimaryColor: rgb(161, 95, 4);
       }
       a:hover,
       a.active {
-        color: blue;
+        color: rgb(161, 95, 4);
       }
     }
     li:first-child {
