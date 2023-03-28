@@ -5,6 +5,8 @@ import styles from './ProductListNav.module.scss';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { BrandSortBtn } from './BrandSortBtn';
 import { NavDetailModal } from './NavDetailModal';
+import { useSetRecoilState } from 'recoil';
+import { modalVisibleState } from '@/@atom/accordion/modalVisibleState';
 // 아코디언 목록 한 세트
 export function AccordionSet({ data, listName, selectData, setSelectData }) {
   const [sortData, setSortData] = useState(data[0]);
@@ -13,6 +15,7 @@ export function AccordionSet({ data, listName, selectData, setSelectData }) {
   const accordionList = useRef();
   const arrowReverse = useRef();
   const [modalVisible, setModalVisible] = useState(false);
+  const setModalVisibleCtrlState = useSetRecoilState(modalVisibleState);
 
   // 상품 갯수가 n개 이상이면 더보기 버튼 생성
   const more = sortData.length >= 8;
@@ -83,6 +86,7 @@ export function AccordionSet({ data, listName, selectData, setSelectData }) {
 
   const handleModalVisible = () => {
     setModalVisible(true);
+    setModalVisibleCtrlState(true);
   };
 
   return (

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import classes from './ProductGroup.module.scss';
 import './ProductGroup.scss';
 import { useRecoilValue, useRecoilState } from 'recoil';
@@ -12,7 +12,8 @@ import Pagination from 'react-js-pagination';
 import { categorySelectState } from '@/@atom/accordion/categorySelectState';
 import { brandSelectState } from '@/@atom/accordion/brandSelectState';
 import { allDataFilterSelect } from '@/utils/product_list/allDataFilterSelect';
-
+import { accordionModalState } from '@/@atom/accordion/accordionModalState';
+import { modalVisibleState } from '@/@atom/accordion/modalVisibleState';
 
 function loadProductsCard(contentsArray, ContentElem) {
   let elementsArr = [];
@@ -30,9 +31,12 @@ function loadProductsCard(contentsArray, ContentElem) {
 }
 
 const ProductGroup = ({ data }) => {
-
   const [page, setPage] = useState(1);
   const [items, setItems] = useState(6);
+  const zIndexCtrl = useRef();
+
+  const [accordionModal, setAccordionModal] =
+    useRecoilState(accordionModalState);
 
   const [currentProduct, setCurrentProduct] =
     useRecoilState(currentProductState);
@@ -46,11 +50,13 @@ const ProductGroup = ({ data }) => {
     setItems(Number(e.target.value));
   };
 
-
   const [categorySelectData, setCategorySelectData] =
     useRecoilState(categorySelectState);
   const [brandSelectData, setBrandSelectData] =
     useRecoilState(brandSelectState);
+
+  const [modalVisibleCtrlState, setModalVisibleCtrlState] =
+    useRecoilState(modalVisibleState);
 
   // const { readData, data = null, error: readError } = useReadData(`products`);
   // useEffect(() => {
@@ -59,7 +65,6 @@ const ProductGroup = ({ data }) => {
   let selectSortData = [];
   let selectCategorySortData = [];
   let selectBrandSortData = [];
-
 
   useEffect(() => {
     console.log('카테고리 데이터는 :', categorySelectData);
@@ -96,6 +101,23 @@ const ProductGroup = ({ data }) => {
       );
     }
   }
+
+  useEffect(() => {
+    console.log(modalVisibleCtrlState);
+  }, [modalVisibleCtrlState]);
+
+  useEffect(() => {
+    if (zIndexCtrl.current) {
+      if (!modalVisibleCtrlState) {
+        console.log('z: ', zIndexCtrl.current);
+        zIndexCtrl.current.style.zIndex = 1;
+      } else {
+        console.log('z: ', zIndexCtrl.current);
+        zIndexCtrl.current.style.zIndex = -1;
+      }
+    }
+  }, [data, modalVisibleCtrlState]);
+
   if (!data) {
     console.log('no Data yet');
     return <div className={classes.ProductGroup}>no data yet</div>;
@@ -103,9 +125,8 @@ const ProductGroup = ({ data }) => {
     console.log('렌더링 되어지는 데이터 : ', selectCategorySortData);
     const productCardsArr = loadProductsCard(selectSortData, ProductCard);
 
-
     return (
-      <div className="ProductGroup">
+      <div ref={zIndexCtrl} className="ProductGroup">
         <ProductGroupFilter />
         {productCardsArr
           .slice(items * (page - 1), items * (page - 1) + items)
