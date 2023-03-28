@@ -1,4 +1,6 @@
 //product card : group 안에 있는 productcard class 내에서 적용하기
+$TextColor: rgb(51, 51, 51);
+$PrimaryColor: rgb(161, 95, 4);
 
 .ProductGroup {
   display: flex;
@@ -31,7 +33,7 @@
         margin-bottom: 14px;
 
         img {
-          background: rgb(161 95 4);
+          background: $PrimaryColor;
           width: 249px;
           height: 320px;
           transition: 600ms;
@@ -168,7 +170,7 @@
             flex-grow: 0;
           }
           .ProductCardBobOnly::after {
-            color: #5f0080;
+            color: $PrimaryColor;
             content: 'Bob only';
           }
           .ProductCardLimitedProducts::after {
@@ -217,7 +219,7 @@
       }
       a:hover,
       a.active {
-        color: blue;
+        color: rgb(161, 95, 4);
       }
     }
     li:first-child {

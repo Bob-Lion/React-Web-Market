@@ -1,55 +1,58 @@
- /* -----탑배너----- */
-.topbanner{
+/* -----탑배너----- */
+$TextColor: rgb(51, 51, 51);
+$PrimaryColor: rgb(161, 95, 4);
+
+.topbanner {
   display: flex;
   justify-content: center;
-  background-color: hwb(285 0% 50%);
+  background-color: $PrimaryColor;
 
-  &__wrapper{
+  &__wrapper {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
     width: 1050px;
   }
-  &__text{
-    color: #FFFFFF;
+  &__text {
+    color: #ffffff;
   }
-  &__close_btn{
-    margin-left:341px;
+  &__close_btn {
+    margin-left: 341px;
   }
 }
 
 /* -----헤더(전체)----- */
-.header{
+.header {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
   /* --Section(회원가입,로그인,고객센터),[(로고,마켓컬리,뷰티컬리),검색어,아이콘3개]-- */
-  &__top{
+  &__top {
     width: 1050px;
     height: 100px;
 
     /* 회원가입,로그인,고객센터 */
-    &__customer{
+    &__customer {
       display: flex;
       justify-content: flex-end;
       align-items: center;
       height: 36px;
       font-weight: 600;
-      
-      &_register{
-        color:rgb(95, 0, 128);
+
+      &_register {
+        color: $PrimaryColor;
       }
 
-      & li{
+      & li {
         font-size: 11px;
         height: 100%;
         line-height: 250%;
 
-        &:last-child::after{
-          content: "";
+        &:last-child::after {
+          content: '';
           margin: 0 0;
         }
       }
@@ -57,31 +60,31 @@
   }
 
   /* 로그인했을 때 (일반)유저이름  */
-.header__top__customer_username__logo{
+  .header__top__customer_username__logo {
     margin-bottom: -4px;
     padding: 3px 3px 3px 1px;
     margin-right: 3px;
-}
-.header__top__customer_username span{
-  color: rgb(95, 0, 128);
-  border: 1px solid rgb(95, 0, 128);
-  padding: 0px 4px;
+  }
+  .header__top__customer_username span {
+    color: rgb(161, 95, 4);
+    border: 1px solid $PrimaryColor;
+    padding: 0px 4px;
     border-radius: 30px;
     font-size: 10px;
   }
   .header__top__customer_register::after,
   .header__top__customer_login::after,
   .header__top__customer_service::after,
-  .header__top__customer_username::after{
-    content: "ㅣ";
+  .header__top__customer_username::after {
+    content: 'ㅣ';
     margin: 0 5px;
-    color:rgb(217, 217, 217);
+    color: rgb(217, 217, 217);
   }
   /* 로그인 했을 때 유저 이름에 뜨는 팝업 */
-  .header__top__customer_username{
+  .header__top__customer_username {
     position: relative;
 
-    &__popup{
+    &__popup {
       position: absolute;
       z-index: 2000;
       margin-left: -14px;
@@ -91,12 +94,12 @@
       background-color: rgb(255, 255, 255);
     }
   }
-/* 고객센터 팝업 */
+  /* 고객센터 팝업 */
 }
-.header__top__customer_service{
+.header__top__customer_service {
   position: relative;
 
-  &__popup{
+  &__popup {
     position: absolute;
     z-index: 2000;
     right: 0px;
@@ -106,115 +109,123 @@
     border: 1px solid rgb(221, 221, 221);
     background-color: rgb(255, 255, 255);
 
-    & ul{
+    & ul {
       display: flex;
     }
-    & li{
-    height: 24px;
-    line-height: 24px;
-    width: 100%;
+    & li {
+      height: 24px;
+      line-height: 24px;
+      width: 100%;
     }
-    & a{
+    & a {
       width: 100%;
       display: block;
     }
   }
 }
 
-
 /* 로고,마켓컬리,뷰티컬리 */
-.kurly_wrapper{
+.kurly_wrapper {
   display: flex;
   height: 63px;
   align-items: center;
   font-weight: 600;
 }
-.kurly{
+.kurly {
   display: flex;
 
-  & li{
+  & li {
     display: flex;
-    justify-content : center;
-    align-items : center;
+    justify-content: center;
+    align-items: center;
     font-weight: 500;
     font-size: 18px;
 
     /* 마켓컬리 */
-    &:nth-child(2){
-      margin-left:22px;
-      color:rgb(95, 0, 128);
-      &:hover{
-        color: rgb(95, 0, 128);
+    &:nth-child(2) {
+      margin-left: 22px;
+      color: $PrimaryColor;
+      &:hover {
+        color: $PrimaryColor;
       }
     }
     /* 뷰티컬리 */
-    &:nth-child(3){
+    &:nth-child(3) {
       margin-left: 9px;
       color: rgb(181, 181, 181);
 
-      & ::before{
-        content: "l";
+      & ::before {
+        content: 'l';
         margin-right: 9px;
         color: rgb(181, 181, 181);
       }
     }
   }
 
-  &__beauty:hover{
-    color: rgb(95, 0, 128);
+  &__beauty:hover {
+    color: $PrimaryColor;
   }
 
-  &__logo_icon{
-  padding-top: 7px;
+  &logo_container {
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
   }
 
-  &__new_icon{
+  &__logo_icon {
+    padding-top: 7px;
+    width: 100px;
+    height: 100px;
+    // background-image: '@/../public/Header/bobLion.svg';
+  }
+
+  &__new_icon {
     margin-top: -12px;
     margin-left: 3px;
   }
 }
 
 /* 검색어 */
-.kurly_search{
-  margin-left:38px;
+.kurly_search {
+  margin-left: 38px;
 
-  &__form{
+  &__form {
     width: 400px;
     display: flex;
-    border: 1px solid rgb(95, 0, 128);
+    border: 1px solid $PrimaryColor;
     border-radius: 6px;
 
-    & input{
-      width:346px;
-      padding-left:14px;
+    & input {
+      width: 346px;
+      padding-left: 14px;
 
-      &:focus{
+      &:focus {
         outline: none;
       }
-      &[type=search]::-webkit-search-cancel-button {
+      &[type='search']::-webkit-search-cancel-button {
         -webkit-appearance: none;
       }
     }
   }
 }
 /* 아이콘3개 */
-.headerIcon_wrapper{
+.headerIcon_wrapper {
   display: flex;
   width: 148px;
-  gap:0px 20px;
+  gap: 0px 20px;
   margin-left: 183px;
 
-  & li:nth-child(2){
+  & li:nth-child(2) {
     margin-left: 5px;
   }
 }
 
 /* location icon popup */
-.headerIcon_wrapper__map_icon{
+.headerIcon_wrapper__map_icon {
   position: relative;
 
   /* 로그인 안했을 때 팝업 */
-  &__nologin_popup{  
+  &__nologin_popup {
     position: absolute;
     z-index: 2000;
     right: -115px;
@@ -224,60 +235,60 @@
     border: 1px solid rgb(221, 221, 221);
     background-color: rgb(255, 255, 255);
 
-    &__img{
+    &__img {
       position: absolute;
       top: -13px;
       right: 123px;
     }
 
-    & p{
+    & p {
       margin-bottom: 5px;
       font-weight: 500;
       font-size: 16px;
     }
 
-    & p>span{
-      color: #5F0080;
+    & p > span {
+      color: $PrimaryColor;
     }
-    
-    &__login_btn{
+
+    &__login_btn {
       width: 80px;
       height: 36px;
       margin-right: 6px;
       margin-top: 10px;
-      border: 2px solid #5F0080;
+      border: 2px solid $PrimaryColor;
       border-radius: 4px;
       font-size: 12px;
       font-weight: 550;
-      color: #5F0080;
+      color: $PrimaryColor;
     }
 
-    &__location_search_btn{
+    &__location_search_btn {
       display: inline-flex;
       justify-content: center;
       align-items: center;
-      width:152px;
+      width: 152px;
       height: 36px;
       margin-top: -1px;
-      background: #5F0080;
+      background: $PrimaryColor;
       border-radius: 4px;
-      color: #FFFFFF;
+      color: #ffffff;
       font-size: 12px;
       font-weight: 550;
       vertical-align: middle;
     }
-    
-    &__location_search_icon{
+
+    &__location_search_icon {
       margin-left: -12px;
-      filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(160deg) brightness(107%) contrast(104%);
+      filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(160deg)
+        brightness(107%) contrast(104%);
     }
   }
 }
 
-
 /* 로그인 했을 때 팝업 */
 /* 배송지 등록 안되어있을 때 */
-.headerIcon_wrapper__map_icon__login_popup__no_address{
+.headerIcon_wrapper__map_icon__login_popup__no_address {
   position: absolute;
   z-index: 2000;
   right: -115px;
@@ -286,37 +297,36 @@
   padding: 15px 15px;
   border: 1px solid rgb(221, 221, 221);
   background-color: rgb(255, 255, 255);
-  
-  &__img{
+
+  &__img {
     position: absolute;
     top: -13px;
     right: 123px;
   }
 
-  & p{
+  & p {
     margin-bottom: 5px;
     font-weight: 500;
     font-size: 16px;
-    &>span{
-      color: #5F0080;
+    & > span {
+      color: $PrimaryColor;
     }
-    
   }
-  &__location_search_btn{
+  &__location_search_btn {
     width: 240px;
     height: 36px;
     margin-top: 5px;
-    border: 2px solid #5F0080;
+    border: 2px solid $PrimaryColor;
     border-radius: 4px;
     font-size: 12px;
     font-weight: 550;
-    background-color: #5F0080;
-    color: #FFFFFF;
+    background-color: $PrimaryColor;
+    color: #ffffff;
   }
 }
 
 /* 배송지 등록 되어있을 때 */
-.headerIcon_wrapper__map_icon__login_popup{
+.headerIcon_wrapper__map_icon__login_popup {
   position: absolute;
   z-index: 2000;
   right: -115px;
@@ -326,47 +336,46 @@
   border: 1px solid rgb(221, 221, 221);
   background-color: rgb(255, 255, 255);
 
-  &__img{
+  &__img {
     position: absolute;
     top: -13px;
     right: 123px;
   }
 
-  & p{
+  & p {
     margin-bottom: 5px;
     font-weight: 500;
     font-size: 16px;
 
-    &>span{
-      color: #5F0080;
+    & > span {
+      color: $PrimaryColor;
     }
   }
-  &__location_search_btn{
+  &__location_search_btn {
     width: 240px;
     height: 36px;
     margin-top: 5px;
-    border: 2px solid #5F0080;
+    border: 2px solid$PrimaryColor;
     border-radius: 4px;
     font-size: 12px;
     font-weight: 550;
     background-color: #ffffff;
-    color: #5F0080;
+    color: $PrimaryColor;
   }
 }
 
-
 /* -----미니헤더----- */
-.mini_header{
+.mini_header {
   display: flex;
-  justify-content:center;
+  justify-content: center;
   width: 100%;
   background-color: rgb(255, 255, 255);
   box-shadow: rgba(0, 0, 0, 0.07) 0px 3px 4px 0px;
   /* 미니헤더 고정  */
-  &__fixed{
+  &__fixed {
     position: relative;
     display: flex;
-    justify-content:center;
+    justify-content: center;
     background-color: rgb(255, 255, 255);
     width: 100%;
     position: fixed;
@@ -374,33 +383,33 @@
     z-index: 100;
     box-shadow: rgba(0, 0, 0, 0.07) 0px 3px 4px 0px;
   }
-  &__bottome__fixed{
+  &__bottome__fixed {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 1050px;
     height: 56px;
   }
-  &__category__btn_fixed{
+  &__category__btn_fixed {
     font-size: 16px;
     font-weight: 600;
     width: 120px;
     margin-left: -11px;
   }
-  &__nav{
+  &__nav {
     width: 480px;
     display: flex;
     align-items: center;
     margin-left: 30px;
 
-    &__fixed{
-    font-size: 16px;
-    font-weight: 600;
-    width: 120px;
-    text-align: center;
+    &__fixed {
+      font-size: 16px;
+      font-weight: 600;
+      width: 120px;
+      text-align: center;
     }
   }
-  &__search{
+  &__search {
     display: flex;
     padding-left: 14px;
     border-radius: 6px;
@@ -409,30 +418,30 @@
     height: 36px;
     background-color: rgb(244, 244, 244);
 
-    &__form{
+    &__form {
       width: 400px;
       display: flex;
       border: 1px solid rgb(244, 244, 244);
       border-radius: 6px;
 
-      & input{
-          width: 185px;
-          padding-right: 22px;
-          font-weight: 500;
-          font-size: 13px;
-          color: rgb(51, 51, 51);
-          line-height: 18px;
+      & input {
+        width: 185px;
+        padding-right: 22px;
+        font-weight: 500;
+        font-size: 13px;
+        color: rgb(51, 51, 51);
+        line-height: 18px;
 
-          &:focus{
-            outline: none;
-          }
-          &[type=search]::-webkit-search-cancel-button {
-            -webkit-appearance: none;
-          }
+        &:focus {
+          outline: none;
+        }
+        &[type='search']::-webkit-search-cancel-button {
+          -webkit-appearance: none;
+        }
       }
     }
   }
-  &Icon_wrapper{
+  &Icon_wrapper {
     display: flex;
     width: 148px;
     gap: 0px 20px;
@@ -440,7 +449,7 @@
 }
 /* 미니헤더 끝 */
 
-.header__bottome{
+.header__bottome {
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -449,36 +458,36 @@
   height: 56px;
 }
 /* 카테고리 */
-.header_category__btn{
+.header_category__btn {
   height: 56px;
   font-size: 16px;
   font-weight: 600;
   color: rgb(51, 51, 51);
 
-  &:hover{
-    color: rgb(95, 0, 128);
+  &:hover {
+    color: $PrimaryColor;
   }
-  &_img{
+  &_img {
     margin-right: 14px;
   }
 }
 /* 카테고리 서브메뉴 */
-.mini_header__bottome__fixed{
+.mini_header__bottome__fixed {
   position: relative;
 }
-.header_catecory__nav{
+.header_catecory__nav {
   display: flex;
   position: absolute;
-  top:100%;
+  top: 100%;
   z-index: 10;
-  
-  &__wrapper{
-    background: #FFFFFF;
+
+  &__wrapper {
+    background: #ffffff;
     border-top: 1px solid rgb(217, 217, 217);
     border-bottom: 1px solid rgb(217, 217, 217);
     border-left: 1px solid rgb(217, 217, 217);
 
-    & li{
+    & li {
       display: flex;
       gap: 12px;
       align-items: center;
@@ -486,20 +495,20 @@
       height: 40px;
       padding-left: 13px;
       line-height: 260%;
-      
+
       /* 선물하기 아이콘 */
-      &>img{
+      & > img {
         display: inline-block;
         /* 선물하기 아이콘 제외 모든 것 */
       }
-      &>a{
+      & > a {
         display: flex;
         width: 100%;
         font-size: 15px;
       }
     }
     // 나머지아이콘
-    & a>img{
+    & a > img {
       display: inline-block;
       padding-right: 12px;
     }
@@ -507,11 +516,11 @@
 }
 
 /* 카테고리 side nav 메뉴 */
-.header_catecory__side_nav__wrapper{
+.header_catecory__side_nav__wrapper {
   background: rgb(244, 244, 244);
   position: absolute;
   width: 247px;
-  top:100%;
+  top: 100%;
   right: 53%;
   height: 881px;
   border-top: 1px solid rgb(217, 217, 217);
@@ -519,10 +528,10 @@
   border-right: 1px solid rgb(217, 217, 217);
   z-index: 10;
 
-  & ul{
+  & ul {
     height: 100%;
 
-    &>li{
+    & > li {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -530,42 +539,41 @@
       height: 100%;
       width: 100%;
       height: 40px;
-      gap:12px;
+      gap: 12px;
       padding-left: 13px;
       font-size: 15px;
     }
   }
 }
 
-
 /* hover시 효과 */
-.header_catecory__nav__wrapper li:hover{
+.header_catecory__nav__wrapper li:hover {
   background: rgb(244, 244, 244);
 }
-.header_catecory__nav__wrapper li>a:hover{
-  filter: invert(17%) sepia(82%) saturate(4420%) hue-rotate(281deg) brightness(52%) contrast(112%);
+.header_catecory__nav__wrapper li > a:hover {
+  filter: invert(17%) sepia(82%) saturate(4420%) hue-rotate(28deg)
+    brightness(52%) contrast(112%);
 }
-.header_catecory__side_nav__wrapper ul>li:hover a{
-  color: rgb(95, 0, 128);
-  border-bottom: 1px solid rgb(95, 0, 128);
+.header_catecory__side_nav__wrapper ul > li:hover a {
+  color: $PrimaryColor;
+  border-bottom: 1px solid $PrimaryColor;
 }
-
 
 /* 신상품,베스트,알뜰쇼핑,특가 */
-.header_nav{
+.header_nav {
   display: flex;
   align-items: center;
-  
-  & li{
+
+  & li {
     width: 150px;
     text-align: center;
     font-size: 16px;
     font-weight: 600;
     color: rgb(51, 51, 51);
 
-    & :hover{
-      color: rgb(95, 0, 128);
-      border-bottom: 1px solid rgb(95, 0, 128);
+    & :hover {
+      color: $PrimaryColor;
+      border-bottom: 1px solid $PrimaryColor;
     }
   }
 }
@@ -578,36 +586,9 @@
   font-weight: 600;
   padding: 6px 16px;
 
-  & span{
+  & span {
     display: inline-block;
     font-weight: 600;
-    color: rgb(95, 0, 128);
+    color: $PrimaryColor;
   }
-}
-
-
-
-
-
-/* 지울것들 밑은 */
-
-.test1{
-background-color: pink;
-height: 500px;
-}
-.test2{
-  background-color: gold;
-  height: 500px;
-}
-.test3{
-  background-color:deepskyblue;
-  height: 500px;
-}
-.test4{
-  background-color:rosybrown;
-  height: 500px;
-}
-.test5{
-  background-color:cadetblue;
-  height: 500px;
 }
