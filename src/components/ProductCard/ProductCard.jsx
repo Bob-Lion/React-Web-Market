@@ -3,14 +3,21 @@ import classes from './ProductCard.module.scss';
 import { useSetRecoilState } from 'recoil';
 import { currentProductState } from '@/@atom/currentProductState';
 import { changePriceNumToString } from '@/utils/priceNumberToString';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProductCard(props) {
   const { content } = props;
 
   const setCurrentProductState = useSetRecoilState(currentProductState);
 
+  const navigate = useNavigate();
+  const goToProductDetail = () => {
+    navigate('/productDetail');
+  };
+
   function handleOnClick() {
     setCurrentProductState(content);
+    goToProductDetail();
   }
 
   if (content) {
