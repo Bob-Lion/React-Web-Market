@@ -86,7 +86,7 @@ $PrimaryColor: rgb(161, 95, 4);
 
     &__popup {
       position: absolute;
-      z-index: 2;
+      z-index: 2000;
       margin-left: -14px;
       top: 29px;
       padding: 2px 5px;
@@ -101,7 +101,7 @@ $PrimaryColor: rgb(161, 95, 4);
 
   &__popup {
     position: absolute;
-    z-index: 2;
+    z-index: 2000;
     right: 0px;
     top: 34px;
     width: 120px;
@@ -227,7 +227,7 @@ $PrimaryColor: rgb(161, 95, 4);
   /* 로그인 안했을 때 팝업 */
   &__nologin_popup {
     position: absolute;
-    z-index: 2;
+    z-index: 2000;
     right: -115px;
     top: 50px;
     width: 270px;
@@ -290,7 +290,7 @@ $PrimaryColor: rgb(161, 95, 4);
 /* 배송지 등록 안되어있을 때 */
 .headerIcon_wrapper__map_icon__login_popup__no_address {
   position: absolute;
-  z-index: 2;
+  z-index: 2000;
   right: -115px;
   top: 50px;
   width: 270px;
@@ -328,7 +328,7 @@ $PrimaryColor: rgb(161, 95, 4);
 /* 배송지 등록 되어있을 때 */
 .headerIcon_wrapper__map_icon__login_popup {
   position: absolute;
-  z-index: 2;
+  z-index: 2000;
   right: -115px;
   top: 50px;
   width: 270px;
@@ -380,7 +380,8 @@ $PrimaryColor: rgb(161, 95, 4);
     width: 100%;
     position: fixed;
     top: 0;
-    z-index: 10;
+    z-index: 100;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 3px 4px 0px;
   }
   &__bottome__fixed {
     display: flex;
