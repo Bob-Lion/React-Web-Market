@@ -1,0 +1,11 @@
+
+.MainBannerCard{
+  display: block;
+  width: 100%;
+  .mainImg{
+    display: block;
+    width: 100%;
+    height: 370px;
+    object-fit: cover;
+  }
+}

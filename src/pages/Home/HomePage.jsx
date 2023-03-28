@@ -10,6 +10,7 @@ import RecentProductCarousel from '@/components/RecentProductCarousel/RecentProd
 import Footer from '@/components/Footer/Footer';
 import Header from '@/components/Header/Header';
 import PopupAd from '@/components/PopupAd/PopupAd';
+import MainBannerCarousel from '@/components/MainBannerCarousel/MainBannerCarousel';
 
 function HomePage() {
   let currentProduct = useRecoilValue(currentProductState);
@@ -28,6 +29,7 @@ function HomePage() {
   return (
     <div className="HomePage">
       <Header />
+      <MainBannerCarousel />
       <div style={{ position: 'relative' }}>
         <RecentProductCarousel title="최근 본 상품" />
         <ProductCarousel title="이 상품 어때요?" />
