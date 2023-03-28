@@ -5,9 +5,9 @@ export default function loadSwiperSlider(contentsArray, SwiperContentElem) {
   if (contentsArray) {
     /* todo --------------------------------------------------------------------- */
     // contentsArray 내용으로 sliders 채워야함
-    contentsArray.forEach((content) => {
+    contentsArray.forEach((content, i) => {
       sliders.push(
-        <SwiperSlide key={content.key}>
+        <SwiperSlide key={content.key ? content.key : i}>
           <SwiperContentElem content={content} />
         </SwiperSlide>
       );

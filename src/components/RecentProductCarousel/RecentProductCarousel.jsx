@@ -44,7 +44,7 @@ export default function RecentProductCarousel(props) {
     if (currentProductObject != null) {
       stickAgainstRelatedElement(
         ref.current,
-        document.querySelector('header'),
+        document.querySelector('.MainBannerCarousel'),
         null,
         true,
         237
