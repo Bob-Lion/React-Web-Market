@@ -6,7 +6,7 @@
 
 - 배포: https://d25v7mzll0a03c.cloudfront.net/
 - 프로젝트 기간 : 2023.3.9 ~ 2023.3.29
-- 멋쟁이 사자처럼 프론트엔드 스쿨4기 19조
+- 멋쟁이사자처럼 프론트엔드 스쿨 4기 19조
 
 ---
 
@@ -58,11 +58,31 @@
 
 ---
 
-# TEAM 밥을사자 🧑‍💻
+# TEAM 밥을 사자 🧑‍💻
 
-|               [이정호(wjdgh4058)](https://github.com/wjdgh4058)               |                 [박원준(djswns7)](https://github.com/djswns7)                 |               [소정(jeong-dev)](https://github.com/jeong-dev)                |               [정진이(luvdo0112)](https://github.com/luvdo0112)               |             [장서현(seohyun0620)](https://github.com/seohyun0620)             |
-| :---------------------------------------------------------------------------: | :---------------------------------------------------------------------------: | :--------------------------------------------------------------------------: | :---------------------------------------------------------------------------: | :---------------------------------------------------------------------------: |
-| ![이정호의 프로필 사진](https://avatars.githubusercontent.com/u/66310772?v=4) | ![박원준의 프로필 사진](https://avatars.githubusercontent.com/u/72201211?v=4) | ![소정의 프로필 사진](https://avatars.githubusercontent.com/u/119641111?v=4) | ![정진이의 프로필 사진](https://avatars.githubusercontent.com/u/60957961?v=4) | ![장서현의 프로필 사진](https://avatars.githubusercontent.com/u/52877992?v=4) |
+<table>
+  <tr>
+    <th>박원준</th>
+    <th>소 정</th>
+    <th>이정호</th>
+    <th>장서현</th>
+    <th>정진이</th>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/djswns7">@djswns7</a></td>
+    <td align="center"><a href="https://github.com/jeong-dev">@jeong-dev</a></td>
+    <td align="center"><a href="https://github.com/wjdgh4058">@wjdgh4058</a></td>
+    <td align="center"><a href="https://github.com/seohyun0620">@seohyun0620</a></td>
+    <td align="center"><a href="https://github.com/luvdo0112">@luvdo0112</a></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="https://github.com/djswns7.png" width="120"></td>
+    <td align="center"><img src="https://github.com/jeong-dev.png" width="120"></td>
+    <td align="center"><img src="https://github.com/wjdgh4058.png" width="120"></td>
+    <td align="center"><img src="https://github.com/seohyun0620.png" width="120"></td>
+    <td align="center"><img src="https://github.com/luvdo0112.png" width="120"></td>
+  </tr>
+</table>
 
 ---
 
@@ -71,10 +91,10 @@
 | 이름   | 담당 기능                                                |
 | ------ | -------------------------------------------------------- |
 | 이정호 | 상품리스트 아코디언, 장바구니 담기 팝업, 장바구니 페이지 |
-| 박원준 | 메인 캐러셀 ,로그인, 회원가입                            |
-| 소정   | 상품상세 페이지, 문의, 후기                              |
-| 정진이 | 상품 리스트 페이지네이션, 상품상세 페이지                |
-| 장서현 | 헤더, 푸터, 탑배너                                       |
+| 박원준 | 메인 캐러셀, 로그인, 회원가입                            |
+| 소 정  | 푸터, 팝업, 상품 상세 페이지                             |
+| 정진이 | 상품 리스트 페이지네이션, 후기, 문의                |
+| 장서현 | 헤더, 푸터, 탑 배너                                       |
 
 ---
 
